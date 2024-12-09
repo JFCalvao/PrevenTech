@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+#requisicoes {
+    background-color: white;
+    width: 90%;
+}
+
+.requisicao {
+    background-color: #c4f1ff;
+}
+
+.line-text { 
+    display: inline-block; 
+    position: relative; 
+} 
+
+.linha { width: 50%; /* Ajuste a largura da linha conforme necessário */ margin: 0 auto; /* Centraliza a linha horizontalmente */ border: none; border-top: 2px solid black; /* Estilo da linha */ }
+
+#titulo-requisicao {
+    font-weight: bold;
+    color: #004aad;
+    font-family: 'Open Sans';
+    font-size: 32px;
+}
