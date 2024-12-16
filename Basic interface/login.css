@@ -1,0 +1,73 @@
+html,
+body {
+    min-width: 100%;
+    padding: 0%;
+    margin: 0%;
+}
+
+:root {
+    --header-height: 12vh;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    --cor-primaria: hsl(253, 83%, 27%);
+    --cor-secundaria: hsl(229, 94%, 44%);
+    font-size: larger;
+    background: #c4f1ff;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background: linear-gradient(180deg, #c4f1ff 11%, rgba(0, 74, 173, 1) 100%);
+}
+
+h2 {
+    margin-left: 1%;
+    display: flex;
+    font-size: 3vw;
+    color: white;
+}
+
+#imgcefet {
+    width: 5%;
+    display: flex;
+    margin-left: auto;
+    margin-right: 1%;
+}
+
+#menu {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: var(--header-height);
+    background: #004aad;
+}
+
+main {
+    width: 100%;
+    height: calc(100% - var(--header-height));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#semi-circulo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: rgb(255, 255, 255);
+}
+
+#login {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    align-self: center;
+}
+
+form {
+    height: 100%;
+    background: rgb(255, 255, 255);
+}
