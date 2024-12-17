@@ -1,0 +1,31 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 17 de dez de 2024, 11:11:57
+    Author     : jfcalvao
+*/
+
+#requisicoes {
+    background-color: white;
+    width: 90%;
+}
+
+.requisicao {
+    background-color: #c4f1ff;
+}
+
+.line-text { 
+    display: inline-block; 
+    position: relative; 
+} 
+
+.linha { width: 50%; /* Ajuste a largura da linha conforme necessário */ margin: 0 auto; /* Centraliza a linha horizontalmente */ border: none; border-top: 2px solid black; /* Estilo da linha */ }
+
+#titulo-requisicao {
+    font-weight: bold;
+    color: #004aad;
+    font-family: 'Open Sans';
+    font-size: 32px;
+}
