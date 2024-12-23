@@ -12,23 +12,32 @@
         <title>PrevenTech</title>
         <link rel="shortcut icon" href="imgs/cefet.png" type="image/x-icon">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/login.css">
     </head>
     <body>
     <jsp:include page="header.jsp"></jsp:include>
     
-    <main id="login">
-        <div id="semi-circulo">
-    
-        </div>
-        <form action="POST">
-            <label for="user">Usuário: </label><br>
-            <input type="text" id="user" name="user"><br>
-            <label for="senha">Senha:</label><br>
-            <input type="text" id="senha" name="senha">
-            <label for="submit"></label>
-            <input type="submit" id="submit"> <br>
-            <a href="cadastro.html">Cadastrar</a>
-        </form>
+    <main >
+        <section id="login-secao">
+            <div id="semi-circulo">
+                <img src="imgs/login.png" id="img-login" alt="">
+            </div>
+            <div id="login">
+                <img src="login.png" alt="" id="pessoa">
+                <form id="form-login" action="POST">
+                    <label>Usuário: 
+                        <br><input type="text" id="user" name="user">
+                    </label>
+                    <label>Senha:
+                        <br><input type="password" id="senha" name="senha">
+                    </label>
+                    <button id="entrar-btn">Entrar</button>
+                    <a href="cadastro.html">Cadastrar</a>
+
+                </form>
+            </div>
+        </section>
+
     </main>
     </body>
 </html>

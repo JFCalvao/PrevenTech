@@ -21,6 +21,9 @@ body {
 :root {
     --cor-primaria: hsl(253, 83%, 27%);
     --cor-secundaria: hsl(229, 94%, 44%);
+    --cor-btn-primaria: #4780cc;
+    --cor-btn-secundaria: #004aad;
+    --cor-btn-terciaria: #83de9d;
 }
 
 html,
@@ -29,6 +32,7 @@ body {
     padding: 0;
     margin: 0;
     font-size: larger;
+    font-family: 'Open Sans', sans-serif;
     background: #c4f1ff;
     background: linear-gradient(180deg, #c4f1ff 11%, rgba(0, 74, 173, 1) 100%);
 }

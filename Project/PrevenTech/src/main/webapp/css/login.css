@@ -1,53 +1,253 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 17 de dez de 2024, 11:08:48
-    Author     : jfcalvao
-*/
 
 #login {
     display: flex;
-    background: rgb(255, 255, 255);
-    opacity: 69%;
+    background: rgba(255, 255, 255, 0.69);
     padding-top: 3%;
     align-items: center;
     justify-content: center;
     width: 20%;
     padding: 5%;
-    width: 15vw;
-    height: 15vw;
+    width: 100%;
+    height: 140%;
     top: 5vw;
-    border-radius: 5%;
-    position: absolute;
-    top: 60%;
+    border-radius: 25px;
+    position: relative;
+    top: 50%;
     left: 50%;
+    z-index: 1;
     transform: translate(-50%, -50%);
     grid-template-columns: max-content;
 }
 #semi-circulo {
-    position: absolute;
+    position: relative;
     left: 50%;
-    top: 30%;
+    top: -11.9%;
     transform: translate(-50%, -50%);
-    width: 12vw;
-    height: 150px;
-    background: rgb(255, 255, 255);
-    opacity: 50%;
+    width: 40%;
+    height: 30%;
+    background: rgba(255, 255, 255, 0.6);
+    /* opacity: 50%; */
+    z-index: 2;
     border-radius: 150px 150px 0 0;
 }
-#submit {
-    background: #004aad;
-    color: white;
-    border-style: outset;
-    border-color: #0066A2;
+
+#img-login {
+    opacity: 100% !important;
+    display: flex;
     height: 100%;
+    margin: auto;
+    top: 2.3rem;
+    position: relative;
+    z-index: 2 !important;
+}
+
+#entrar-btn {
+    background: var(--cor-btn-primaria);
+    color: white;
+    height: 2rem;
+    border: none;
     width: 100%;
     font: bold 15px arial, sans-serif;
-    text-shadow: none;
+    /* margin: 1rem 0; */
+    border-radius: 5px;
+    display: block;
+    cursor: pointer;
+}
+
+button:not(.edit-btn) {
+    background: var(--cor-btn-primaria);
+    color: white;
+    height: 2.3rem;
+    border: none;
+    width: 100%;
+    font: bold 1rem arial, sans-serif;
+    /* margin: 1rem 0; */
+    border-radius: 5px;
+    display: block;
+    cursor: pointer;
+    /* margin-top: 3rem; */
+}
+
+button:hover, #cadastrar-btn:hover {
+    background: var(--cor-btn-secundaria);
+}
+
+main  {
+    flex:auto;
+    width: 99vw;
+    height: 95vh;
+}
+
+#form-login, #form-cadastro {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1rem;
+}
+
+section{
+    padding-top: 10%;
+    margin: auto;
+}
+
+#login-secao {
+    height: 14rem;
+    width: 20rem;
+    background-color: transparent;
 }
 
 input {
     width: 100%;
+    height: 1.7rem;
+    box-sizing: border-box;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    border: none;
+}
+
+label {
+    font-size: 0.8rem;
+    display: block;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+}
+
+#dados-pessoais-secao label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+#dados-pessoais-secao input {
+    margin: 0 0 0 1rem;
+}
+
+#login a, #login-link {
+    color: #004aad;
+    text-decoration: none;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+}
+
+section {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 1rem;
+}
+
+#cadastro-secao {
+    margin: 5% auto;
+    width: 27rem;
+    padding: 0.2rem 1rem;
+}
+
+#dados-pessoais-secao {
+    margin: 5% auto;
+    width: 30rem;
+    padding: 2rem;
+}
+
+#cargos-secao {
+    margin: 5% auto;
+    height: 25rem;
+    width: 35rem;
+    padding: 0.2rem 1rem;
+}
+
+section h2 {
+    text-align: center;
+    display: block;
+    font-size: 2rem;
+    margin: 1rem auto;
+    color: black;
+}
+
+#usuario-img {
+    width: 5rem;
+    height: 5rem;
+    display: block;
+    margin: auto;
+}
+
+#cargos-secao ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cargo, .subcargo {
+    width: 100%;
+    border-radius: 0.2rem;
+    background: white;
+    border: #003a7d 1px solid;
+    text-align: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.cargo:hover, .subcargo:hover {
+    background: var(--cor-btn-secundaria);
+    color: white;
+}
+
+.cargo-selecionado, .cargo-selecionado:hover, .cargo:active, .subcargo:active  {
+    background: var(--cor-btn-terciaria);
+}
+
+#cargos {  
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.5fr 0.5fr 1fr;
+    gap: 2rem;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "tecnico-div professor-div coordenador-div"
+        "tecnico-informática-div tecnico-eletronica-div ."
+        "continuar continuar continuar";
+}
+
+.coordenador-div { grid-area: coordenador-div; }
+
+.professor-div { grid-area: professor-div; }
+
+.tecnico-div { grid-area: tecnico-div; }
+
+.tecnico-informática-div { grid-area: tecnico-informática-div; }
+
+.tecnico-eletronica-div { grid-area: tecnico-eletronica-div; }
+
+.continuar { grid-area: continuar; }
+
+
+#editar-nome-usuario {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#nome-usuario {
+    display: inline-block;
+    text-align: center;
+}
+
+.edit-btn {
+    position: absolute;
+    right: 0;
+    padding: .3rem;
+    background-color: var(--cor-btn-primaria);
+    border: none;
+    border-radius: 50%;
+}
+
+.edit-img {
+    width: 1rem;
+    cursor: pointer;
+    padding: 0;
+    background-color: transparent;
+}
+
+.escondido {
+    display: none !important;
 }
