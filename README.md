@@ -13,7 +13,7 @@
 + Técnicos de manutenção
 
 ## Diagrama de casos de uso
-<img src="https://github.com/user-attachments/assets/dc967543-6f8a-4d64-a5bb-1256a7afcbad" width="60%" />
+<img src="https://github.com/user-attachments/assets/331e99c9-0dee-44d2-aa2b-57cf728317e1" width="60%" />
 
 ## Tecnologias usadas
 <table>
