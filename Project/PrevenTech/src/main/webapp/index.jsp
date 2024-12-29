@@ -13,9 +13,10 @@
         <link rel="shortcut icon" href="imgs/cefet.png" type="image/x-icon">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/login.css">
     </head>
     <body>
-    <jsp:include page="header.jsp"></jsp:include>
+    <%@include file="header.jsp" %>
     
     <main >
         <section id="login-secao">
