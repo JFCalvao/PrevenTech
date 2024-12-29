@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="css/requisicoes.css">
     </head>
     <body>
-        <jsp:include page="header.jsp"></jsp:include>
+        <%@include file="header.jsp" %>
         
         <main>
             
