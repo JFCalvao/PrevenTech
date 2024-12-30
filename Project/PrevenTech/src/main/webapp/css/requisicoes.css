@@ -1,31 +1,246 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 17 de dez de 2024, 11:11:57
-    Author     : jfcalvao
-*/
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    margin-top: 5%;
+}
 
-#requisicoes {
+.requisicoes h3 {
+    font-size: 32px;
+    color: #004aad;
+    font-family: 'Open Sans';
+    margin-right: 10px;
+}
+
+#titulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 97%;
+    height: 15%;
+    margin-left: 20px;
+    margin-right: 20px;
+    gap: 10px;
+}
+
+.requisicoes {
+    display: flex;
+    flex-direction: column;
     background-color: white;
-    width: 90%;
+    border-radius: 15px;
+    width: 97%;
+    height: 75vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-top: -60px;
+}
+
+#linha-titulo {
+    flex-grow: 1;
+    height: 3px;
+    background-color:#004aad;
+    border-width: 5px;
 }
 
 .requisicao {
+    display: flex;
+    flex-direction: column;
     background-color: #c4f1ff;
+    margin: 20px;
 }
 
-.line-text { 
-    display: inline-block; 
-    position: relative; 
-} 
+.requisicao .view {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #c4f1ff;
+    cursor: pointer;
+}
 
-.linha { width: 50%; /* Ajuste a largura da linha conforme necessário */ margin: 0 auto; /* Centraliza a linha horizontalmente */ border: none; border-top: 2px solid black; /* Estilo da linha */ }
+.informacoes-basicas {
+    margin-left: 5px;
+}
 
-#titulo-requisicao {
-    font-weight: bold;
-    color: #004aad;
+.informacoes-basicas h4 {
     font-family: 'Open Sans';
-    font-size: 32px;
+    color: #004aad;
+    font-size: 17.2px;
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+.informacoes-basicas p {
+    font-family: 'Open Sans';
+    color: #004aad;
+    font-size: 13px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.setinha-expandir-retrair {
+    width: 20px;
+    height: 20px;
+    border-top: 3px solid #004aad;
+    border-right: 3px solid #004aad;
+    transform: rotate(45deg);
+    margin-right: 10px;
+    cursor: pointer;
+    display: flex;
+}
+
+@keyframes girarParaBaixo {
+    from {
+        transform: rotate(45deg);
+    }
+    to {
+        transform: rotate(135deg);
+    }
+}
+
+@keyframes girarDeVolta {
+    from {
+        transform: rotate(135deg);
+    }
+    to {
+        transform: rotate(45deg);
+    }
+}
+
+.girar-setinha-para-baixo {
+    animation: girarParaBaixo 0.5s ease 0s 1 normal forwards;
+}
+
+.girar-setinha-para-posicao-normal {
+    animation: girarDeVolta 0.5s ease 0s 1 normal forwards;
+}
+
+.informacoes-expandir {
+    width: 90%;
+    margin-left: 24px;
+}
+
+#linha-requisicao {
+    height: 2.5px;
+    background-color:#4780cc;
+    border-width: 5px;
+    position: relative;
+    bottom: -5px;
+    left: -19px;
+    width: 109.5%;
+}
+
+#cor-status {
+    border: 7.5px solid red;
+    border-radius: 50%;
+}
+
+#status {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 17px;
+    gap: 4px;
+    margin-top: 10px;
+}
+
+#tecnico,
+#data-horario-envio,
+#categoria,
+#equipamentos,
+#status {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#txt-tecnico,
+#txt-enviado,
+#txt-categoria,
+#txt-equipamentos {
+    color: #004aad;
+}
+
+#txt-nome-tecnico,
+#txt-horario,
+#txt-data,
+#nome-categoria {
+    color: #4780cc;
+}
+
+#txt-status {
+    color: red;
+}
+
+#equipamentos {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: baseline;
+}
+
+#numero-das-maquinas {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    font-size: 11.5px;
+}
+
+#numero-das-maquinas span {
+    background-color: white;
+    padding: 2px;
+    border-radius: 7.5px;
+}
+
+#descricao {
+    font-family: 'Open Sans', sans-serif;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 5px;
+    margin-top: 4px;
+    padding-left: 4px;
+    border-radius: 10px;
+}
+
+#descricao h5 {
+    font-size: 15px;
+    margin: 2px; /* diminui o espaço do h5 */ /* útil para diminuir a margem e o espaço que os elementos ocupam */
+}
+
+#descricao span {
+    font-size: 12px;
+    margin-left: 2px;
+}
+
+.requisicao .informacoes-expandir {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-bottom: 10px;
+}
+
+.ocultar {
+    display: none !important;
+}
+
+body {
+    overflow-y: hidden;
+}
+
+@keyframes expandir {
+    0% {
+        opacity: 0;
+        max-height: 0;
+    }
+    100% {
+        opacity: 1;
+        max-height: 100%;
+    }
+}
+
+div .expandir {
+    animation: expandir 1s ease 0s 1 normal forwards;
 }
