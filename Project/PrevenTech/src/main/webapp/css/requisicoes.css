@@ -222,10 +222,6 @@ main {
     padding-bottom: 10px;
 }
 
-.ocultar {
-    display: none !important;
-}
-
 body {
     overflow-y: hidden;
 }

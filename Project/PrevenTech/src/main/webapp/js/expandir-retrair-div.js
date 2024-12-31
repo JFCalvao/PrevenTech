@@ -3,16 +3,16 @@ const arrSetinhaExpandirRetrairEl = document.querySelectorAll('.setinha-expandir
 const arrRequisicaoEl = document.querySelectorAll('.requisicao .view');
 
 function expandirRetrairRequisicao(informacaoExpandirEl, setinhaEl) {
-    if(!informacaoExpandirEl.classList.contains('ocultar')) {
+    if(!informacaoExpandirEl.classList.contains('escondido')) {
         setinhaEl.classList.add('girar-setinha-para-posicao-normal');
         setinhaEl.classList.remove('girar-setinha-para-baixo');
-        informacaoExpandirEl.classList.add('ocultar');
+        informacaoExpandirEl.classList.add('escondido');
         informacaoExpandirEl.classList.remove('expandir');
     }
     else {
         setinhaEl.classList.remove('girar-setinha-para-posicao-normal');
         setinhaEl.classList.add('girar-setinha-para-baixo');
-        informacaoExpandirEl.classList.remove('ocultar');
+        informacaoExpandirEl.classList.remove('escondido');
         informacaoExpandirEl.classList.add('expandir');
     }
 }

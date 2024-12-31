@@ -33,7 +33,7 @@
                             </div>
                             <div class="setinha-expandir-retrair"></div>
                         </div>
-                        <div class="informacoes-expandir">
+                        <div class="informacoes-expandir escondido">
                             <div id="linha-requisicao"></div>
                             <div id="status">
                                 <span id="cor-status"></span>
