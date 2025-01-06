@@ -1,0 +1,23 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 6 de jan. de 2025, 11:10:55
+    Author     : aluno
+*/
+div {
+    background: white;
+    display: flex;
+    border-radius: 15px;
+    width: 90%;
+    height: 75vh;
+    margin-top: 50px;
+}
+button {
+    display: flex;
+    border-radius: 15px;
+    width: 90%;
+    height: 3vh;
+    background-color: #004aad;
+}
