@@ -56,5 +56,4 @@
         out.println("<h3>Erro ao atualizar a solicitação. Tente novamente.</h3>");
     }
 %>
-
 <a href='index.jsp'>Voltar para o início</a>
