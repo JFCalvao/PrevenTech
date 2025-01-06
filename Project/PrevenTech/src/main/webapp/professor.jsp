@@ -16,9 +16,8 @@
     </head>
     <body>
         <%@include file="header.jsp" %>
-        
         <main>
-            
+           
         </main>
     </body>
 </html>

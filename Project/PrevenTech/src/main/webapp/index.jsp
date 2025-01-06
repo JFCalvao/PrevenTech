@@ -21,7 +21,7 @@
         <div id="semi-circulo">
     
         </div>
-        <form action="POST">
+        <form method="POST">
             <label for="user">Usuário: </label><br>
             <input type="text" id="user" name="user"><br>
             <label for="senha">Senha:</label><br>
