@@ -1,23 +1,72 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 6 de jan. de 2025, 11:10:55
-    Author     : aluno
-*/
-div {
-    background: white;
-    display: flex;
-    border-radius: 15px;
-    width: 90%;
-    height: 75vh;
-    margin-top: 50px;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Contrail+One&display=swap');
+
+h1 {
+    font-family: "Contrail One", serif;
+    margin-left: 2%;
 }
+
+main {
+    background: white;
+    border-radius: 15px;
+    width: 90vw;
+    margin: 10vh 5vw 20vh 5vw;
+    padding-top: 1vh;
+}
+
 button {
-    display: flex;
+    position: auto;
     border-radius: 15px;
     width: 90%;
-    height: 3vh;
+    height: 5vh;
     background-color: #004aad;
+    font-size: 100%;
+    font-family: 'Contrail One';
+}
+
+label {
+    margin-right: 3vw;
+}
+
+input {
+    display: block;
+    width: 35vw;
+    height: 3vh;
+    background-color: #c4f1ff;
+}
+
+.campo-texto {
+    display: flex;
+    flex-direction: row;
+    padding: 0.5vh;
+    width: 60vw;
+    justify-content: space-between;
+}
+
+#estados {
+    justify-content: center;
+    width: 12vw;
+    height: 1.7vw;
+    margin-left: 19vw;
+    background-color: #c4f1ff;
+}
+
+option {
+    width: 30%;
+}
+
+label, P {
+    color: #004aad;
+    font-family: 'Open Sans', sans-serif;
+    font-size: larger;
+    font-weight: 700;
+}
+form {
+    padding: 2.5%;
+}
+#linha-titulo {
+    flex-grow: 1;
+    height: 3px;
+    background-color:#004aad;
+    border-width: 5px;
 }

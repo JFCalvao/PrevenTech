@@ -6,7 +6,7 @@
 
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>Cadastrar</title>
+            <title>Remover</title>
             <link rel="stylesheet" href="css/cadastromaq.css">
             <link rel="stylesheet" href="css/style.css">
         </head>
@@ -15,9 +15,7 @@
             <jsp:include page="header.jsp"></jsp:include>
             <main>
        
-                    <h1>Cadastrar</h1>
-                     <div id="linha-titulo"></div>
-                
+                    <h1>Remover Máquina</h1>
                     
                     <form>
                         
@@ -37,12 +35,12 @@
                     </div>
 
                     <p> Estado: <select id="estados"> <br>
-                            <option value="funcionamento">FUNCIONANDO</option>
-                            <option value="defeito">COM DEFEITO</option>
-                            <option value="manuencao">EM MANUTENÇÃO</option>
+                            <option value="funcionamento"> Em funcionamento</option>
+                            <option value="defeito">Com defeito</option>
+                            <option value="manuencao">Em conserto</option>
                         </select> </p> <br>
 
-                    <p> <button onclick="clicar()">CADASTRAR</button> <br></p>
+                    <p> <button onclick="clicar()">REMOVER</button> <br></p>
                     
                     </form>
 
