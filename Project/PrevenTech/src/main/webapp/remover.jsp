@@ -38,10 +38,10 @@
                             <option value="funcionamento"> Em funcionamento</option>
                             <option value="defeito">Com defeito</option>
                             <option value="manuencao">Em conserto</option>
-                        </select> </p> <br>
+                        </select> </p> <br.
 
                     <p> <button onclick="clicar()">REMOVER</button> <br></p>
-                    
+                  
                     </form>
 
             </main>

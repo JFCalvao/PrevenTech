@@ -1,210 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Contrail+One&display=swap');
+
+h1 {
+    font-family: "Contrail One", serif;
+    margin-left: 2%;
+}
+
 main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80%;
-    margin-top: 5%;
+    background: white;
+    border-radius: 15px;
+    width: 90vw;
+    margin: 10vh 5vw 20vh 5vw;
+    padding-top: 1vh;
 }
 
-.aparelhos h3 {
-    font-size: 32px;
-    color: #004aad;
-    font-family: 'Open Sans';
-    margin-right: 10px;
-}
-
-#titulo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    width: 97%;
-    height: 15%;
-    margin-left: 20px;
-    margin-right: 20px;
-    gap: 10px;
-}
-
-.aparelhos {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
+button {
+    position: auto;
     border-radius: 15px;
     width: 90%;
-    height: 70vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    margin-top: -60px;
+    height: 5vh;
+    background-color: #004aad;
+    font-size: 100%;
+    font-family: 'Contrail One';
 }
-#pesquisar {
-    border-radius: 10px;
-    border-color: #004aad;
+
+label {
+    margin-right: 3vw;
+}
+
+input {
+    display: block;
+    width: 35vw;
+    height: 3vh;
+    background-color: #c4f1ff;
+}
+
+.campo-texto {
+    display: flex;
+    flex-direction: row;
+    padding: 0.5vh;
+    width: 60vw;
+    justify-content: space-between;
+}
+
+#estados {
+    justify-content: center;
     width: 12vw;
-    height: 0.9vw;
+    height: 1.7vw;
+    margin-left: 19vw;
+    background-color: #c4f1ff;
 }
-img {
-    width: 1.7vw;
+
+option {
+    width: 30%;
+}
+
+label, P {
+    color: #004aad;
+    font-family: 'Open Sans', sans-serif;
+    font-size: larger;
+    font-weight: 700;
+}
+form {
+    padding: 2.5%;
 }
 #linha-titulo {
     flex-grow: 1;
     height: 3px;
     background-color:#004aad;
     border-width: 5px;
-}
-
-.requisicao {
-    display: flex;
-    flex-direction: column;
-    background-color: #c4f1ff;
-    margin: 20px;
-}
-
-.requisicao .view {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #c4f1ff;
-    cursor: pointer;
-}
-
-.informacoes-basicas {
-    margin-left: 5px;
-}
-
-.informacoes-basicas h4 {
-    font-family: 'Open Sans';
-    color: #004aad;
-    font-size: 17.2px;
-    margin-bottom: 5px;
-    margin-top: 0;
-}
-
-h4 {
-    margin-right: 75vw;
-}
-
-.informacoes-basicas p {
-    font-family: 'Open Sans';
-    color: #004aad;
-    font-size: 13px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.setinha-expandir-retrair {
-    width: 20px;
-    height: 20px;
-    border-top: 3px solid #004aad;
-    border-right: 3px solid #004aad;
-    transform: rotate(45deg);
-    margin-right: 10px;
-    cursor: pointer;
-    display: flex;
-}
-
-@keyframes girarParaBaixo {
-    from {
-        transform: rotate(45deg);
-    }
-    to {
-        transform: rotate(135deg);
-    }
-}
-
-@keyframes girarDeVolta {
-    from {
-        transform: rotate(135deg);
-    }
-    to {
-        transform: rotate(45deg);
-    }
-}
-
-.girar-setinha-para-baixo {
-    animation: girarParaBaixo 0.5s ease 0s 1 normal forwards;
-}
-
-.girar-setinha-para-posicao-normal {
-    animation: girarDeVolta 0.5s ease 0s 1 normal forwards;
-}
-
-.informacoes-expandir {
-    width: 90%;
-    margin-left: 24px;
-}
-
-#linha-requisicao {
-    height: 2.5px;
-    background-color:#4780cc;
-    border-width: 5px;
-    position: relative;
-    bottom: -5px;
-    left: -19px;
-    width: 109.5%;
-}
-
-#cor-status {
-    border: 7.5px solid red;
-    border-radius: 50%;
-}
-
-#status {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 17px;
-    gap: 4px;
-    margin-top: 10px;
-}
-
-#status {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-
-
-#txt-status {
-    color: red;
-}
-
-
-#numero-das-maquinas {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    font-size: 11.5px;
-}
-
-#numero-das-maquinas span {
-    background-color: white;
-    padding: 2px;
-    border-radius: 7.5px;
-}
-
-.informacoes-expandir {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding-bottom: 10px;
-}
-
-body {
-    overflow-y: hidden;
-}
-
-@keyframes expandir {
-    0% {
-        opacity: 0;
-        max-height: 0;
-    }
-    100% {
-        opacity: 1;
-        max-height: 100%;
-    }
-}
-
-div .expandir {
-    animation: expandir 1s ease 0s 1 normal forwards;
 }

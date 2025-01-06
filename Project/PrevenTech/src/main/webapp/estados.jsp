@@ -49,7 +49,7 @@
                             <div id="linha-requisicao"></div>
                             <div id="status">
                                 <span id="cor-status"></span>
-                                <span id="txt-status">Pendente</span>
+                                <span id="txt-status">Pendente</span> //comit
                             </div>
                             </div>
                         </div>

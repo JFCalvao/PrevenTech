@@ -42,7 +42,7 @@
                             <option value="manuencao">EM MANUTENÇÃO</option>
                         </select> </p> <br>
 
-                    <p> <button onclick="clicar()">CADASTRAR</button> <br></p>
+                    <p> <button onclick="clicar()">CADASTRAR</button> <br></p> //comit
                     
                     </form>
 
