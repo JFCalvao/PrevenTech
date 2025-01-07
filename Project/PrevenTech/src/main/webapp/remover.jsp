@@ -6,7 +6,7 @@
 
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>Cadastrar</title>
+            <title>Remover</title>
             <link rel="stylesheet" href="css/cadastromaq.css">
             <link rel="stylesheet" href="css/style.css">
         </head>
@@ -14,9 +14,8 @@
         <body>
             <jsp:include page="header.jsp"></jsp:include>
             <main>
-                    <h1>Cadastrar</h1>
-                    <div id="linha-titulo">
-                    </div>
+       
+                    <h1>Remover Máquina</h1>
                     
                     <form>
                         
@@ -26,7 +25,7 @@
                     </div>
                     
                     <div class="campo-texto">
-                    <label for="maquina-cad">Maquina:</label>
+                    <label for="maquina-cad">Maquina:  </label>
                         <input type="text" name="maquina-cad" id="maquina-cad">
                    </div>
 
@@ -34,8 +33,8 @@
                         <label for="local">Local: </label>
                         <input type="text" name="local" id="local">
                     </div>
-                        
-                        <div class="campo-texto">
+
+                   <div class="campo-texto">
                         <label for="estados">Estados:</label> 
                             <select id="estados"> <br>
                             <option value="funcionamento">FUNCIONANDO</option>
@@ -43,8 +42,9 @@
                             <option value="manuencao">EM MANUTENÇÃO</option>
                         </select> 
                         </div>
-                    <p> <button onclick="clicar()">CADASTRAR</button> <br></p>
-                    
+
+                    <p> <button onclick="clicar">REMOVER</button> <br></p>
+                  
                     </form>
 
             </main>
