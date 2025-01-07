@@ -21,7 +21,8 @@ button {
     height: 5vh;
     background-color: #004aad;
     font-size: 100%;
-    font-family: 'Contrail One';
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
 }
 
 input {
