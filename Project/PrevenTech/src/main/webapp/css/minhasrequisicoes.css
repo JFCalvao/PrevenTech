@@ -1,9 +1,336 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 17 de dez de 2024, 11:12:37
-    Author     : jfcalvao
-*/
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    margin-top: 5%;
+    flex-direction: column;
+    gap: 7px;
+}
 
+.minhas-requisicoes h3 {
+    font-size: 32px;
+    color: #004aad;
+    font-family: 'Open Sans';
+    margin-right: 10px;
+}
+
+#titulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 97%;
+    height: 15%;
+    margin-left: 20px;
+    margin-right: 20px;
+    gap: 10px;
+}
+
+.minhas-requisicoes {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 15px;
+    width: 97%;
+    height: 70vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-bottom: 75px;
+}
+
+.linha-titulo {
+    flex-grow: 1;
+    height: 3px;
+    background-color:#004aad;
+    border-width: 5px;
+}
+
+.requisicao {
+    display: flex;
+    flex-direction: column;
+    background-color: #c4f1ff;
+    margin: 20px;
+}
+
+.requisicao .view {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #c4f1ff;
+    cursor: pointer;
+}
+
+.informacoes-basicas {
+    margin-left: 5px;
+}
+
+.informacoes-basicas h4 {
+    font-family: 'Open Sans';
+    color: #004aad;
+    font-size: 17.2px;
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+.informacoes-basicas p {
+    font-family: 'Open Sans';
+    color: #004aad;
+    font-size: 13px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.setinha-expandir-retrair {
+    width: 20px;
+    height: 20px;
+    border-top: 3px solid #004aad;
+    border-right: 3px solid #004aad;
+    transform: rotate(45deg);
+    margin-right: 10px;
+    cursor: pointer;
+    display: flex;
+}
+
+@keyframes girarParaBaixo {
+    from {
+        transform: rotate(45deg);
+    }
+    to {
+        transform: rotate(135deg);
+    }
+}
+
+@keyframes girarDeVolta {
+    from {
+        transform: rotate(135deg);
+    }
+    to {
+        transform: rotate(45deg);
+    }
+}
+
+.girar-setinha-para-baixo {
+    animation: girarParaBaixo 0.5s ease 0s 1 normal forwards;
+}
+
+.girar-setinha-para-posicao-normal {
+    animation: girarDeVolta 0.5s ease 0s 1 normal forwards;
+}
+
+.informacoes-expandir {
+    width: 90%;
+    margin-left: 24px;
+}
+
+#linha-requisicao {
+    height: 2.5px;
+    background-color:#4780cc;
+    border-width: 5px;
+    position: relative;
+    bottom: -5px;
+    left: -19px;
+    width: 109.5%;
+    opacity: 0.5;
+}
+
+#cor-status {
+    border: 7.5px solid red;
+    border-radius: 50%;
+}
+
+#status {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 17px;
+    gap: 4px;
+    margin-top: 10px;
+}
+
+#tecnico,
+#data-horario-envio,
+#categoria,
+#equipamentos,
+#status {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#txt-tecnico,
+#txt-enviado,
+#txt-categoria,
+#txt-equipamentos {
+    color: #004aad;
+}
+
+#txt-nome-tecnico,
+#txt-horario,
+#txt-data,
+#nome-categoria {
+    color: #4780cc;
+}
+
+#txt-status {
+    color: red;
+}
+
+#descricao {
+    font-family: 'Open Sans', sans-serif;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 5px;
+    margin-top: 4px;
+    padding-left: 4px;
+    border-radius: 10px;
+}
+
+#descricao h5 {
+    font-size: 15px;
+    margin: 2px; /* diminui o espaço do h5 */ /* útil para diminuir a margem e o espaço que os elementos ocupam */
+}
+
+#descricao span {
+    font-size: 12px;
+    margin-left: 2px;
+}
+
+.requisicao .informacoes-expandir {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-bottom: 10px;
+}
+
+body {
+    overflow-y: hidden;
+}
+
+@keyframes expandir {
+    0% {
+        opacity: 0;
+        max-height: 0;
+    }
+    100% {
+        opacity: 1;
+        max-height: 100%;
+    }
+}
+
+.expandir {
+    animation: expandir 1s ease 0s 1 normal forwards;
+}
+
+#informacoes-e-chat {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#chat {
+    background-color: #004aad;
+    color: white;
+}
+
+#botao-nova-solicitacao {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 97%;
+    border-radius: 15px;
+    height: 6vh;
+    cursor: pointer;
+    position: fixed;
+    bottom: 2%;
+}
+
+#txt-nova-solicitacao {
+    font-family: 'Open Sans';
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#mais {
+    border: 3px solid black;
+    border-radius: 50% 50%;
+    width: 25px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#equipamentos {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.maquina #informacoes {
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    align-items: center;
+}
+
+.maquina #nome {
+    color: #004aad;
+    font-size: 16px;
+}
+
+.maquina #local {
+    font-size: 14.1px;
+    color: #004aad;
+}
+
+.maquina #situacao {
+    color: #4780cc;
+}
+
+#numero-nome {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.maquina {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    background-color: #e1f8ff;
+    padding: 1%;
+}
+
+.maquina #numero {
+    background-color: white;
+    padding: 2px;
+    border-radius: 7.5px;
+    font-size: 10.4px;
+    margin-left: 2px;
+    margin-top: 2px;
+}
+
+.linha-maquina {
+    height: 2.5px;
+    background-color:#4780cc;
+    opacity: 0.5;
+}
+
+.sem-requisicoes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Open Sans';
+    font-size: 2px;
+}
+
+#botao-chat {
+    font-size: 1px;
+}

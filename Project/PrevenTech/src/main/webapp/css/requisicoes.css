@@ -237,6 +237,39 @@ body {
     }
 }
 
-div .expandir {
+.expandir {
     animation: expandir 1s ease 0s 1 normal forwards;
+}
+
+#botoes-aceitar-e-setinha {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+} 
+
+#botao-aceitar {
+    background-color: #4ab280;
+    color: white;
+    font-size: 15px;
+    border-radius: 30px;
+    border: #4780cc;
+    font-weight: bold;
+    font-family: 'Open Sans';
+    width: 6em;
+    height: 2em;
+}
+
+.sem-requisicoes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Open Sans';
+    font-size: 30px;
+    height: 70%;
+    margin-left: 5%;
+    margin-right: 5%;
+    color: #4780cc;
+    font-weight: bold;
 }
