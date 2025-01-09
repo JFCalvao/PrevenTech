@@ -15,9 +15,11 @@ import cefetmg.inf.preventech.Exceptions.HistoricoJaExisteException;
 import cefetmg.inf.preventech.Exceptions.NoSuchCategoriaException;
 import cefetmg.inf.preventech.Exceptions.NoSuchTableException;
 import cefetmg.inf.preventech.Exceptions.RequisicaoJaExisteException;
+import cefetmg.inf.preventech.Exceptions.UsuarioJaExisteException;
 import cefetmg.inf.preventech.dao.Equipamento;
 import cefetmg.inf.preventech.dao.Historico;
 import cefetmg.inf.preventech.dao.Requisicao;
+import cefetmg.inf.preventech.dao.User;
 import cefetmg.inf.preventech.util.DatabaseManager;
 import cefetmg.inf.preventech.util.DataManager;
 import cefetmg.inf.preventech.util.SQLData;
@@ -61,21 +63,11 @@ public class MainServlet extends HttpServlet {
         String type = json.getString("type");
         String operation = json.getString("operation");
         JSONObject content = json.getJSONObject("content");
-        String tableName = getTableName(type);
         
         JSONObject jsonResponse = new JSONObject();
         
         try {
             if(operation.equals("INSERT")) {
-//                String[] params = getParams(0, type, tableName, content);;
-//                
-//                SQLData formattedData = DataManager.format(params);
-//                DatabaseManager.insert(tableName, formattedData);
-//                
-//                List<SQLData> list = DatabaseManager.getAll(tableName);
-//                for(int i = 0; i < list.size(); i++)
-//                    jsonResponse.put(String.valueOf(i), DataManager.unformat(list.get(i)));
-
                 switch(type) {
                     case "EQ": {
                         Equipamento equipamento = getEquipamento(content);
@@ -95,24 +87,31 @@ public class MainServlet extends HttpServlet {
                     break;
                     case "HS": {
                         Historico historico = getHistorico(content);
-                        Requisicao requisicao = DatabaseManager.searchRequisicao(historico.getId());
-                        
-                        historico.setRequisitor_cpf(requisicao.getRequisitor_cpf());
-                        historico.setResponsavel_cpf(requisicao.getResponsavel_cpf());
+//                        Requisicao requisicao = DatabaseManager.searchRequisicao(historico.getId());
+//                        
+//                        historico.setRequisitor_cpf(requisicao.getRequisitor_cpf());
+//                        historico.setResponsavel_cpf(requisicao.getResponsavel_cpf());
+                        historico.setRequisitor_cpf("12909832498");
+                        historico.setResponsavel_cpf("75739677302");
                         
                         if(DatabaseManager.hasHistorico(historico)) {
                             throw new HistoricoJaExisteException();
                         }
                         
-                        String savePath = "src/main/java/cefetmg/inf/preventech/uploads";
+                        String savePath = getServletContext().getRealPath("uploads");
                         historico.uploadFile(savePath);
                         
                         DatabaseManager.insertHistorico(historico);
                     }
-                        
                     break;
                     case "US": {
+                        User usuario = getCadastro(content);
                         
+                        if(DatabaseManager.hasUsuario(usuario)) {
+                            throw new UsuarioJaExisteException();
+                        }
+                        
+                        DatabaseManager.insertUsuario(usuario);
                     }      
                     break;
                     case "CH": {
@@ -128,13 +127,13 @@ public class MainServlet extends HttpServlet {
                     case "RQ":         
                     break;
                     case "HS": {
-                        String savePath = "src/main/java/cefetmg/inf/preventech/uploads";
+                        String savePath = getServletContext().getRealPath("uploads");
                         Historico historico = getHistorico(content);
                         historico = DatabaseManager.searchHistorico(historico.getId());
 
                         File file = historico.getFile(savePath);
                         String fileName = historico.getNomeArquivo();
-
+                        
                         if(file.exists()) {
                             byte[] fileBytes = Files.readAllBytes(file.toPath()); 
                             String fileContentBase64 = Base64.getEncoder().encodeToString(fileBytes);
@@ -158,32 +157,30 @@ public class MainServlet extends HttpServlet {
             } else {
 
             }
+            
+            jsonResponse.put("status", "OK");
+            jsonResponse.put("error", "NOERROR");
+            
         } catch(SQLException e) {
+            
            jsonResponse.put("status", "ERRO");
            jsonResponse.put("error", "Estamos com falhas para guardar estas informações. "
                           + "Por favor, tente novamente mais tarde.");
+           
         } catch(Exception e) {
+            
            jsonResponse.put("status", "ERRO");
            jsonResponse.put("error", e.getMessage());
+           
         } finally {
+            
             response.setContentType("application/json");
             try (PrintWriter out = response.getWriter()) {
                 System.out.println("Response: " + jsonResponse);
                 out.print(jsonResponse);
-            }    
+            }   
+            
         }
-    }
-    
-    private String getTableName(String type) {
-        switch(type) {
-            case "EQ": return "equipamentos";
-            case "RQ": return "requisicoes";
-            case "HS": return "historico";
-            case "US": return "users";
-            case "CH": return "chats";
-            default: break;
-        }
-        return "";
     }
     
     private Equipamento getEquipamento(JSONObject content) {
@@ -266,52 +263,24 @@ public class MainServlet extends HttpServlet {
         
         return new Historico(id, fileContent);
     }
-    
-    private String[] getParams(int operation, String type, String tableName, JSONObject content) 
-                     throws NoSuchTableException {
-        String[] params = null;
-        String[] columns = DatabaseManager.getColumns(tableName);
 
-        if(operation == 0)         /*============[INSERT Operation]===========*/
-            switch(type) {
-                case "EQ":         /* * * * * * * * * * * * * * * * * * * * * */ 
-                case "RQ":         /*------[All are treated the same way]-----*/
-                case "HS":         /*------[Because to insert in Database]----*/
-                case "US":         /*--------[you need all columns info]------*/
-                case "CH":         /* * * * * * * * * * * * * * * * * * * * * */
-                    params = new String[columns.length];
-                    for(int i = 0; i < columns.length; i++) {
-                        params[i] = content.getString(columns[i]);
-                    }
-                default: break;
-            }
-        else if(operation == 1)    /*==============[GET Operation]============*/
-            switch(type) {         
-                case "US":         /*------------[Login operation]------------*/     
-                break;
-                case "CH":         /*-----------[Getting chat msgs]-----------*/     
-                break;
-                case "EQ": break;  /* * * * * * * * * * * * * * * * * * * * * */                                
-                case "RQ": break;  /*-------------[No Use at all]-------------*/
-                case "HS": break;  /* * * * * * * * * * * * * * * * * * * * * */
-                default: break;
-            }
-        else
-            switch(type) {
-                case "EQ":         /* * * * * * * * * * * * * * * * * * * * * */ 
-                case "RQ":         /*------[All are treated the same way]-----*/
-                case "HS":         /*------[Because to remove in Database]----*/
-                case "US":         /*--------[you need all columns info]------*/
-                case "CH":         /* * * * * * * * * * * * * * * * * * * * * */
-                    params = new String[columns.length];
-                    for(int i = 0; i < columns.length; i++) {
-                        params[i] = content.getString(columns[i]);
-                    }
-                default: break;
-            }
-        return params;
+    private User getCadastro(JSONObject content) {
+        String nome = content.getString("nome");
+        String cpf = content.getString("cpf");
+        String senha = content.getString("senha");
+        String email = content.getString("email");
+        String profissao = content.getString("profissao");
+        
+        return new User(nome, cpf, senha, email, profissao);
     }
-
+    
+    private User getLogin(JSONObject content) {
+        String cpf = content.getString("cpf");
+        String senha = content.getString("senha");
+        
+        return new User(cpf, senha);
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -29,8 +29,17 @@ public class User {
         this.profissao = profissao;
     }
     
+    public User(String cpf, String senha) {
+        this.cpf = cpf;
+        this.senha = senha;
+    }
+    
     public User(HttpSession serverSession) {
         this.serverSession = serverSession;
+    }
+    
+    public User(Session session) {
+        this.chatSession = session;
     }
     
     private HttpSession serverSession;
