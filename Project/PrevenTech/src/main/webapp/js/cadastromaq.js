@@ -1,26 +1,75 @@
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
- */
-const nome = document.querySelector("#maquina-cad").value;
-        const nPatrimonio = document.querySelector("#n-patrimonio").value;
-        const local = document.querySelector("#local").value;
-        const estado = document.querySelector("#estados").value;
 
-        const data = {
-            nome: nome,
-            n_patrimonio: nPatrimonio,
-            local: local,
-            estado: estado
-        };
+let resposta = document.getElementById('resposta');
 
-        const url = insert.action;
+let clicar = document.getElementById('cadastro');
+clicar.addEventListener('click', casdastrar);
 
-        sendAjaxRequest(url, insert.method, data, function(err, res) {
-            if (err) {
-                alert(err);
-            } else {
-                response.innerHTML = res;
-            }
-        });
+function casdastrar() {
+    const nome = document.querySelector("#maquina-cad").value;
+    const nPatrimonio = document.querySelector("#n-patrimonio").value;
+    const local = document.querySelector("#local").value;
+    const estado = document.querySelector("#estados").value;
+
+    const data = {
+        nome: nome,
+        n_patrimonio: nPatrimonio,
+        local: local,
+        estado: estado
+    };
+
+    const url = "MainServlet";
+    const ajax = new XMLHttpRequest();
+
+    ajax.open("POST", url, true);
+    ajax.onload = function() {
+        if (ajax.status === 200) {
+            var res = ajax.responseText;
+            resposta.innerHTML = "Envio bem-sucedido: " + reS;
+            window.alert('lala')
+        } else {
+            resposta.innerHTML = "Erro ao enviar dados.";
+        }
+    };
+    let json = new Request();
+    json.setOperation("INSERT");
+    json.setType("EQ");
+    json.setData({
+        "n_patrimonio": nPatrimonio,
+        "maquina": nome,
+        "local": local,
+        "estado": estado
     });
+
+    ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    ajax.send(json.getRequest());
+
+//    post.addEventListener("submit", (e) => {
+//        e.preventDefault();
+//
+//        const url = post.action;
+//        const ajax = new XMLHttpRequest();
+//
+//        ajax.onload = function() {
+//            if (ajax.status === 200) {
+//                var res = ajax.responseText;
+//                resposta.innerHTML = "Envio bem-sucedido: " + res;
+//            } else {
+//                resposta.innerHTML = "Erro ao enviar dados.";
+//            }
+//        };
+//
+//        json.setData({
+//            "file": fileContent,
+//            "id": "1"
+//        });
+//
+//        let json = new Request();
+//        json.setOperation("POST");
+//        json.setType("EQ");
+//        json.setData({});
+//
+//        ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+//        ajax.send(json.getRequest());
+//    });
+
+}

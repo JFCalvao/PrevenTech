@@ -13,7 +13,7 @@
 
         <body>
             <jsp:include page="header.jsp"></jsp:include>
-            <main>
+            <main  id="resposta">
                     <h1>Cadastrar</h1>
                     <div id="linha-titulo">
                     </div>
@@ -37,17 +37,20 @@
                         
                         <div class="campo-texto">
                         <label for="estados">Estados:</label> 
-                            <select id="estados"> <br>
+                            <select id="estados"> 
                             <option value="funcionamento">FUNCIONANDO</option>
                             <option value="defeito">COM DEFEITO</option>
                             <option value="manuencao">EM MANUTENÇÃO</option>
                         </select> 
                         </div>
-                        <p> <button onclick="clicar()" id="cadastro">CADASTRAR</button> <br></p>
+                        
+                        <p> <button id="cadastro">CADASTRAR</button> <br></p>
                     
                     </form>
 
+
             </main>
+            <script src="js/json.js"></script>
             <script src="js/cadastromaq.js"></script>
         </body>
 
