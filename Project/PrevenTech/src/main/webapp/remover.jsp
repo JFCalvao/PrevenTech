@@ -44,6 +44,8 @@
                     </form>
 
             </main>
+             <script src="js/json.js"></script>
+            <script src="js/cadastromaq.js"></script>
         </body>
 
         </html>
