@@ -20,8 +20,8 @@
                     <form>
                         
                         <div class="campo-texto">
-                    <label for="n-patrimonio">Número patrimônio: </label>
-                    <input type="text" name="n-patrimonio" id="n-patrimonio">
+                    <label for="n-patrimonio">N patrimônio: </label>
+                    <input type="text" name="n-patrimonio" id="n-patrimonio-remov">
                     </div>
                     
                     <div class="campo-texto">
@@ -36,11 +36,7 @@
 
                    <div class="campo-texto">
                         <label for="estados">Estados:</label> 
-                            <select id="estados"> <br>
-                            <option value="funcionamento">FUNCIONANDO</option>
-                            <option value="defeito">COM DEFEITO</option>
-                            <option value="manuencao">EM MANUTENÇÃO</option>
-                        </select> 
+                              <input type="text" name="local" id="estados">
                         </div>
 
                     <p> <button onclick="clicar">REMOVER</button> <br></p>

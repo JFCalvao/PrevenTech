@@ -10,13 +10,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 #btn-finaliza {
     position: auto;
     border-radius: 15px;
+    font-size: larger;
     width: 85%;
     height: 5vh;
     background-color: #004aad;
-    font-size: 100%;
+    font-size: 80%;
      font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     color: white;
+    margin-bottom: 2vw;
 }
 #btn-cancela {
     display: inline-flex;
@@ -27,10 +29,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     height: 5vh;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    color:white;
-    margin: 0.5vw;
+    color:black;
+    margin-top: 1vw;
     background-color: #a6a6a6;
     width: 40%;
+    margin-left: 0.8vw;
 }
 #btn-edita {
     display: inline-flex;
@@ -41,7 +44,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     height: 5vh;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    color: black;
+    color: white;
     margin: 0;
     background-color: #004aad;
     width: 40%;
@@ -70,6 +73,7 @@ main {
     align-items: center;
     height: 80%;
     margin-top: 5%;
+    border-radius: 15px;
 }
 
 .requisicoes h3 {
@@ -239,11 +243,13 @@ main {
     color: red;
 }
 
+
 #equipamentos {
     display: flex;
     flex-direction: row;
     gap: 10px;
     align-items: baseline;
+    background-color: #c4f1ff;
 }
 
 #numero-das-maquinas {
@@ -273,7 +279,8 @@ main {
 
 #descricao h5 {
     font-size: 15px;
-    margin: 2px; /* diminui o espaço do h5 */ /* útil para diminuir a margem e o espaço que os elementos ocupam */
+    margin: 2px; 
+    
 }
 
 #descricao span {
@@ -305,4 +312,76 @@ body {
 
 div .expandir {
     animation: expandir 1s ease 0s 1 normal forwards;
+}
+
+#equipamentos {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    
+}
+
+.maquina #informacoes {
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    align-items: center;
+   
+}
+
+.maquina #nome {
+    color: #004aad;
+    font-size: 16px;
+}
+
+.maquina #local {
+    font-size: 14.1px;
+    color: #004aad;
+}
+
+.maquina #situacao {
+    color: #4780cc;
+}
+
+#numero-nome {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.maquina {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    background-color: #e1f8ff;
+    padding: 1%;
+    width: 80%;
+ 
+}
+
+.maquina #numero {
+    background-color: white;
+    padding: 2px;
+    border-radius: 7.5px;
+    font-size: 10.4px;
+    margin-left: 2px;
+    margin-top: 2px;
+}
+
+.linha-maquina {
+    height: 2.5px;
+    background-color:#4780cc;
+    opacity: 0.5;
+}
+
+
+#botao-chat {
+    font-size: 1px;
+}
+.maquina,
+#numero,
+#numero-nome,
+#situacao {
+    margin-right: 15vw;
 }

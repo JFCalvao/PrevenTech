@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Minhas tarefas</title>
         <link rel="shortcut icon" href="imgs/cefet.png" type="image/x-icon">
         <link rel="stylesheet" href="css/tarefas.css">
         <link rel="stylesheet" href="css/style.css">
@@ -20,7 +20,7 @@
         <main>
             <div class="requisicoes">
                 <div id="titulo">
-                    <h3>Requisições</h3>
+                    <h3>Minhas tarefas</h3>
                     <div id="linha-titulo"></div>
                 </div>
 
@@ -52,16 +52,39 @@
                                 <span id="txt-categoria">Categoria: </span>
                                 <span id="nome-categoria">Falha nos cabos de conexão</span>
                             </div>
+                           
                             <div id="equipamentos">
+                                
                                 <span id="txt-equipamentos">Equipamentos: </span>
 
-                                <span id="numero-das-maquinas">
-                                    <span>4002</span>
-                                    <span>4032</span>
-                                    <span>4010</span>
-                                    <span>3902</span>
-                                </span>
+                                <div class="maquina">
+                                    <div id="informacoes">
+                                        <span id="numero-nome">
+                                            <span id="numero">3902</span>
+                                            <span id="nome">Ventilador Tron - 156165</span>
+                                        </span>
+                                        <span id="local">Local: Sala 107, Prédio 20</span>
+                                        <span id="situacao">Situação: </span> 
+                                    </div>
+                                
+                                    <div class="linha-maquina"></div>
+                                </div>
+                                
+                                    <div class="maquina">
+                                    <div id="informacoes">
+                                        <span id="numero-nome">
+                                            <span id="numero">4002</span>
+                                            <span id="nome">Computador Dell - 53732 </span>
+                                        </span>
+                                        <span id="local">Local: Sala 108, Prédio 20</span>
+                                        <span id="situacao">Situação:</span>
+                                    </div>
+                                
+                                    <div class="linha-maquina"></div>
+                                </div>
+                                
                             </div>
+                            
 
                             <div id="descricao">
                                 <h5>Descrição</h5>
