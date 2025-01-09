@@ -7,6 +7,7 @@ package cefetmg.inf.preventech.dao;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.time.ZonedDateTime; 
@@ -38,7 +39,7 @@ public class Historico {
         int horas = dataHoraBrasil.getHour(); 
         int minutos = dataHoraBrasil.getMinute(); 
         
-        this.data = dia + "/" + mes + "/" + ano + "-" + horas + ":" + minutos;
+        this.data = dia + "-" + mes + "-" + ano + "_" + horas + "-" + minutos;
         
         this.conteudoArquivo = conteudoArquivo;
         
@@ -52,6 +53,7 @@ public class Historico {
     private String conteudoArquivo;
     private String nomeArquivo;
     private File arquivo;
+    private final String extension = ".pdf";
     
     public void setId(String id) { this.id = id; }
     public void setRequisitor_cpf(String cpf) { this.requisitor_cpf = cpf; }
@@ -60,7 +62,7 @@ public class Historico {
     public void setConteudoArquivo(String conteudo) { this.conteudoArquivo = conteudo; }
     public void setNomeArquivo(String nome) { this.nomeArquivo = nome; }
     
-    public void uploadFile(String path) {
+    public void uploadFile(String path) throws IOException {
         File uploadDir = new File(path);
         
         byte[] fileBytes = Base64.getDecoder().decode(conteudoArquivo.split(",")[1]);
@@ -69,12 +71,17 @@ public class Historico {
             uploadDir.mkdir();
         }
         
-        this.arquivo = new File(path + File.separator + this.nomeArquivo);
+        if(!uploadDir.exists()) {
+            System.out.print("-- nao existe --\n");
+        }
         
-        try(FileOutputStream outputStream = new FileOutputStream(this.arquivo)) {
+        this.arquivo = new File(path + File.separator + this.nomeArquivo + this.extension);
+        
+        try(FileOutputStream    outputStream = new FileOutputStream(this.arquivo)) {
             outputStream.write(fileBytes);
+            System.out.println("Arquivo salvo em: " + this.arquivo.getAbsolutePath());
         } catch(Exception e) {
-            
+            e.printStackTrace();
         }
     }
     
@@ -84,8 +91,8 @@ public class Historico {
     public String getData() { return this.data; }
     public String getNomeArquivo() { return this.nomeArquivo; }
     public String getConteudoArquivo() { return this.conteudoArquivo; }
-    public File getFile(String path) { ;;;
-        String filePath = path + File.separator + this.nomeArquivo;
+    public File getFile(String path) {
+        String filePath = path + File.separator + this.nomeArquivo + this.extension;
         
         this.arquivo = new File(filePath);
         

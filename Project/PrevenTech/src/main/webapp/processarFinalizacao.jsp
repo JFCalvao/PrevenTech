@@ -5,55 +5,70 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.*" %>
 
-<%
-    String dbURL = "jdbc:mysql://localhost:3306/seu_banco_de_dados";
-    String dbUser = "seu_usuario";
-    String dbPass = "sua_senha";
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="shortcut icon" href="imgs/cefet.png" type="image/x-icon">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/requisicoes.css">
+    </head>
+    <body>
+        <%@include file="header.jsp" %>
+        <main>
+            
+             <form action="MainServlet" method="post" enctype="multipart/form-data" id="insert">
+                <label for="anexo">Anexar Relatório (docx, pdf):</label>
+                <input type="file" id="anexo" name="anexo" accept=".docx,.pdf" required>
+                <br><br>
+                <input type="hidden" name="solicitacaoId" id="id_file" value="${param.solicitacaoId}">
+                <button type="submit" id="finalizar-btn">Finalizar</button>
+            </form>
+            <response></response>
+        </main>
+        <script src="js/json.js"></script>
+        <script>
+            let id_file = document.querySelector("#id_file");
+            let insert = document.querySelector("#insert");
+            let response = document.querySelector("response");
+            
+            insert.addEventListener("submit", (e) => {
+                e.preventDefault(); // <--- isto pára o envio da form
+                
+                let file = document.querySelector("#anexo").files[0];
+                var reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    var fileContent = e.target.result;
+                    
+                    const url = insert.action; // <--- o url que processa a form
+                    const ajax = new XMLHttpRequest();
 
-    String solicitacaoId = request.getParameter("solicitacaoId");
-    Part filePart = request.getPart("anexo");
+                    ajax.open(insert.method, url, true);
+                    ajax.onload = function() {
+                        if (ajax.status === 200) {
+                        var res = ajax.responseText;
+                        response.innerHTML = res;
+                      } else {
+                        alert('Algo falhou...');
+                      }
+                    };
 
-    
-    if (filePart == null || filePart.getSize() == 0) {
-        out.println("<h3>Erro: Nenhum arquivo enviado. Tente novamente.</h3>");
-        return;
-    }
+                    let json = new Request();
 
-    String fileName = filePart.getSubmittedFileName();
-    
-    
-    String filePath = getServletContext().getRealPath("/") + "uploads/" + fileName;
+                    json.setOperation("INSERT");
+                    json.setType("HS");
+                    json.setData({
+                        "file": fileContent,
+                        "id": "1"
+                    });
 
-    
-    try (InputStream fileContent = filePart.getInputStream();
-         FileOutputStream fos = new FileOutputStream(filePath)) {
-        byte[] buffer = new byte[1024];
-        int bytesRead;
-        while ((bytesRead = fileContent.read(buffer)) != -1) {
-            fos.write(buffer, 0, bytesRead);
-        }
-    } catch (IOException e) {
-        e.printStackTrace();
-        out.println("<h3>Erro ao salvar o arquivo. Tente novamente.</h3>");
-        return;
-    }
-
-    
-    try (Connection conn = DriverManager.getConnection(dbURL, dbUser, dbPass)) {
-        String sql = "UPDATE solicitacoes SET arquivo_relatorio = ? WHERE id = ?";
-        try (PreparedStatement statement = conn.prepareStatement(sql)) {
-            statement.setString(1, fileName);
-            statement.setString(2, solicitacaoId);
-            int rowsUpdated = statement.executeUpdate();
-            if (rowsUpdated > 0) {
-                out.println("<h3>Solicitação finalizada com sucesso!</h3>");
-            } else {
-                out.println("<h3>Erro: Solicitação não encontrada.</h3>");
-            }
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-        out.println("<h3>Erro ao atualizar a solicitação. Tente novamente.</h3>");
-    }
-%>
-<a href='index.jsp'>Voltar para o início</a>
+                    ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    ajax.send(json.getRequest());
+                }
+                reader.readAsDataURL(file);
+            });
+        </script>
+    </body>
+</html>

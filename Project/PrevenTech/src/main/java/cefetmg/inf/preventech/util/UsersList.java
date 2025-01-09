@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.websocket.Session;
 import java.util.LinkedList;
 import java.util.List;
+import cefetmg.inf.preventech.dao.User;
 
 /**
  *
@@ -22,7 +23,7 @@ public class UsersList {
     
     public static User get(HttpSession session) {
         for(User user : Users) {
-            if(user.httpSession == session) {
+            if(user.getServer() == session) {
                 return user;
             }
         }
@@ -31,7 +32,7 @@ public class UsersList {
     
     public static User get(Session session) {
         for(User user : Users) {
-            if(user.sSession == session) {
+            if(user.getChat() == session) {
                 return user;
             }
         }
@@ -40,7 +41,7 @@ public class UsersList {
     
     public static void remove(HttpSession session) {
         for(User user : Users) {
-            if(user.httpSession == session) {
+            if(user.getServer() == session) {
                 Users.remove(user);
             }
         }
@@ -48,7 +49,7 @@ public class UsersList {
     
     public static void remove(Session session) {
         for(User user : Users) {
-            if(user.sSession == session) {
+            if(user.getChat() == session) {
                 Users.remove(user);
             }
         }

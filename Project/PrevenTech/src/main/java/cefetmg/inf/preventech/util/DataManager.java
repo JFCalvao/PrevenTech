@@ -80,14 +80,14 @@ public class DataManager {
         String arquivo = historico.getNomeArquivo();
         arquivo = Encryption.encrypt(arquivo);
 
-        return "'" + id + "'," +
+        return "" + id + "," +
                "'" + requisitor + "'," +
                "'" + responsavel + "'," +
                "'" + data + "'," +
                "'" + arquivo + "'";
     }
     
-    public static String formatUser(User user) throws EncryptationException {
+    public static String formatUsuario(User user) throws EncryptationException {
         String nome = user.getNome();
         nome = Encryption.encrypt(nome);
         

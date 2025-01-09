@@ -10,7 +10,7 @@
 
 package cefetmg.inf.preventech.servers;
 
-import cefetmg.inf.preventech.util.User;
+import cefetmg.inf.preventech.dao.User;
 import org.json.JSONObject;
 import jakarta.websocket.server.ServerEndpoint;
 import jakarta.websocket.*;
