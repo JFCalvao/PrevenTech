@@ -43,11 +43,12 @@
                             <option value="manuencao">EM MANUTENÇÃO</option>
                         </select> 
                         </div>
-                    <p> <button onclick="clicar()">CADASTRAR</button> <br></p>
+                        <p> <button onclick="clicar()" id="cadastro">CADASTRAR</button> <br></p>
                     
                     </form>
 
             </main>
+            <script src="js/cadastromaq.js"></script>
         </body>
 
         </html>
