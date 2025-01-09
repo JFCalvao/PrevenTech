@@ -13,7 +13,7 @@
 
         <body>
             <jsp:include page="header.jsp"></jsp:include>
-            <main  id="resposta">
+            <main >
                     <h1>Cadastrar</h1>
                     <div id="linha-titulo">
                     </div>
@@ -45,7 +45,8 @@
                         </div>
                         
                         <p> <button id="cadastro">CADASTRAR</button> <br></p>
-                    
+                        <div id="resposta"></div>
+                            
                     </form>
 
 
