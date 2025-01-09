@@ -10,7 +10,14 @@
 
 package cefetmg.inf.preventech.servers;
 
+import cefetmg.inf.preventech.Exceptions.EquipamentoJaExisteException;
+import cefetmg.inf.preventech.Exceptions.HistoricoJaExisteException;
+import cefetmg.inf.preventech.Exceptions.NoSuchCategoriaException;
 import cefetmg.inf.preventech.Exceptions.NoSuchTableException;
+import cefetmg.inf.preventech.Exceptions.RequisicaoJaExisteException;
+import cefetmg.inf.preventech.dao.Equipamento;
+import cefetmg.inf.preventech.dao.Historico;
+import cefetmg.inf.preventech.dao.Requisicao;
 import cefetmg.inf.preventech.util.DatabaseManager;
 import cefetmg.inf.preventech.util.DataManager;
 import cefetmg.inf.preventech.util.SQLData;
@@ -22,6 +29,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.File;
+import java.nio.file.Files;
+import java.sql.SQLException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,42 +67,104 @@ public class MainServlet extends HttpServlet {
         
         try {
             if(operation.equals("INSERT")) {
-                String[] params = getParams(0, type, tableName, content);
-                
-                SQLData formattedData = DataManager.format(params);
-                DatabaseManager.insert(tableName, formattedData);
-                
-                List<SQLData> list = DatabaseManager.getAll(tableName);
-                for(int i = 0; i < list.size(); i++)
-                    jsonResponse.put(String.valueOf(i), DataManager.unformat(list.get(i)));
+//                String[] params = getParams(0, type, tableName, content);;
+//                
+//                SQLData formattedData = DataManager.format(params);
+//                DatabaseManager.insert(tableName, formattedData);
+//                
+//                List<SQLData> list = DatabaseManager.getAll(tableName);
+//                for(int i = 0; i < list.size(); i++)
+//                    jsonResponse.put(String.valueOf(i), DataManager.unformat(list.get(i)));
 
-            } else if(operation.equals("GET")) {
-                String[] params = getParams(1, type, tableName, content);
-                
-                List<SQLData> list = DatabaseManager.getAll(tableName);
-                
-                JSONArray data = new JSONArray();
-                for(int i = 0; i < list.size(); i++) {
-                    JSONObject obj = new JSONObject();
-                    String[] arrData = DataManager.unformat(list.get(i));
-                    String[] columns = DatabaseManager.getColumns(tableName);
-                    
-                    for(int j = 0; j < arrData.length; j++) 
-                        obj.put(columns[j], arrData[j]);
-                    
-                    data.put(obj);
+                switch(type) {
+                    case "EQ": {
+                        Equipamento equipamento = getEquipamento(content);
+                        if(DatabaseManager.hasEquipamento(equipamento)) {
+                            throw new EquipamentoJaExisteException();
+                        }
+                        DatabaseManager.insertEquipamento(equipamento);
+                    }
+                    break;
+                    case "RQ": {   
+                        Requisicao requisicao = getRequisicao(content);
+                        if(DatabaseManager.hasRequisicao(requisicao)) {
+                            throw new RequisicaoJaExisteException();
+                        }
+                        DatabaseManager.insertRequisicao(requisicao);
+                    }
+                    break;
+                    case "HS": {
+                        Historico historico = getHistorico(content);
+                        Requisicao requisicao = DatabaseManager.searchRequisicao(historico.getId());
+                        
+                        historico.setRequisitor_cpf(requisicao.getRequisitor_cpf());
+                        historico.setResponsavel_cpf(requisicao.getResponsavel_cpf());
+                        
+                        if(DatabaseManager.hasHistorico(historico)) {
+                            throw new HistoricoJaExisteException();
+                        }
+                        
+                        String savePath = "src/main/java/cefetmg/inf/preventech/uploads";
+                        historico.uploadFile(savePath);
+                        
+                        DatabaseManager.insertHistorico(historico);
+                    }
+                        
+                    break;
+                    case "US": {
+                        
+                    }      
+                    break;
+                    case "CH": {
+                        
+                    }
+                    break;
+                    default: break;
                 }
-                
-                jsonResponse.put("status", "OK");
-                jsonResponse.put("error", "NOERROR");
-                jsonResponse.put("content",data);
+            } else if(operation.equals("GET")) {
+                switch(type) {
+                    case "EQ":         
+                    break;
+                    case "RQ":         
+                    break;
+                    case "HS": {
+                        String savePath = "src/main/java/cefetmg/inf/preventech/uploads";
+                        Historico historico = getHistorico(content);
+                        historico = DatabaseManager.searchHistorico(historico.getId());
+
+                        File file = historico.getFile(savePath);
+                        String fileName = historico.getNomeArquivo();
+
+                        if(file.exists()) {
+                            byte[] fileBytes = Files.readAllBytes(file.toPath()); 
+                            String fileContentBase64 = Base64.getEncoder().encodeToString(fileBytes);
+
+                            JSONObject fileInfo = new JSONObject(); 
+                            fileInfo.put("nome", fileName); 
+                            fileInfo.put("file", fileContentBase64);
+
+                            jsonResponse.put("content", fileInfo);
+                        }
+                    }
+                    break;
+                    case "US":         
+                    break;
+                    case "CH":
+                    break;
+                    default: break;
+                }
             } else if(operation.equals("REMOVE")) {
                 
             } else {
 
             }
+        } catch(SQLException e) {
+           jsonResponse.put("status", "ERRO");
+           jsonResponse.put("error", "Estamos com falhas para guardar estas informações. "
+                          + "Por favor, tente novamente mais tarde.");
         } catch(Exception e) {
-           e.printStackTrace();
+           jsonResponse.put("status", "ERRO");
+           jsonResponse.put("error", e.getMessage());
         } finally {
             response.setContentType("application/json");
             try (PrintWriter out = response.getWriter()) {
@@ -111,6 +184,87 @@ public class MainServlet extends HttpServlet {
             default: break;
         }
         return "";
+    }
+    
+    private Equipamento getEquipamento(JSONObject content) {
+        String nome = content.getString("nome");
+        String n_patrimonio = content.getString("n_patrimonio");
+        String local = content.getString("local");
+        String estado = content.getString("estado");
+        return new Equipamento(nome, n_patrimonio, local, estado);
+    }
+    
+    private int getCategoriaCode(String categoria) throws NoSuchCategoriaException {
+        List<String> falhasEletronicas = List.of(
+            "Desgaste mecânico", "Danos físicos",
+            "Tela com defeito", "Botões quebrados",
+            "Problemas com capacitores", "Circuitos danificados",
+            "Computador não liga"
+        );
+        
+        List<String> falhasInformatica = List.of(
+          "Problemas de software", "Falhas na rede",
+          "Atualizações faltando", "Configurações erradas",
+          "Falha nos cabos de conexão", "Manuntenção de hardware"
+        );
+        
+        int code = 0;
+        
+        if(falhasEletronicas.indexOf(categoria) != -1) {
+            code = falhasEletronicas.indexOf(categoria);
+        } else if(falhasInformatica.indexOf(categoria) != -1) {
+            code = falhasEletronicas.size() + falhasInformatica.indexOf(categoria);
+        } else {
+            throw new NoSuchCategoriaException();
+        }
+        
+        return code;
+    }
+    
+    private String getCategoriaString(int code) throws NoSuchCategoriaException {
+        List<String> falhasEletronicas = List.of(
+            "Desgaste mecânico", "Danos físicos",
+            "Tela com defeito", "Botões quebrados",
+            "Problemas com capacitores", "Circuitos danificados",
+            "Computador não liga"
+        );
+        
+        List<String> falhasInformatica = List.of(
+          "Problemas de software", "Falhas na rede",
+          "Atualizações faltando", "Configurações erradas",
+          "Falha nos cabos de conexão", "Manuntenção de hardware"
+        );
+        
+        String categoria = "";
+        
+        if(code < falhasEletronicas.size()) {
+            categoria = falhasEletronicas.get(code);
+        } else if((code - falhasEletronicas.size()) < falhasInformatica.size()) {
+            categoria = falhasInformatica.get((code - falhasEletronicas.size()));
+        } else {
+            throw new NoSuchCategoriaException();
+        }
+        
+        return categoria;
+    }
+    
+    private Requisicao getRequisicao(JSONObject content) throws NoSuchCategoriaException {
+        String requisicao_id = "";
+        String requisitor_cpf = "";
+        String responsavel_cpf = "";
+        String data_inicio = "";
+        String categoria = content.getString("categoria");
+        String equipamentos = content.getString("equipamentos");
+        String descricao = content.getString("descricao");
+        return new Requisicao(requisicao_id, requisitor_cpf, responsavel_cpf, 
+                              data_inicio, getCategoriaCode(categoria), equipamentos, descricao);
+    }
+    
+    private Historico getHistorico(JSONObject content) {
+        String id = content.getString("id");
+        String fileContent = content.getString("file");
+        
+        return new Historico(id, fileContent);
     }
     
     private String[] getParams(int operation, String type, String tableName, JSONObject content) 
