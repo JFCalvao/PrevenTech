@@ -5,44 +5,42 @@ let clicar = document.getElementById('cadastro');
 clicar.addEventListener('click', casdastrar);
 
 function casdastrar() {
+    
     const nome = document.querySelector("#maquina-cad").value;
     const nPatrimonio = document.querySelector("#n-patrimonio").value;
     const local = document.querySelector("#local").value;
     const estado = document.querySelector("#estados").value;
 
-    const data = {
-        nome: nome,
-        n_patrimonio: nPatrimonio,
-        local: local,
-        estado: estado
-    };
-
     const url = "MainServlet";
     const ajax = new XMLHttpRequest();
 
+    console.log("clicou");
+    console.log("url: " + url);
     ajax.open("POST", url, true);
     ajax.onload = function() {
+            console.log("Resp: " + ajax.status);
         if (ajax.status === 200) {
+            window.alert('lala');
             var res = ajax.responseText;
-            resposta.innerHTML = "Envio bem-sucedido: " + reS;
-            window.alert('lala')
+            resposta.innerHTML = "Envio bem-sucedido: " + res;
         } else {
             resposta.innerHTML = "Erro ao enviar dados.";
         }
     };
+    
     let json = new Request();
     json.setOperation("INSERT");
     json.setType("EQ");
     json.setData({
         "n_patrimonio": nPatrimonio,
-        "maquina": nome,
+        "nome": nome,
         "local": local,
         "estado": estado
     });
 
     ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     ajax.send(json.getRequest());
-
+    console.log("request sended: " + json.getRequest());
 //    post.addEventListener("submit", (e) => {
 //        e.preventDefault();
 //
