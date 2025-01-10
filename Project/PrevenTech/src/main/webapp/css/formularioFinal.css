@@ -49,19 +49,6 @@ body {
   line-height: 1.2;
 }
 
-#imgcefet {
-  height: clamp(60px, 12vh, 160px);
-  width: clamp(60px, 12vh, 160px);
-  margin-right: 1%;
-  border-radius: var(--border-radius);
-  object-fit: contain;
-  transition: transform 0.3s ease;
-}
-
-#imgcefet:hover {
-  transform: scale(1.1);
-}
-
 main {
   display: flex;
   justify-content: center;
@@ -82,9 +69,51 @@ main {
   border: 1px solid #ddd;
 }
 
-#finalizar-form:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+.button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#finalizar-btn, #cancelar-btn {
+  width: 48%;
+  height: 3rem;
+  font: bold 1.2rem 'Arial', sans-serif;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#finalizar-btn {
+  background: var(--cor-btn-primaria);
+  color: white;
+}
+
+#finalizar-btn:hover {
+  background: var(--cor-btn-hover);
+  transform: translateY(-3px);
+}
+
+#finalizar-btn:focus {
+  outline: none;
+  box-shadow: 0 0 10px var(--cor-btn-primaria);
+}
+
+#cancelar-btn {
+  background: #d3d3d3;
+  color: #333;
+}
+
+#cancelar-btn:hover {
+  background: #a9a9a9;
+  transform: translateY(-3px);
+}
+
+#cancelar-btn:focus {
+  outline: none;
+  box-shadow: 0 0 10px #d3d3d3;
 }
 
 label {
@@ -118,29 +147,6 @@ input[type="file"]:focus {
 
 input[type="file"]:hover {
   background-color: #f1f1f1;
-}
-
-#finalizar-btn {
-  background: var(--cor-btn-primaria);
-  color: white;
-  height: 3rem;
-  border: none;
-  width: 100%;
-  font: bold 1.2rem 'Arial', sans-serif;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-#finalizar-btn:hover {
-  background: var(--cor-btn-hover);
-  transform: translateY(-3px);
-}
-
-#finalizar-btn:focus {
-  outline: none;
-  box-shadow: 0 0 10px var(--cor-btn-primaria);
 }
 
 @media (max-width: 600px) {
