@@ -44,7 +44,7 @@
                         </select> 
                         </div>
                         
-                        <p> <button id="cadastro">CADASTRAR</button> <br></p>
+                        <p> <button id="cadastro" type="button">CADASTRAR</button> <br></p>
                         <div id="resposta"></div>
                             
                     </form>

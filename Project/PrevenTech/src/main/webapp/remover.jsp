@@ -39,7 +39,7 @@
                               <input type="text" name="local" id="estados">
                         </div>
 
-                    <p> <button onclick="clicar">REMOVER</button> <br></p>
+                    <p> <button id="remove" type="button">REMOVER</button> <br></p>
                   
                     </form>
 

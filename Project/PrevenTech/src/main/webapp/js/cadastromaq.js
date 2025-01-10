@@ -1,10 +1,9 @@
-
 let resposta = document.getElementById('resposta');
 
 let clicar = document.getElementById('cadastro');
-clicar.addEventListener('click', casdastrar);
+clicar.addEventListener('click', cadastrar);
 
-function casdastrar() {
+function cadastrar() {
     
     const nome = document.querySelector("#maquina-cad").value;
     const nPatrimonio = document.querySelector("#n-patrimonio").value;
@@ -23,8 +22,12 @@ function casdastrar() {
             resposta.innerHTML = "Envio bem-sucedido: " + res;
             console.log(ajax.status)
             resposta.style.color = 'black';
-            window.alert('lala')
-        } else {
+            res = new Response(ajax.responseText);
+            if(res.getStatus() != "OK") {
+                window.location.href = "erro.jsp?erro=" + res.getError() + "&url=" + window.location.href; 
+            }
+        }
+        else {
             resposta.innerHTML = "Erro ao enviar dados.";
         }
     };
