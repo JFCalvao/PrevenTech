@@ -149,6 +149,15 @@ input[type="file"]:hover {
   background-color: #f1f1f1;
 }
 
+/* Modificação para inverter a ordem dos botões */
+#finalizar-btn {
+  order: 2; /* "Finalizar" vai aparecer depois */
+}
+
+#cancelar-btn {
+  order: 1; /* "Cancelar" vai aparecer primeiro */
+}
+
 @media (max-width: 600px) {
   #project-title {
     font-size: 2.2rem;

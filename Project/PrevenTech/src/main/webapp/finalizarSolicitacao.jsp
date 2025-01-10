@@ -21,8 +21,8 @@
         <br><br>
         <input type="hidden" name="solicitacaoId" value="${param.solicitacaoId}">
         <div class="button-container">
-            <button type="button" id="cancelar-btn" onclick="window.location.href='tarefas-tela.jsp';">Cancelar</button>
             <button type="submit" id="finalizar-btn">Finalizar</button>
+            <button type="button" id="cancelar-btn" onclick="window.location.href='tarefas-tela.jsp';">Cancelar</button>
         </div>
     </form>
 </main>
@@ -48,14 +48,14 @@
                 ajax.open(insert.method, url, true);
                 ajax.onload = function() {
                     if (ajax.status === 200) {
-                    var res = ajax.responseText;
-                    res = new Response(ajax.responseText);
-                      if(res.getStatus() !== "OK") {
-                           window.location.href = "erro.jsp?erro=" + res.getError() + "&url=" + window.location.href; 
-                    }           
-                    else
-                         window.location.href = "erro.jsp?erro=" + res.getError() + "&url=" + window.location.href; 
-                  } 
+                        var res = ajax.responseText;
+                        res = new Response(ajax.responseText);
+                        if(res.getStatus() !== "OK") {
+                            window.location.href = "erro.jsp?erro=" + res.getError() + "&url=" + window.location.href; 
+                        } else {
+                            window.location.href = "erro.jsp?erro=" + res.getError() + "&url=" + window.location.href; 
+                        }
+                    } 
                 };
 
                 let json = new Request();
