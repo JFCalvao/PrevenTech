@@ -15,17 +15,18 @@
     <div id="header">
     </div>
     <main>
-      <form action="MainServlet" method="post" enctype="multipart/form-data" id="finalizar-form">
-    <label for="anexo">Anexar Relatório (docx, pdf):</label>
-    <input type="file" id="anexo" name="anexo" accept=".docx,.pdf" required>
-    <br><br>
-    <input type="hidden" name="solicitacaoId" value="${param.solicitacaoId}">
-    <div class="button-container">
-        <button type="submit" id="finalizar-btn">Finalizar</button>
-        <button type="button" id="cancelar-btn" onclick="window.location.href='tarefas-tela.jsp';">Cancelar</button>
-    </div>
-</form>
-    </main>
+    <form action="MainServlet" method="post" enctype="multipart/form-data" id="finalizar-form">
+        <label for="anexo">Anexar Relatório (docx, pdf):</label>
+        <input type="file" id="anexo" name="anexo" accept=".docx,.pdf" required>
+        <br><br>
+        <input type="hidden" name="solicitacaoId" value="${param.solicitacaoId}">
+        <div class="button-container">
+            <button type="button" id="cancelar-btn" onclick="window.location.href='tarefas-tela.jsp';">Cancelar</button>
+            <button type="submit" id="finalizar-btn">Finalizar</button>
+        </div>
+    </form>
+</main>
+
     <script src="js/json.js"></script>
     <script>
         let id_file = document.querySelector("#id_file");
