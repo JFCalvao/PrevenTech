@@ -1,31 +1,20 @@
 let request = new Request();
-request.setOperation();
-request.setType('POST');
+request.setOperation('GET');
+request.setType('RQ');
 request.setData({});
 
-function exibirTodasRequisicoes(data) {
+function exibirRequisicoes(data) {
     
 }
 
-function exibirMinhasRequisicoes(data) {
-    
-}
-
-function exibirRequisicoesTecnico(data) {
-    
-}
-
-function efetuarAjax(funcaoExibir) {
-    $.ajax ({
-        url: '' + request.getRequest(),
-        dataType: 'json',
-        beforeSend:() => {
-            $('body').html('Carregando...');
-        },
-        success:(resposta) => {
-            let response = new Response(resposta);
-            resposta = response.getData();
-            funcaoExibir();
-        }
-    });
-}
+$.ajax ({
+    url: 'MainServlet?' + request.getRequest(),
+    dataType: 'json',
+    beforeSend:() => {
+        $('body').html('Carregando...');
+    },
+    success:(data) => {
+        let response = new Response(data);
+        data = response.getData();
+    }
+});
