@@ -37,7 +37,7 @@ main {
     margin-top: -60px;
 }
 
-#linha-titulo {
+.linha-titulo {
     flex-grow: 1;
     height: 3px;
     background-color:#004aad;
