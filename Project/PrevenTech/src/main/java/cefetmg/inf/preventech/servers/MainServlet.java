@@ -124,7 +124,24 @@ public class MainServlet extends HttpServlet {
                 switch(type) {
                     case "EQ":         
                     break;
-                    case "RQ":         
+                    case "RQ":    
+                        Requisicao requisicao = getRequisicao(content);
+                        
+                        String cpf = requisicao.getResponsavel_cpf();
+                        String data = requisicao.getData();
+                        int categoriaInt = requisicao.getCategoria();
+                        String equipamentos = requisicao.getEquipamentos();
+                        String descricao = requisicao.getDescricao();
+                        
+                        JSONObject requisicaoJSON = new JSONObject();
+                        requisicaoJSON.put("cpf", cpf);
+                        requisicaoJSON.put("data", data);
+                        requisicaoJSON.put("categoria", getCategoriaString(categoriaInt));
+                        
+                        requisicaoJSON.put("equipamentos", data);
+                        requisicaoJSON.put("descricao", descricao);
+                        
+                        jsonResponse.put("content", requisicaoJSON);
                     break;
                     case "HS": {
                         String savePath = getServletContext().getRealPath("uploads");
