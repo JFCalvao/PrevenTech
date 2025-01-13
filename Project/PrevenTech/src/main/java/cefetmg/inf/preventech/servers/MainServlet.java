@@ -235,7 +235,7 @@ public class MainServlet extends HttpServlet {
         String equipamentos = content.getString("equipamentos");
         String descricao = content.getString("descricao");
         return new Requisicao(requisicao_id, requisitor_cpf, responsavel_cpf, 
-                              data_inicio, Categorias.getCategoriaCode(categoria), 
+                              data_inicio, categoria, 
                               equipamentos, descricao);
     }
     

@@ -13,6 +13,7 @@ import cefetmg.inf.preventech.Exceptions.NoSuchTableException;
 import cefetmg.inf.preventech.dao.Equipamento;
 import cefetmg.inf.preventech.dao.Historico;
 import cefetmg.inf.preventech.dao.Requisicao;
+import cefetmg.inf.preventech.dao.Categorias;
 import cefetmg.inf.preventech.dao.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -290,7 +291,7 @@ public class DatabaseManager {
         while (rs.next()) {
             Requisicao requisicao = new Requisicao();
             
-            requisicao.setCategoria(rs.getInt("categoria"));
+            requisicao.setCategoria(rs.getString("categoria"));
             requisicao.setData(rs.getString("data_inicio"));
             requisicao.setDescricao(rs.getString("descricao"));
             requisicao.setEquipamentos(rs.getString("equipamentos"));
