@@ -4,14 +4,27 @@
  */
 package cefetmg.inf.preventech.services;
 
+import cefetmg.inf.preventech.dao.Professor;
+import cefetmg.inf.preventech.util.UsersList;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
+
 /**
  *
  * @author jfcalvao
  */
 public class ProfessorService {
-    public ProfessorService() {
-        
+    public ProfessorService(HttpSession session) {
+        this.professor = new Professor(UsersList.get(session));
     }
     
+    private Professor professor;
     
+    public List<String> getMenuOptionsNames() {
+        return professor.getMenuOptionsNames();
+    }
+        
+    public List<String> getMenuOptionsLinks() {
+        return professor.getMenuOptionsLinks();
+    }
 }

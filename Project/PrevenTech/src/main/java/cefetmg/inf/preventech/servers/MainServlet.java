@@ -25,6 +25,7 @@ import cefetmg.inf.preventech.util.DatabaseManager;
 import cefetmg.inf.preventech.util.DataManager;
 import cefetmg.inf.preventech.util.Encryption;
 import cefetmg.inf.preventech.util.SQLData;
+import cefetmg.inf.preventech.util.UsersList;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -167,9 +168,6 @@ public class MainServlet extends HttpServlet {
                     }
                     break;
                     case "US":     
-                        User usuario = getLogin(content);
-                        usuario = DatabaseManager.searchUsuario(usuario.getCPF());
-                        jsonResponse.put("redirect", usuario);
                     break;
                     case "CH":
                     break;
@@ -187,9 +185,11 @@ public class MainServlet extends HttpServlet {
                         throw new Exception("Dados de login invalidos");
 
                     HttpSession session = request.getSession();
+                    usuario.setServer(session);
                     session.setAttribute("usuario", usuario);
+                    session.setAttribute("nome", usuario.getNome());
+                    UsersList.add(usuario);
 
-                    System.out.println(usuario.getProfissao());
                     switch (usuario.getProfissao()) {
                         case "Professor":
                             jsonResponse.put("redirect", "professor.jsp");
@@ -197,10 +197,10 @@ public class MainServlet extends HttpServlet {
                         case "Coordenador":
                             jsonResponse.put("redirect", "coordenador.jsp");
                             break;
-                        case "Técnico em Informática":
+                        case "Tecnico em Informatica":
                             jsonResponse.put("redirect", "tecnico.jsp");
                             break;
-                        case "Técnico em Eletronica":
+                        case "Tecnico em Eletronica":
                             jsonResponse.put("redirect", "tecnico.jsp");
                             break;
                     }

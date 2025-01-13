@@ -31,10 +31,10 @@
                         <div class="cargo" data-profisso="Coordenador">Coordenador</div>
                     </div>
                     <div class="tecnico-informática-div">
-                        <div class="subcargo escondido" data-profisso="Técnico em Informática">Informática</div>
+                        <div class="subcargo escondido" data-profisso="Tecnico em Informatica">Informática</div>
                     </div>
                     <div class="tecnico-eletronica-div">
-                        <div class="subcargo escondido" data-profisso="Técnico em Eletronica">Eletrônica</div>
+                        <div class="subcargo escondido" data-profisso="Tecnico em Eletronica">Eletrônica</div>
                     </div>
                     <div class="continuar">
                         <button id="continuar-btn">Continuar</button>
