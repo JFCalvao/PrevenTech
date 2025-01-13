@@ -23,6 +23,7 @@ import cefetmg.inf.preventech.dao.Requisicao;
 import cefetmg.inf.preventech.dao.User;
 import cefetmg.inf.preventech.util.DatabaseManager;
 import cefetmg.inf.preventech.util.DataManager;
+import cefetmg.inf.preventech.util.Encryption;
 import cefetmg.inf.preventech.util.SQLData;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -172,6 +173,34 @@ public class MainServlet extends HttpServlet {
                 }
             } else if(operation.equals("REMOVE")) {
                 
+            } else if(operation.equals("LOGIN")) {
+                User usuarioLogin = getLogin(content);
+
+                if (DatabaseManager.hasUsuario(usuarioLogin)) {
+                    User usuario = DatabaseManager.searchUsuario(usuarioLogin.getCPF());
+
+                    if(!Encryption.encrypt(usuarioLogin.getSenha()).equals(usuario.getSenha()))
+                        throw new Exception("Dados de login invalidos");
+
+                    HttpSession session = request.getSession();
+                    session.setAttribute("usuario", usuario);
+
+                    System.out.println(usuario.getProfissao());
+                    switch (usuario.getProfissao()) {
+                        case "Professor":
+                            jsonResponse.put("redirect", "professor.jsp");
+                            break;
+                        case "Coordenador":
+                            jsonResponse.put("redirect", "coordenador.jsp");
+                            break;
+                        case "Técnico em Informática":
+                            jsonResponse.put("redirect", "tecnico.jsp");
+                            break;
+                        case "Técnico em Eletronica":
+                            jsonResponse.put("redirect", "tecnico.jsp");
+                            break;
+                    }
+                }
             } else {
 
             }
