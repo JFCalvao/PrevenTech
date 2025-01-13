@@ -200,6 +200,31 @@ public class DatabaseManager {
         
         return DataManager.unformatHistorico(historico);
     }
+
+    public static User searchUsuario(String cpf) throws SQLException, EncryptationException {
+        Connection connection = getConnection();
+        String encryptedCPF = Encryption.encrypt(cpf);
+        String sql = "SELECT * FROM `users` WHERE cpf = '" + encryptedCPF + "'";
+
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+
+        User user = null;
+        if (rs.next()) {
+            String nome = Encryption.decrypt(rs.getString("nome"));
+            String email = Encryption.decrypt(rs.getString("email"));
+            String profissao = Encryption.decrypt(rs.getString("profissao"));
+            String senha = rs.getString("senha");
+
+            user = new User(cpf, senha);
+            user.setNome(nome);
+            user.setEmail(email);
+            user.setProfissao(profissao);
+        }
+
+        connection.close();
+        return user;
+    }
     
     public static List<SQLData> getAll(String tableName) 
            throws SQLException, NoSuchTableException {

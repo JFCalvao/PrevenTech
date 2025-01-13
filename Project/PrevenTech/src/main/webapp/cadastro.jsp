@@ -25,16 +25,16 @@
                         <div class="cargo">Técnico</div>
                     </div>
                     <div class="professor-div">
-                        <div class="cargo">Professor</div>
+                        <div class="cargo" data-profisso="Professor">Professor</div>
                     </div>
                     <div class="coordenador-div">
-                        <div class="cargo">Coordenador</div>
+                        <div class="cargo" data-profisso="Coordenador">Coordenador</div>
                     </div>
                     <div class="tecnico-informática-div">
-                        <div class="subcargo escondido">Informática</div>
+                        <div class="subcargo escondido" data-profisso="Técnico em Informática">Informática</div>
                     </div>
                     <div class="tecnico-eletronica-div">
-                        <div class="subcargo escondido">Eletrônica</div>
+                        <div class="subcargo escondido" data-profisso="Técnico em Eletronica">Eletrônica</div>
                     </div>
                     <div class="continuar">
                         <button id="continuar-btn">Continuar</button>
@@ -66,7 +66,8 @@
             </section>
         </main>
 
-        <script src="jquery-3.7.1.min.js"></script>
+<%--        <script src="jquery-3.7.1.min.js"></script>--%>
+        <script src="js/json.js"></script>
         <script src="js/cadastro.js"></script>
     </body>
 </html>
