@@ -124,7 +124,8 @@ public class MainServlet extends HttpServlet {
                 }
             } else if(operation.equals("GET")) {
                 switch(type) {
-                    case "EQ":         
+                    case "EQ":
+                        jsonResponse.put("content", DatabaseManager.getAllEquipamentos());
                     break;
                     case "RQ":    
                         /*Requisicao requisicao = getRequisicao(content);

@@ -79,7 +79,7 @@ public class DatabaseManager {
         connection.close();
     }
     
-    public static void insert(String tableName, SQLData encryptedData) 
+    private static void insert(String tableName, SQLData encryptedData) 
            throws SQLException, NoSuchTableException {
         
         Connection connection = getConnection();
@@ -135,7 +135,7 @@ public class DatabaseManager {
         return rs.next();
     }
     
-    public static List<SQLData> search(String tableName, String key, String id) 
+    private static List<SQLData> search(String tableName, String key, String id) 
            throws SQLException, NoSuchTableException {
         
         Connection connection = getConnection();
@@ -249,5 +249,29 @@ public class DatabaseManager {
         connection.close(); 
         
         return results;
+    }
+
+    public static List<Equipamento> getAllEquipamentos()
+           throws SQLException, NoSuchTableException {
+        Connection connection = getConnection();
+        String sql = "SELECT * FROM `equipamentos`";
+
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+        
+        List<Equipamento> equipamentos = new ArrayList<>();
+        
+        while (rs.next()) {
+            Equipamento data = new Equipamento();
+            
+            data.setNome(rs.getString("nome"));
+            data.setN_patrimonio(rs.getString("n-patrimonio"));
+            data.setEstado(rs.getString("estado"));
+            data.setLocal(rs.getString("local"));
+            
+            equipamentos.add(data);
+        } 
+        
+        return equipamentos;
     }
 }

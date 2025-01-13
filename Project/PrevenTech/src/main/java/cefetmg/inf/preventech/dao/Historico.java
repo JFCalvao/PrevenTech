@@ -31,7 +31,7 @@ public class Historico {
     public Historico(String id, String conteudoArquivo) {
         this.id = id;
         
-        ZoneId fusoHorarioBrasil = ZoneId.of("America/Cuiaba"); 
+        ZoneId fusoHorarioBrasil = ZoneId.of("America/Sao_Paulo"); 
         ZonedDateTime dataHoraBrasil = ZonedDateTime.now(fusoHorarioBrasil); 
         int dia = dataHoraBrasil.getDayOfMonth(); 
         int mes = dataHoraBrasil.getMonthValue(); 
