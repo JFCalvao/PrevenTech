@@ -1,0 +1,296 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 10 de jan de 2025, 10:42:20
+    Author     : jfcalvao
+*/
+
+:root {
+    --label-font-size: 25px;
+    --box-padding: 7.5px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#form-inputs option, #more-option, label {
+    -webkit-touch-callout: none;  /* iPhone OS, Safari */
+    -webkit-user-select: none;    /* Chrome, Safari 3 */
+    -khtml-user-select: none;     /* Safari 2 */
+    -moz-user-select: none;       /* Firefox */
+    -ms-user-select: none;        /* IE10+ */
+    user-select: none;            /* Possível implementação no futuro */
+}
+
+#solicitacao-area {
+    height: auto;
+    width: clamp(290px, 80%, 1000px);
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#form-header {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#form-title {
+    margin: 0;
+    margin-left: 5px; 
+    margin-right: 5px;
+    color: #004aad;
+}
+
+#form-header line {
+    height: 5px;
+    flex-grow: 1;
+    background-color: #004aad;
+    border-radius: 15px;
+    display: block;
+}
+
+#form-inputs {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+#form-inputs block {
+    height: auto;
+    width: 100%;
+    margin-bottom: 10px;
+    transition: 0.2s;
+}
+
+#form-inputs block:last-child {
+    flex-grow: 1;
+}
+
+#form-inputs block box {
+    height: auto;
+    width: calc(100% - 2*var(--box-padding));
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #c4f1ff;
+    align-items: center;
+    padding: var(--box-padding);
+}
+
+block label {
+    font-size: var(--label-font-size);
+    margin-right: 10px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+block box input {
+    font-size: calc(var(--label-font-size) - 5px);
+    padding: 10px;
+    height: 100%;
+    flex-grow: 1;
+    text-align: center;
+    background-color: #e1f8ff;
+    border: 2px solid #2873ff;
+}
+
+block box input:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+block box #categorias-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-grow: 1;
+}
+
+#categorias-container #categorias-input {
+    border: 2px solid #2873ff;
+}
+
+#categorias-container #categorias {
+    --categorias-border: 2px;
+    
+    height: auto;
+    width: calc(100% - var(--categorias-border)*2);
+    
+    display: none;
+    position: absolute;
+    top: 0;
+    
+    padding: 0;
+    border: var(--categorias-border) solid #2873ff;
+    border-top: 0;
+    
+    text-align: center;
+    font-size: calc(var(--label-font-size) - 5px);
+    font-weight: bold;
+    
+    background-color: #2873ff;
+    color: white;
+    
+    appearance: none;
+    outline: none;
+    overflow-y: auto;
+    border-radius: 0px !important;
+    transition: 0.2s;
+}
+
+#categorias option {
+    height: 30px;
+    background-color: white;
+    border: 2px solid white;
+    color: black;
+    border-radius: 0px !important;
+    cursor: pointer;
+    transition: 0.1s;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+#categorias option:hover {
+    background-color: #2873ff;
+    color: white;
+}
+
+#categorias #more-option {
+    height: 30px;
+    background-color: white;
+    border: 2px solid white;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    background-image: url("../imgs/more-button.png");
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+#categorias #more-option:hover {
+    background-color: #2873ff;
+    color: white;
+}
+
+#form-inputs block .auto-preenchido {
+    background-color: #e4eaf0 !important;
+}
+
+#form-inputs block .auto-preenchido label {
+    color: #004aad;
+}
+
+#form-inputs block .auto-preenchido input {
+    border: 2px solid transparent;
+    color: #4780cc;
+    width: auto;
+    background-color: transparent;
+}
+
+#form-inputs block desc {
+    height: auto;
+    width: calc(100% - 2*var(--box-padding));
+    display: flex;
+    flex-direction: column;
+    background-color: #c4f1ff;
+    padding: var(--box-padding);
+}
+
+#form-inputs block desc label {
+    margin-bottom: 5px;
+}
+
+#form-inputs block textarea {
+    height: 18px;
+    width: auto;
+    padding: 7.5px;
+    font-size: 15px;
+    border-radius: 5px;
+    resize: none;
+    border: 0;
+    outline: 0;
+    margin-bottom: 5px;
+    transition-duration: 0s;
+}
+
+textarea::-webkit-scrollbar {display: none;}
+
+#form-inputs block #contador {
+    font-size: 12px;
+    margin-left: 2.5px;
+    font-weight: bold;
+    color: #333;
+}
+
+#form-inputs buttons {
+    height: 45px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: var(--label-font-size);
+    font-weight: bold;
+    color: white;
+    margin-top: 15px;
+}
+
+#form-inputs buttons button {
+    height: 100%;
+    width: 49%;
+    border: 2px solid;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition-duration: 0.1s;
+    cursor: pointer;
+    font: bold 1.2rem 'Arial', sans-serif;
+}
+
+#form-inputs buttons button:hover {
+    transform: translateY(-3px);
+}
+
+#form-inputs #send-btn {
+    border-color: #004aad;
+    background: #004aad;
+    color: white;
+}
+
+#form-inputs #send-btn:hover {
+    background-color: white;
+    color: #004aad;
+}
+
+#form-inputs #cancel-btn {
+    background-color: white;
+    border-color: #1A1A1A;
+}
+
+#form-inputs #cancel-btn:hover {
+    background-color: #1A1A1A;
+    color: white;
+}

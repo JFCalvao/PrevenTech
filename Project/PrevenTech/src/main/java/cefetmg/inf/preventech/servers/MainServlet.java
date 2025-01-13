@@ -16,6 +16,7 @@ import cefetmg.inf.preventech.Exceptions.NoSuchCategoriaException;
 import cefetmg.inf.preventech.Exceptions.NoSuchTableException;
 import cefetmg.inf.preventech.Exceptions.RequisicaoJaExisteException;
 import cefetmg.inf.preventech.Exceptions.UsuarioJaExisteException;
+import cefetmg.inf.preventech.dao.Categorias;
 import cefetmg.inf.preventech.dao.Equipamento;
 import cefetmg.inf.preventech.dao.Historico;
 import cefetmg.inf.preventech.dao.Requisicao;
@@ -191,60 +192,6 @@ public class MainServlet extends HttpServlet {
         return new Equipamento(nome, n_patrimonio, local, estado);
     }
     
-    private int getCategoriaCode(String categoria) throws NoSuchCategoriaException {
-        List<String> falhasEletronicas = List.of(
-            "Desgaste mecânico", "Danos físicos",
-            "Tela com defeito", "Botões quebrados",
-            "Problemas com capacitores", "Circuitos danificados",
-            "Computador não liga"
-        );
-        
-        List<String> falhasInformatica = List.of(
-          "Problemas de software", "Falhas na rede",
-          "Atualizações faltando", "Configurações erradas",
-          "Falha nos cabos de conexão", "Manuntenção de hardware"
-        );
-        
-        int code = 0;
-        
-        if(falhasEletronicas.indexOf(categoria) != -1) {
-            code = falhasEletronicas.indexOf(categoria);
-        } else if(falhasInformatica.indexOf(categoria) != -1) {
-            code = falhasEletronicas.size() + falhasInformatica.indexOf(categoria);
-        } else {
-            throw new NoSuchCategoriaException();
-        }
-        
-        return code;
-    }
-    
-    private String getCategoriaString(int code) throws NoSuchCategoriaException {
-        List<String> falhasEletronicas = List.of(
-            "Desgaste mecânico", "Danos físicos",
-            "Tela com defeito", "Botões quebrados",
-            "Problemas com capacitores", "Circuitos danificados",
-            "Computador não liga"
-        );
-        
-        List<String> falhasInformatica = List.of(
-          "Problemas de software", "Falhas na rede",
-          "Atualizações faltando", "Configurações erradas",
-          "Falha nos cabos de conexão", "Manuntenção de hardware"
-        );
-        
-        String categoria = "";
-        
-        if(code < falhasEletronicas.size()) {
-            categoria = falhasEletronicas.get(code);
-        } else if((code - falhasEletronicas.size()) < falhasInformatica.size()) {
-            categoria = falhasInformatica.get((code - falhasEletronicas.size()));
-        } else {
-            throw new NoSuchCategoriaException();
-        }
-        
-        return categoria;
-    }
-    
     private Requisicao getRequisicao(JSONObject content) throws NoSuchCategoriaException {
         String requisicao_id = "";
         String requisitor_cpf = "";
@@ -254,7 +201,8 @@ public class MainServlet extends HttpServlet {
         String equipamentos = content.getString("equipamentos");
         String descricao = content.getString("descricao");
         return new Requisicao(requisicao_id, requisitor_cpf, responsavel_cpf, 
-                              data_inicio, getCategoriaCode(categoria), equipamentos, descricao);
+                              data_inicio, Categorias.getCategoriaCode(categoria), 
+                              equipamentos, descricao);
     }
     
     private Historico getHistorico(JSONObject content) {
