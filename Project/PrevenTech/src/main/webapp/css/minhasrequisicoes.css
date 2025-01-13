@@ -36,7 +36,7 @@ main {
     height: 70vh;
     overflow-y: scroll;
     overflow-x: hidden;
-    margin-bottom: 75px;
+    margin-bottom: 100px;
 }
 
 .linha-titulo {
@@ -119,18 +119,19 @@ main {
 }
 
 .informacoes-expandir {
-    width: 90%;
+    width: 100%;
     margin-left: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 #linha-requisicao {
     height: 2.5px;
     background-color:#4780cc;
     border-width: 5px;
-    position: relative;
-    bottom: -5px;
-    left: -19px;
-    width: 109.5%;
+    width: 103%;
+    margin-right: 2px;
     opacity: 0.5;
 }
 
@@ -201,8 +202,9 @@ main {
 .requisicao .informacoes-expandir {
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    padding-bottom: 10px;
+    gap: 0px;
+    padding-bottom: 8px;
+    width: 95%;
 }
 
 body {
@@ -231,11 +233,6 @@ body {
     justify-content: space-between;
 }
 
-#chat {
-    background-color: #004aad;
-    color: white;
-}
-
 #botao-nova-solicitacao {
     display: flex;
     flex-direction: row;
@@ -258,24 +255,57 @@ body {
 }
 
 #mais {
-    border: 3px solid black;
-    border-radius: 50% 50%;
-    width: 25px;
+    border: 2px solid black;
+    border-radius: 50%;
+    font-size: 17px;
     text-align: center;
-    font-weight: bold;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.sem-requisicoes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Open Sans';
+    font-size: 2px;
+}
+
+#botao-chat {
+    border-width: 0px; 
+    background-color: #c4f1ff;
+}
+
+#chat {
+    display: flex;
+    align-items: center;
+}
+
+#img-chat {
+    width: 56px;
+    position: relative;
+    bottom: 3px;
+}
+
+#span-situacao #cor-situacao {
+    border: 7px solid red;
+    border-radius: 50%;
 }
 
 #equipamentos {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 0px;
 }
 
 .maquina #informacoes {
     display: flex;
     flex-direction: row;
-    gap: 5%;
+    gap: 5px;
     align-items: center;
+    width: 75%;
+    justify-content: space-between;
 }
 
 .maquina #nome {
@@ -289,7 +319,20 @@ body {
 }
 
 .maquina #situacao {
-    color: #4780cc;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 5px;
+    background-color: #ffffff;
+    padding: 3px;
+}
+
+.maquina #span-situacao {
+    color: #4275b9;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 5px;
 }
 
 #numero-nome {
@@ -301,10 +344,12 @@ body {
 .maquina {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 5px;
     background-color: #e1f8ff;
-    padding: 1%;
+    padding-bottom: 5px;
+    margin-top: 4px;
+    padding-left: 4px;
+    width: 99.5%;
 }
 
 .maquina #numero {
@@ -320,17 +365,6 @@ body {
     height: 2.5px;
     background-color:#4780cc;
     opacity: 0.5;
-}
-
-.sem-requisicoes {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Open Sans';
-    font-size: 2px;
-}
-
-#botao-chat {
-    font-size: 1px;
+    width: 99.5%;
+    margin-right: 15%;
 }

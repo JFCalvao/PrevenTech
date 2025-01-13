@@ -113,7 +113,9 @@
                                     </div>
                                 </div>
                                 <div id="chat">
-                                    <button id="botao-chat"><img src="imgs/chat.jpg"></button>
+                                    <button id="botao-chat">
+                                        <img id="img-chat" src="imgs/chat.jpg">
+                                    </button>
                                 </div>
                             </div>
                         
@@ -127,7 +129,12 @@
                                             <span id="nome">Ventilador Tron - 156165</span>
                                         </span>
                                         <span id="local">Local: Sala 107, Prédio 20</span>
-                                        <span id="situacao">Situação:</span>
+                                        <span id="span-situacao">Situação:
+                                            <span id="situacao">
+                                                <span id="cor-situacao"></span>
+                                                <span id="txt-situacao" style="color: red">Com defeito</span>
+                                            </span>
+                                        </span>
                                     </div>
                                 
                                     <div class="linha-maquina"></div>
@@ -145,7 +152,8 @@
             </div>
             
             <div id="botao-nova-solicitacao">
-                <span id="mais">+</span><span id="txt-nova-solicitacao">Enviar nova solicitação</span>
+                <span id="mais">+</span>
+                <span id="txt-nova-solicitacao">Enviar nova solicitação</span>
             </div>
         </div>
         </main>

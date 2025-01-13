@@ -26,17 +26,17 @@
                     
                     <div class="campo-texto">
                     <label for="maquina-cad">Maquina:  </label>
-                        <input type="text" name="maquina-cad" id="maquina-cad">
+                        <input disabled type="text" name="maquina-cad" id="maquina-cad">
                    </div>
 
                     <div class="campo-texto">
                         <label for="local">Local: </label>
-                        <input type="text" name="local" id="local">
+                        <input disabled type="text" name="local" id="local">
                     </div>
 
                    <div class="campo-texto">
                         <label for="estados">Estados:</label> 
-                              <input type="text" name="local" id="estados">
+                        <input disabled type="text" name="local" id="estados">
                         </div>
 
                     <p> <button id="remove" type="button">REMOVER</button> <br></p>
@@ -45,7 +45,7 @@
 
             </main>
              <script src="js/json.js"></script>
-            <script src="js/cadastromaq.js"></script>
+            <script src="js/remover.js"></script>
         </body>
 
         </html>

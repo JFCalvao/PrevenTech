@@ -27,6 +27,7 @@ main {
 
 h4{
     margin-right: 72vw;
+     display: inline;
 }
 .aparelhos {
     display: flex;
