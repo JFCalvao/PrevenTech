@@ -269,7 +269,7 @@ public class DatabaseManager {
             data.setEstado(rs.getString("estado"));
             data.setLocal(rs.getString("local"));
             
-            data = DataManager.unfoEquipamento(data);
+            data = DataManager.unformatEquipamento(data);
             
             equipamentos.add(data);
         } 

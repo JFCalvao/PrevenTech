@@ -12,6 +12,16 @@ import jakarta.websocket.Session;
  * @author jfcalvao
  */
 public class User {
+    public User(User user) {
+        this.serverSession = user.getServer();
+        this.chatSession = user.getChat();
+        this.nome = user.getNome();
+        this.cpf = user.getCPF();
+        this.senha = user.getSenha();
+        this.email = user.getEmail();
+        this.profissao = user.getProfissao();
+    }
+    
     public User(HttpSession serverSession, String nome, String cpf, String senha, String email, String profissao) {
         this.serverSession = serverSession;
         this.nome = nome;

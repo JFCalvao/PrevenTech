@@ -166,7 +166,10 @@ public class MainServlet extends HttpServlet {
                         }
                     }
                     break;
-                    case "US":         
+                    case "US":     
+                        User usuario = getLogin(content);
+                        usuario = DatabaseManager.searchUsuario(usuario.getCPF());
+                        jsonResponse.put("redirect", usuario);
                     break;
                     case "CH":
                     break;

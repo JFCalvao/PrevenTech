@@ -133,7 +133,7 @@ public class DataManager {
         return formattedData;
     }
     
-    public static Equipamento unfoEquipamento(Equipamento equipamento) throws EncryptationException {
+    public static Equipamento unformatEquipamento(Equipamento equipamento) throws EncryptationException {
         String nome = Encryption.decrypt(equipamento.getNome());
         equipamento.setNome(nome);
         
