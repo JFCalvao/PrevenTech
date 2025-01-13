@@ -128,24 +128,8 @@ public class MainServlet extends HttpServlet {
                     case "EQ":
                         jsonResponse.put("content", DatabaseManager.getAllEquipamentos());
                     break;
-                    case "RQ":    
-                        /*Requisicao requisicao = getRequisicao(content);
-                        
-                        String cpf = requisicao.getResponsavel_cpf();
-                        String data = requisicao.getData();
-                        int categoriaInt = requisicao.getCategoria();
-                        String equipamentos = requisicao.getEquipamentos();
-                        String descricao = requisicao.getDescricao();
-                        
-                        JSONObject requisicaoJSON = new JSONObject();
-                        requisicaoJSON.put("cpf", cpf);
-                        requisicaoJSON.put("data", data);
-                        requisicaoJSON.put("categoria", Categorias.getCategoriaString(categoriaInt));
-                        
-                        requisicaoJSON.put("equipamentos", data);
-                        requisicaoJSON.put("descricao", descricao);
-                        
-                        jsonResponse.put("content", requisicaoJSON);*/
+                    case "RQ":
+                        jsonResponse.put("content", DatabaseManager.getAllRequisicoes());
                     break;
                     case "HS": {
                         String savePath = getServletContext().getRealPath("uploads");

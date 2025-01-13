@@ -276,4 +276,33 @@ public class DatabaseManager {
         
         return equipamentos;
     }
+    
+    public static List<Requisicao> getAllRequisicoes()
+           throws SQLException, NoSuchTableException, EncryptationException {
+        Connection connection = getConnection();
+        String sql = "SELECT * FROM `requisicoes`";
+
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+        
+        List<Requisicao> requisicoes = new ArrayList<>();
+        
+        while (rs.next()) {
+            Requisicao requisicao = new Requisicao();
+            
+            requisicao.setCategoria(rs.getInt("categoria"));
+            requisicao.setData(rs.getString("data_inicio"));
+            requisicao.setDescricao(rs.getString("descricao"));
+            requisicao.setEquipamentos(rs.getString("equipamentos"));
+            requisicao.setID(rs.getString("requisicao_id"));
+            requisicao.setRequisitor_cpf(rs.getString("requisitor_cpf"));
+            requisicao.setResponsavel_cpf(rs.getString("responsavel_cpf"));
+            
+            requisicao = DataManager.unformatRequisicao(requisicao);
+            
+            requisicoes.add(requisicao); 
+        } 
+        
+        return requisicoes;
+    }
 }

@@ -139,6 +139,24 @@
                                 
                                     <div class="linha-maquina"></div>
                                 </div>
+                                
+                                <div class="maquina">
+                                    <div id="informacoes">
+                                        <span id="numero-nome">
+                                            <span id="numero">3902</span>
+                                            <span id="nome">Ventilador Tron - 156165</span>
+                                        </span>
+                                        <span id="local">Local: Sala 107, Prédio 20</span>
+                                        <span id="span-situacao">Situação:
+                                            <span id="situacao">
+                                                <span id="cor-situacao"></span>
+                                                <span id="txt-situacao" style="color: red">Com defeito</span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                
+                                    <div class="linha-maquina"></div>
+                                </div>
                             </div>
 
                             <div id="descricao">
