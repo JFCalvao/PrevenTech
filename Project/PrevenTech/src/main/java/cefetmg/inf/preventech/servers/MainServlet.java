@@ -138,7 +138,7 @@ public class MainServlet extends HttpServlet {
                         JSONObject requisicaoJSON = new JSONObject();
                         requisicaoJSON.put("cpf", cpf);
                         requisicaoJSON.put("data", data);
-                        requisicaoJSON.put("categoria", getCategoriaString(categoriaInt));
+                        requisicaoJSON.put("categoria", Categorias.getCategoriaString(categoriaInt));
                         
                         requisicaoJSON.put("equipamentos", data);
                         requisicaoJSON.put("descricao", descricao);
