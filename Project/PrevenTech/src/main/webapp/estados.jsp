@@ -25,7 +25,7 @@
                             <div id="linha-titulo"></div>
 
                             <input type="text" name="pesquisa" id="pesquisar">
-                            <div onclick="Pesquisar()" id="btn-pesquisa"> <img src="imgs/lupa.png" alt="alt" /></div>
+                            <div onclick="buscarDados()" id="btn-pesquisa"> <img src="imgs/lupa.png" alt="alt" /></div>
 
                         </div>
                         <div id="mutavel">

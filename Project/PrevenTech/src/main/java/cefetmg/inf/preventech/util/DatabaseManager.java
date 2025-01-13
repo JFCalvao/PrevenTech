@@ -252,7 +252,7 @@ public class DatabaseManager {
     }
 
     public static List<Equipamento> getAllEquipamentos()
-           throws SQLException, NoSuchTableException {
+           throws SQLException, NoSuchTableException, EncryptationException {
         Connection connection = getConnection();
         String sql = "SELECT * FROM `equipamentos`";
 
@@ -260,14 +260,16 @@ public class DatabaseManager {
         ResultSet rs = pstmt.executeQuery();
         
         List<Equipamento> equipamentos = new ArrayList<>();
-        
+        System.out.println("Pegando os dados");
         while (rs.next()) {
             Equipamento data = new Equipamento();
             
             data.setNome(rs.getString("nome"));
-            data.setN_patrimonio(rs.getString("n-patrimonio"));
+            data.setN_patrimonio(rs.getString("n_patrimonio"));
             data.setEstado(rs.getString("estado"));
             data.setLocal(rs.getString("local"));
+            
+            data = DataManager.unfoEquipamento(data);
             
             equipamentos.add(data);
         } 

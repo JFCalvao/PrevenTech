@@ -1,6 +1,3 @@
-const arrInformacoesExpandirEl = document.querySelectorAll('.informacoes-expandir');
-const arrSetinhaExpandirRetrairEl = document.querySelectorAll('.setinha-expandir-retrair');
-const arrRequisicaoEl = document.querySelectorAll('.requisicao .view');
 
 function expandirRetrairRequisicao(informacaoExpandirEl, setinhaEl) {
     if(!informacaoExpandirEl.classList.contains('escondido')) {
@@ -17,8 +14,14 @@ function expandirRetrairRequisicao(informacaoExpandirEl, setinhaEl) {
     }
 }
 
-for(let i = 0; i < arrRequisicaoEl.length; i++) {
-    arrRequisicaoEl[i].addEventListener('click', () => {
-        expandirRetrairRequisicao(arrInformacoesExpandirEl[i], arrSetinhaExpandirRetrairEl[i]);
-    });
+function addEvents() {
+    const arrInformacoesExpandirEl = document.querySelectorAll('.informacoes-expandir');
+    const arrSetinhaExpandirRetrairEl = document.querySelectorAll('.setinha-expandir-retrair');
+    const arrRequisicaoEl = document.querySelectorAll('.requisicao .view');
+    
+    for(let i = 0; i < arrRequisicaoEl.length; i++) {
+        arrRequisicaoEl[i].addEventListener('click', () => {
+            expandirRetrairRequisicao(arrInformacoesExpandirEl[i], arrSetinhaExpandirRetrairEl[i]);
+        });
+    }
 }

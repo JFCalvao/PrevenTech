@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
 
-let maquinas = []
+let maquinas = null;
 pegarMAQ()
 
 function pegarMAQ(){
@@ -20,26 +20,13 @@ function pegarMAQ(){
             let response = new Response(ajax.responseText);
 
             if (response.getStatus() == "OK") {
-                let data = response.getData();
-
-                let found = false;
-                data.forEach(function(item) {
-                    if (item.n_patrimonio == nPatrimonio) {
-                        document.querySelector("#maquina-cad").value = item.nome;
-                        document.querySelector("#local").value = item.local;
-                        document.querySelector("#estados").value = item.estado;
-                        found = true;
-                    }
-                });
-
-                if (!found) {
-                    document.querySelector("#main").innerHTML = "Máquina não encontrada.";
-                }
+                maquinas = response.getData();
             } else {
-                document.querySelector("#main").innerHTML = "Erro ao processar a resposta.";
+                document.querySelector(".requisicao").innerHTML = "Erro ao processar a resposta.";
+                console.log(response.response);
             }
         } else {
-            document.querySelector("#main").innerHTML = "Erro na requisição.";
+            document.querySelector(".requisicao").innerHTML = "Erro na requisição.";
         }
     };
 
@@ -48,15 +35,16 @@ function pegarMAQ(){
 
 }
 
-let nome = document.querySelector("#maquina-cad")
-nome.addEventListener('change', buscarDados);
+let nome = document.querySelector("#pesquisar")
+nome.addEventListener('keyup', buscarDados);
 
 function buscarDados() {
-    const nPatrimonio = document.querySelector("#n-patrimonio").value;
+    
+    const nPatrimonio = document.querySelector("#pesquisar").value;
     let resposta = document.getElementById('mutavel')
 
     if (!nPatrimonio) {
-        document.querySelector("#main").innerHTML = "Por favor, insira um número de patrimônio.";
+        document.querySelector(".requisicao").innerHTML = "Por favor, insira um número de patrimônio.";
         return;
     }
     resposta.innerHTML = "";
@@ -84,6 +72,6 @@ function buscarDados() {
         }
     })
 
-
+    addEvents();
 }  
 
