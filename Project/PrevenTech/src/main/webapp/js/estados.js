@@ -5,14 +5,16 @@
 
 let maquinas = []
 pegarMAQ()
+
 function pegarMAQ(){
+    let nPatrimonio = document.querySelector('#n-patrimonio');
     let request = new Request();
     request.setOperation("GET");
     request.setType("EQ");
     request.setData({ "n_patrimonio": nPatrimonio });
 
     const ajax = new XMLHttpRequest();
-    ajax.open("POST", MainServlet, true);
+    ajax.open("POST", 'MainServlet', true);
     ajax.onload = function() {
         if (ajax.status == 200) {
             let response = new Response(ajax.responseText);
@@ -42,7 +44,7 @@ function pegarMAQ(){
     };
 
     ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    ajax.send(Request.getRequest());
+   ajax.send(request.getRequest());
 
 }
 

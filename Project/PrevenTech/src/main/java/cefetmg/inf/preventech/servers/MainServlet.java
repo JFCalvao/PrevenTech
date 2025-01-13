@@ -127,7 +127,7 @@ public class MainServlet extends HttpServlet {
                     case "EQ":         
                     break;
                     case "RQ":    
-                        Requisicao requisicao = getRequisicao(content);
+                        /*Requisicao requisicao = getRequisicao(content);
                         
                         String cpf = requisicao.getResponsavel_cpf();
                         String data = requisicao.getData();
@@ -143,7 +143,7 @@ public class MainServlet extends HttpServlet {
                         requisicaoJSON.put("equipamentos", data);
                         requisicaoJSON.put("descricao", descricao);
                         
-                        jsonResponse.put("content", requisicaoJSON);
+                        jsonResponse.put("content", requisicaoJSON);*/
                     break;
                     case "HS": {
                         String savePath = getServletContext().getRealPath("uploads");

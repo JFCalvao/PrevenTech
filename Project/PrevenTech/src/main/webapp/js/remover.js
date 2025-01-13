@@ -1,7 +1,10 @@
 let nome = document.querySelector("#maquina-cad");
 nome.addEventListener('change', buscarDados);
 
+let resposta = document.querySelector('#resposta');
+
 function buscarDados() {
+    
     const nPatrimonio = document.querySelector("#n-patrimonio").value;
 
     if (!nPatrimonio) {
@@ -50,15 +53,16 @@ function buscarDados() {
 }
 
 let remover = document.getElementById('remove')
-remover.addEventListener('click', removerMaquina());
+remover.addEventListener('click', removerMaquina);
 
 function removerMaquina() {
     const nPatrimonio = document.querySelector("#n-patrimonio")
 
     if (!nPatrimonio) {
-        document.querySelector("#resposta").innerHTML = "Por favor, insira um número de patrimônio válido.";
+        resposta.innerHTML = "Por favor, insira um número de patrimônio válido.";
         return;
     }
+    resposta.innerHTML = " ";
 
     let request = new Request();
     request.setOperation("DELETE");

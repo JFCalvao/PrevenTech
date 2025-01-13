@@ -40,6 +40,8 @@
                         </div>
 
                     <p> <button id="remove" type="button">REMOVER</button> <br></p>
+                    <div id="resposta"></div>
+                        
                   
                     </form>
 
