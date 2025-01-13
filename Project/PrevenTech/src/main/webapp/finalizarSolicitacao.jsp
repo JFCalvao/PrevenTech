@@ -53,7 +53,7 @@
                         if(res.getStatus() !== "OK") {
                             window.location.href = "erro.jsp?erro=" + res.getError() + "&url=" + window.location.href; 
                         } else {
-                            window.location.href = "erro.jsp?erro=" + res.getError() + "&url=" + window.location.href; 
+                            window.location.href = "tarefas-tela.jsp";
                         }
                     } 
                 };
