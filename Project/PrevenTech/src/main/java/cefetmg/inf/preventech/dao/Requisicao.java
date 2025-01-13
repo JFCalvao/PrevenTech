@@ -22,6 +22,8 @@ public class Requisicao {
         this.descricao = descricao;
     }
     
+    public Requisicao() {}
+    
     String requisicao_id;
     String requisitor_cpf;
     String responsavel_cpf;

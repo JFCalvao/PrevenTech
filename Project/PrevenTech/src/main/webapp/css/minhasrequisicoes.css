@@ -87,7 +87,7 @@ main {
     border-top: 3px solid #004aad;
     border-right: 3px solid #004aad;
     transform: rotate(45deg);
-    margin-right: 10px;
+    margin-right: 3.5%;
     cursor: pointer;
     display: flex;
 }
@@ -130,7 +130,7 @@ main {
     height: 2.5px;
     background-color:#4780cc;
     border-width: 5px;
-    width: 103%;
+    width: 101%;
     margin-right: 2px;
     opacity: 0.5;
 }
@@ -204,7 +204,8 @@ main {
     flex-direction: column;
     gap: 0px;
     padding-bottom: 8px;
-    width: 95%;
+    width: 96.5%;
+    user-select: none;
 }
 
 body {
@@ -275,6 +276,7 @@ body {
 #botao-chat {
     border-width: 0px; 
     background-color: #c4f1ff;
+    cursor: pointer;
 }
 
 #chat {
@@ -344,7 +346,7 @@ body {
 .maquina {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 7px;
     background-color: #e1f8ff;
     padding-bottom: 5px;
     margin-top: 4px;
@@ -365,6 +367,6 @@ body {
     height: 2.5px;
     background-color:#4780cc;
     opacity: 0.5;
-    width: 99.5%;
+    width: 77%;
     margin-right: 15%;
 }
