@@ -172,7 +172,7 @@ public class DatabaseManager {
         String requisitor_cpf = rs.getString("requisitor_cpf");
         String responsavel_cpf = rs.getString("responsavel_cpf");
         String data_inicio = rs.getString("data_inicio");
-        int categoria = rs.getInt("categoria");
+        String categoria = rs.getString("categoria");
         String equipamentos = rs.getString("equipamentos");
         String descricao = rs.getString("descricao");
         
