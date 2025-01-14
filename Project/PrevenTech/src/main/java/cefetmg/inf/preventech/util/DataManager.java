@@ -49,7 +49,7 @@ public class DataManager {
         String data = requisicao.getData();
         data = Encryption.encrypt(data);
 
-        String categoria = requisicao.getCategoria();
+        int categoria = requisicao.getCategoria();
 
         String equipamentos = requisicao.getEquipamentos();
         equipamentos = Encryption.encrypt(equipamentos);

@@ -11,7 +11,7 @@ package cefetmg.inf.preventech.dao;
 public class Requisicao {
     public Requisicao(String requisicao_id, String requisitor_cpf,
                       String responsavel_cpf, String data_inicio,
-                      String categoria, String equipamentos,
+                      int categoria, String equipamentos,
                       String descricao) {
         this.requisicao_id = requisicao_id;
         this.requisitor_cpf = requisitor_cpf;
@@ -28,7 +28,7 @@ public class Requisicao {
     String requisitor_cpf;
     String responsavel_cpf;
     String data_inicio;
-    String categoria;
+    int categoria;
     String equipamentos;
     String descricao;
     
@@ -36,7 +36,7 @@ public class Requisicao {
     public void setRequisitor_cpf(String cpf) { this.requisitor_cpf = cpf; }
     public void setResponsavel_cpf(String cpf) { this.responsavel_cpf = cpf; }
     public void setData(String data) { this.data_inicio = data; }
-    public void setCategoria(String categoria) { this.categoria = categoria; }
+    public void setCategoria(int categoria) { this.categoria = categoria; }
     public void setEquipamentos(String equipamentos) { this.equipamentos = equipamentos; }
     public void setDescricao(String descricao) { this.descricao = descricao; }
     
@@ -44,7 +44,7 @@ public class Requisicao {
     public String getRequisitor_cpf() { return this.requisitor_cpf; }
     public String getResponsavel_cpf() { return this.responsavel_cpf; }
     public String getData() { return this.data_inicio; }
-    public String getCategoria() { return this.categoria; }
+    public int getCategoria() { return this.categoria; }
     public String getEquipamentos() { return this.equipamentos; }
     public String getDescricao() { return this.descricao; }
 }
