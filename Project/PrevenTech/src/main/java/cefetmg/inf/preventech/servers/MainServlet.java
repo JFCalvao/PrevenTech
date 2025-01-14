@@ -10,12 +10,7 @@
 
 package cefetmg.inf.preventech.servers;
 
-import cefetmg.inf.preventech.Exceptions.EquipamentoJaExisteException;
-import cefetmg.inf.preventech.Exceptions.HistoricoJaExisteException;
-import cefetmg.inf.preventech.Exceptions.NoSuchCategoriaException;
-import cefetmg.inf.preventech.Exceptions.NoSuchTableException;
-import cefetmg.inf.preventech.Exceptions.RequisicaoJaExisteException;
-import cefetmg.inf.preventech.Exceptions.UsuarioJaExisteException;
+import cefetmg.inf.preventech.Exceptions.*;
 import cefetmg.inf.preventech.dao.Categorias;
 import cefetmg.inf.preventech.dao.Equipamento;
 import cefetmg.inf.preventech.dao.Historico;
@@ -28,6 +23,8 @@ import cefetmg.inf.preventech.util.SQLData;
 import cefetmg.inf.preventech.util.UsersList;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import jakarta.jws.soap.SOAPBinding;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -115,6 +112,14 @@ public class MainServlet extends HttpServlet {
                         }
                         
                         DatabaseManager.insertUsuario(usuario);
+
+                        HttpSession session = request.getSession();
+                        usuario.setServer(session);
+                        session.setAttribute("usuario", usuario);
+                        session.setAttribute("nome", usuario.getNome());
+                        UsersList.add(usuario);
+
+                        getRedirectJSP(jsonResponse, usuario);
                     }      
                     break;
                     case "CH": {
@@ -124,13 +129,13 @@ public class MainServlet extends HttpServlet {
                     default: break;
                 }
             } else if(operation.equals("GET")) {
-                switch(type) {
+                switch (type) {
                     case "EQ":
                         jsonResponse.put("content", DatabaseManager.getAllEquipamentos());
-                    break;
+                        break;
                     case "RQ":
                         jsonResponse.put("content", DatabaseManager.getAllRequisicoes());
-                    break;
+                        break;
                     case "HS": {
                         String savePath = getServletContext().getRealPath("uploads");
                         Historico historico = getHistorico(content);
@@ -138,24 +143,41 @@ public class MainServlet extends HttpServlet {
 
                         File file = historico.getFile(savePath);
                         String fileName = historico.getNomeArquivo();
-                        
-                        if(file.exists()) {
-                            byte[] fileBytes = Files.readAllBytes(file.toPath()); 
+
+                        if (file.exists()) {
+                            byte[] fileBytes = Files.readAllBytes(file.toPath());
                             String fileContentBase64 = Base64.getEncoder().encodeToString(fileBytes);
 
-                            JSONObject fileInfo = new JSONObject(); 
-                            fileInfo.put("nome", fileName); 
+                            JSONObject fileInfo = new JSONObject();
+                            fileInfo.put("nome", fileName);
                             fileInfo.put("file", fileContentBase64);
 
                             jsonResponse.put("content", fileInfo);
                         }
                     }
                     break;
-                    case "US":     
-                    break;
+                    case "US":
+                        break;
                     case "CH":
-                    break;
-                    default: break;
+                        break;
+                    default:
+                        break;
+                }
+            } else if(operation.equals("UPDATE")) {
+                switch (type) {
+                    case "US":
+                        User usuario = getUserUpdate(content);
+
+                        DatabaseManager.updateUsuario(usuario);
+
+                        HttpSession session = request.getSession();
+                        usuario.setServer(session);
+                        session.setAttribute("usuario", usuario);
+                        session.setAttribute("nome", usuario.getNome());
+                        UsersList.add(usuario);
+
+                        jsonResponse.put("redirect", "meus-dados.jsp");
+                        break;
                 }
             } else if(operation.equals("REMOVE")) {
                 
@@ -174,20 +196,7 @@ public class MainServlet extends HttpServlet {
                     session.setAttribute("nome", usuario.getNome());
                     UsersList.add(usuario);
 
-                    switch (usuario.getProfissao()) {
-                        case "Professor":
-                            jsonResponse.put("redirect", "professor.jsp");
-                            break;
-                        case "Coordenador":
-                            jsonResponse.put("redirect", "coordenador.jsp");
-                            break;
-                        case "Tecnico em Informatica":
-                            jsonResponse.put("redirect", "tecnico.jsp");
-                            break;
-                        case "Tecnico em Eletronica":
-                            jsonResponse.put("redirect", "tecnico.jsp");
-                            break;
-                    }
+                    getRedirectJSP(jsonResponse, usuario);
                 }
             } else {
 
@@ -217,7 +226,24 @@ public class MainServlet extends HttpServlet {
             
         }
     }
-    
+
+    private void getRedirectJSP(JSONObject jsonResponse, User usuario) {
+        switch (usuario.getProfissao()) {
+            case "Professor":
+                jsonResponse.put("redirect", "professor.jsp");
+                break;
+            case "Coordenador":
+                jsonResponse.put("redirect", "coordenador.jsp");
+                break;
+            case "Tecnico em Informatica":
+                jsonResponse.put("redirect", "tecnico.jsp");
+                break;
+            case "Tecnico em Eletronica":
+                jsonResponse.put("redirect", "tecnico.jsp");
+                break;
+        }
+    }
+
     private Equipamento getEquipamento(JSONObject content) {
         String nome = content.getString("nome");
         String n_patrimonio = content.getString("n_patrimonio");
@@ -254,6 +280,25 @@ public class MainServlet extends HttpServlet {
         String profissao = content.getString("profissao");
         
         return new User(nome, cpf, senha, email, profissao);
+    }
+
+    private User getUserUpdate(JSONObject content) throws SQLException, EncryptationException {
+        String nome = content.getString("nome");
+        String cpf = content.getString("cpf");
+        String senha = content.getString("senha");
+        String email = content.getString("email");
+
+        User usuario = DatabaseManager.searchUsuario(cpf);
+        usuario.setNome(nome);
+        usuario.setEmail(email);
+
+        if (senha.length() > 6) {
+            usuario.setSenha(senha);
+        } else {
+            usuario.setSenha(Encryption.decrypt(usuario.getSenha()));
+        }
+
+        return usuario;
     }
     
     private User getLogin(JSONObject content) {

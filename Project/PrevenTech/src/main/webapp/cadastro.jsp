@@ -38,7 +38,8 @@
                     </div>
                     <div class="continuar">
                         <button id="continuar-btn">Continuar</button>
-                        <a id="login-link" href="">Fazer login</a>
+
+                        <a id="login-link" href="index.jsp">Fazer login</a>
                     </div>
                   </div>
             </section>
@@ -61,7 +62,7 @@
                         <input type="password" name="confirmar-senha" id="confirmar-senha">
                     </label>
                     <button type="submit" id="cadastrar-btn">Cadastrar</button>
-                    <a id="login-link" href="">Fazer login</a>
+                    <a id="login-link" href="index.jsp">Fazer login</a>
                 </form>
             </section>
         </main>

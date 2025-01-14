@@ -10,9 +10,11 @@ package cefetmg.inf.preventech.util;
  */
 import cefetmg.inf.preventech.Exceptions.EncryptationException;
 import cefetmg.inf.preventech.Exceptions.NoSuchTableException;
+import cefetmg.inf.preventech.Exceptions.NoSuchCategoriaException;
 import cefetmg.inf.preventech.dao.Equipamento;
 import cefetmg.inf.preventech.dao.Historico;
 import cefetmg.inf.preventech.dao.Requisicao;
+import cefetmg.inf.preventech.dao.Categorias;
 import cefetmg.inf.preventech.dao.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -78,6 +80,21 @@ public class DatabaseManager {
         pstmt.executeUpdate(); 
         connection.close();
     }
+
+    public static void updateUsuario(User usuario) throws SQLException, EncryptationException {
+        Connection connection = getConnection();
+        String sql = "UPDATE `users` SET nome = ?, email = ?, senha = ? WHERE cpf = ?";
+
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        System.out.println(usuario.getNome());
+        pstmt.setString(1, Encryption.encrypt(usuario.getNome()));
+        pstmt.setString(2, Encryption.encrypt(usuario.getEmail()));
+        pstmt.setString(3, Encryption.encrypt(usuario.getSenha()));
+        pstmt.setString(4, Encryption.encrypt(usuario.getCPF()));
+
+        pstmt.executeUpdate();
+        connection.close();
+    }
     
     private static void insert(String tableName, SQLData encryptedData) 
            throws SQLException, NoSuchTableException {
@@ -127,6 +144,7 @@ public class DatabaseManager {
     public static boolean hasUsuario(User user) throws SQLException, EncryptationException {
         Connection connection = getConnection();
         String value = Encryption.encrypt(user.getCPF());
+        System.out.println(value);
         String sql = "SELECT * FROM `users` WHERE cpf = '" + value + "'";
         
         PreparedStatement pstmt = connection.prepareStatement(sql); 
@@ -160,7 +178,7 @@ public class DatabaseManager {
         return results;
     }
     
-    public static Requisicao searchRequisicao(String id) throws SQLException, EncryptationException {
+    public static Requisicao searchRequisicao(String id) throws SQLException, EncryptationException, NoSuchCategoriaException {
         Connection connection = getConnection();
         String value = id;
         String sql = "SELECT * FROM `requisicoes` WHERE requisicao_id = " + value;
@@ -220,6 +238,7 @@ public class DatabaseManager {
             user.setNome(nome);
             user.setEmail(email);
             user.setProfissao(profissao);
+            System.out.println(user.getSenha());
         }
 
         connection.close();
@@ -278,7 +297,7 @@ public class DatabaseManager {
     }
     
     public static List<Requisicao> getAllRequisicoes()
-           throws SQLException, NoSuchTableException, EncryptationException {
+           throws SQLException, NoSuchTableException, EncryptationException, NoSuchCategoriaException {
         Connection connection = getConnection();
         String sql = "SELECT * FROM `requisicoes`";
 
