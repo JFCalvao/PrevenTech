@@ -10,6 +10,7 @@ package cefetmg.inf.preventech.util;
  */
 import cefetmg.inf.preventech.Exceptions.EncryptationException;
 import cefetmg.inf.preventech.Exceptions.NoSuchTableException;
+import cefetmg.inf.preventech.Exceptions.NoSuchCategoriaException;
 import cefetmg.inf.preventech.dao.Equipamento;
 import cefetmg.inf.preventech.dao.Historico;
 import cefetmg.inf.preventech.dao.Requisicao;
@@ -177,7 +178,7 @@ public class DatabaseManager {
         return results;
     }
     
-    public static Requisicao searchRequisicao(String id) throws SQLException, EncryptationException {
+    public static Requisicao searchRequisicao(String id) throws SQLException, EncryptationException, NoSuchCategoriaException {
         Connection connection = getConnection();
         String value = id;
         String sql = "SELECT * FROM `requisicoes` WHERE requisicao_id = " + value;
@@ -188,7 +189,7 @@ public class DatabaseManager {
         String requisitor_cpf = rs.getString("requisitor_cpf");
         String responsavel_cpf = rs.getString("responsavel_cpf");
         String data_inicio = rs.getString("data_inicio");
-        String categoria = rs.getString("categoria");
+        int categoria = rs.getInt("categoria");
         String equipamentos = rs.getString("equipamentos");
         String descricao = rs.getString("descricao");
         
@@ -296,7 +297,7 @@ public class DatabaseManager {
     }
     
     public static List<Requisicao> getAllRequisicoes()
-           throws SQLException, NoSuchTableException, EncryptationException {
+           throws SQLException, NoSuchTableException, EncryptationException, NoSuchCategoriaException {
         Connection connection = getConnection();
         String sql = "SELECT * FROM `requisicoes`";
 
@@ -308,7 +309,7 @@ public class DatabaseManager {
         while (rs.next()) {
             Requisicao requisicao = new Requisicao();
             
-            requisicao.setCategoria(rs.getString("categoria"));
+            requisicao.setCategoria(rs.getInt("categoria"));
             requisicao.setData(rs.getString("data_inicio"));
             requisicao.setDescricao(rs.getString("descricao"));
             requisicao.setEquipamentos(rs.getString("equipamentos"));
