@@ -29,6 +29,8 @@
                 service = new ProfessorService(s);
                 menuOptionsLinks = service.getMenuOptionsLinks();
                 menuOptionsNames = service.getMenuOptionsNames();
+                
+                s.setAttribute("initialPage", service.getInitialPage());
             }
         %>
         

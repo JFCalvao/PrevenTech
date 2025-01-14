@@ -19,7 +19,7 @@
         <%@include file="header.jsp" %>
 
         <main>
-            <div class="requisicoes escondido">
+            <div class="requisicoes">
                 <div id="titulo">
                     <h3>Requisições</h3>
                     <div id="linha-titulo"></div>

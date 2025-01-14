@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
 
+/********************** Para o textarea **********************/
 const textarea = document.querySelector("textarea");
 const textarea_defaultHeight = parseInt(getComputedStyle(textarea)
                                .getPropertyValue('height'));
@@ -29,6 +30,7 @@ textarea.addEventListener("input", () => {
     changeCharCounter();
 });
 
+/********************** Para as categorias **********************/
 const block = document.querySelector("#categorias-block");
 const categorias_block_defaultHeight = parseInt(getComputedStyle(block)
                                .getPropertyValue('height'));
@@ -196,6 +198,7 @@ categorias_container.addEventListener("mouseenter", () => canDestroyCategoriesLi
 categorias_container.addEventListener("mouseleave", () => canDestroyCategoriesList = true);
 
 
+/********************** Para o estilo dos inputs **********************/
 function estilizaInputs() {
     const inputs = document.querySelectorAll("input");
     const categorias_container = document.querySelector("#categorias-container");
@@ -227,8 +230,153 @@ function estilizaInputs() {
 //    categorias.style.width = `${minWidth}px`;//minWidth + (parseInt(style.paddingRight) + parseInt(style.paddingLeft)) + "px";
     const categorias_input = document.querySelector("#categorias-input");
     categorias.style.top = `${categorias_input.offsetHeight}px`;
+    
+    const equipamento_input = document.querySelector("#maquinas-input");
+    const equipamentos = document.querySelector("#equipamentos");
+    equipamentos.style.top = `${equipamento_input.offsetHeight}px`;
 }
 
 estilizaInputs();
 
 window.addEventListener("resize", estilizaInputs);
+
+/********************** Para os botões **********************/
+const cancel_btn = document.querySelector("#cancel-btn");
+const send_btn = document.querySelector("#send-btn");
+const initialPage = cancel_btn.getAttribute("data-link");
+
+cancel_btn.addEventListener("click", cancel);
+
+function cancel() {
+   window.location.href = initialPage; 
+};
+
+/********************** Para as máquinas **********************/
+let maquinas = null;
+
+function getMaquinas() {
+    let request = new Request();
+    request.setOperation("GET");
+    request.setType("EQ");
+    
+    let ajax = new XMLHttpRequest();
+    ajax.open("POST", "MainServlet", true);
+    
+    ajax.onload = function() {
+        if (ajax.status === 200) {
+            let response = new Response(ajax.responseText);
+
+            if (response.getStatus() === "OK") {
+                maquinas = response.getData();
+            } else {
+                window.location.href = "erro.jsp?erro=" + response.getError() + "&url=" + window.location.href; 
+            }
+        } else {
+            window.location.href = "erro.jsp?erro=Parece que você está com um erro de conexão. Por favor, tente novamente mais tarde." + "&url=" + initialPage;
+        }
+    };
+    
+    ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    ajax.send(request.getRequest());
+}
+
+getMaquinas();
+
+function getMaquinasInterval() {
+    getMaquinas();
+    setInterval(() => getMaquinasInterval(), 1000 * 60 * 5);
+}
+
+//getMaquinasInterval();
+
+const equipamentos_adicionados_div = document.querySelector("#equipamentos-adicionados");
+const input_maquinas = document.querySelector("#maquinas-input");
+let maquinas_adicionadas = [];
+let maquina_para_adicionar = null;
+
+input_maquinas.addEventListener("keyup", searchMaquina);
+
+function searchMaquina() {
+    if(maquinas === null) return;
+    const equipamentosRestantes = [];
+    
+    maquinas.forEach(maquina => {
+        let canAdd = true;
+        maquinas_adicionadas.forEach(adicionada => {
+           if(adicionada === maquina["n_patrimonio"])  {
+               canAdd = false;
+           }
+        });
+        if(canAdd)
+            equipamentosRestantes.push(maquina);
+    });
+    
+    
+    const equipamentos = document.querySelector("#equipamentos");
+    let value = input_maquinas.value;
+    
+    if(value === "") {
+        equipamentos.style.display = "none";
+        equipamentos.innerHTML = "";
+        maquina_para_adicionar = null;
+        return;
+    }
+    
+    for(let i = 0; i < equipamentosRestantes.length; i++) {
+        if(equipamentosRestantes[i]["n_patrimonio"].startsWith(value)) {
+            equipamentos.innerHTML = `
+                <section class="equipamento">
+                    <div class="n_patrimonio">${equipamentosRestantes[i]["n_patrimonio"]}</div>
+                    <div class="nome_equipamento">${equipamentosRestantes[i]["nome"]}</div>
+                </section>
+            `;
+            maquina_para_adicionar = {"n_patrimonio": equipamentosRestantes[i]["n_patrimonio"]};
+            equipamentos.style.display = "block";
+            addEquipamentoAdicionarEvent();
+            return;
+        }
+    }
+
+    equipamentos.style.display = "none";
+    equipamentos.innerHTML = "";
+    maquina_para_adicionar = null;
+}
+
+function addEquipamentoAdicionarEvent() {
+    if(maquina_para_adicionar === null) return;
+    const equipamento_btn = document.querySelector(".equipamento");
+
+    equipamento_btn.addEventListener("click", () => {
+        maquinas_adicionadas.push(maquina_para_adicionar["n_patrimonio"]);
+        addEquipamento(maquina_para_adicionar["n_patrimonio"]);
+        maquina_para_adicionar = null;
+        searchMaquina();
+    });
+}
+
+function addRemoverBtnEvent() {
+    const btns = document.querySelectorAll(".remover-btn");
+    
+    btns.forEach(btn => btn.addEventListener("click", (e) => {
+        const n_patrimonio = e.target.getAttribute("data-n_patrimonio");
+        let remover = document.querySelector("#" + n_patrimonio);
+        
+        equipamentos_adicionados_div.removeChild(remover);
+    }));
+}
+
+function addEquipamento(n_patrimonio) {
+    let maquina = maquinas.find(obj => obj["n_patrimonio"] === n_patrimonio);
+    
+    equipamentos_adicionados_div.innerHTML += `
+        <section class="adicionado" id="${maquina["n_patrimonio"]}" >
+            <div class="n_patrimonio" >${maquina["n_patrimonio"]}</div>
+            <div class="nome" >${maquina["nome"]}</div>
+            <div class="local" >${maquina["local"]}</div>
+            <div class="estado" >${maquina["estado"]}</div>
+            <img class="remover-btn" data-n_patrimonio="${maquina["n_patrimonio"]}" src="imgs/remove-btn.png" />
+        </section>
+    `;
+    
+    addRemoverBtnEvent();
+}

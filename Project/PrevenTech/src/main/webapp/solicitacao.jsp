@@ -14,6 +14,7 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="css/header.css">
         <link rel="stylesheet" type="text/css" href="css/solicitacao.css">
+        <script src="js/json.js" defer ></script>
         <script defer>const categorias = <%= Categorias.getCategorias() %>;</script>
         <script src="js/solicitacao.js" defer ></script>
     </head>
@@ -33,8 +34,11 @@
                 
                 String data = dataHoraBrasil.format(formatter);
                 String nome = "Cristiano Maffort";
+                
                 if(session.getAttribute("nome") != null)
                     nome = (String)session.getAttribute("nome");
+                    
+               String urlCancel = (String)session.getAttribute("initialPage");
             %>
             <div id="solicitacao-area">
                 <section id="form-header">
@@ -69,9 +73,25 @@
                     <block>
                         <box>
                             <label>Adicionar equipamento: </label>
-                            <input spellcheck="false" />
+                            <section id="equipamentos-container">
+                                <input id="maquinas-input" spellcheck="false" />
+                                <div id="equipamentos" ></div>
+                            </section>
                         </box>
-                        <div id="equipamentos"></div>
+                        <div id="equipamentos-adicionados" style="display: flex !important;">
+                            <section class="adicionado" >
+                                <div class="n_patrimonio" >123456</div>
+                                <div class="nome" >Computador DELL</div>
+                                <div class="local" >Sala 107, p20</div>
+                                <div class="estado" >Com defeito</div>
+                            </section>
+                            <section class="adicionado" >
+                                <div class="n_patrimonio" >123456</div>
+                                <div class="nome" >Computador DELL</div>
+                                <div class="local" >Sala 107, p20</div>
+                                <div class="estado" >Com defeito</div>
+                            </section>
+                        </div>
                     </block>
                     <block>
                         <desc>
@@ -81,7 +101,7 @@
                         </desc>
                     </block>
                     <buttons>
-                        <button id="cancel-btn">Cancelar</button>
+                        <button id="cancel-btn" data-link="<%= urlCancel %>">Cancelar</button>
                         <button id="send-btn">Enviar Solicitação</button>
                     </buttons>
                 </section>

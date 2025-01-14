@@ -121,7 +121,7 @@ block box input:focus {
     outline: 0;
 }
 
-block box #categorias-container {
+block box #categorias-container, #equipamentos-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -133,7 +133,16 @@ block box #categorias-container {
     border: 2px solid #2873ff;
 }
 
-#categorias-container #categorias {
+#equipamentos-adicionados {
+    margin-top: 5px;
+    border-left: 4px solid #2873ff;
+    width: calc(100% - 4px);
+    flex-wrap: wrap;
+    align-content: flex-end;
+    flex-direction: column;
+}
+
+#categorias-container #categorias, #equipamentos {
     --categorias-border: 2px;
     
     height: auto;
@@ -161,16 +170,50 @@ block box #categorias-container {
     transition: 0.2s;
 }
 
-#categorias option {
+#equipamentos-adicionados .adicionado {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 10px;
+    height: 50px;
+    color: #004aad;
+    background-color: #e1f8ff;
+    border-radius: 0px;
+    transition: 0.1s;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: calc(100% - 5px);
+}
+
+#equipamentos-adicionados .adicionado .nome {
+    font-weight: bold;
+}
+
+#equipamentos-adicionados .remover-btn {
+    height: 30px;
+    width: auto;
+}
+
+#equipamentos-adicionados .adicionado .n_patrimonio {
+    background-color: white;
+    padding: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+    border-radius: 50px;
+}
+
+#categorias option, #equipamentos #equipamento {
     height: 30px;
     background-color: white;
     border: 2px solid white;
     color: black;
     border-radius: 0px !important;
     cursor: pointer;
-    transition: 0.1s;
     padding-top: 1px;
     padding-bottom: 1px;
+    transition: 0.1s;
 }
 
 #categorias option:hover {

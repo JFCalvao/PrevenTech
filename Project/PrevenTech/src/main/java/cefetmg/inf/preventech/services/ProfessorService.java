@@ -20,6 +20,14 @@ public class ProfessorService {
     
     private Professor professor;
     
+    public String getInitialPage() { 
+        return professor.getInitialPage(); 
+    }
+    
+    public boolean hasAccess(String page) { 
+        return professor.hasAccess(page); 
+    }
+    
     public List<String> getMenuOptionsNames() {
         return professor.getMenuOptionsNames();
     }
