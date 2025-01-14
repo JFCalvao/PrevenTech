@@ -64,12 +64,12 @@ cadastrarBtn.addEventListener('click', function(event) {
     ajax.open("POST", url, true);
     ajax.onload = function() {
         if (ajax.status === 200) {
-            var res = ajax.responseText;
-            resposta.innerHTML = "Cadastro bem-sucedido: " + res;
-            resposta.style.color = 'black';
-            res = new Response(ajax.responseText);
+            let res = new Response(ajax.responseText);
             if (res.getStatus() !== "OK") {
                 window.location.href = "erro.jsp?erro=" + res.getError() + "&url=" + window.location.href;
+            } else if (res.error === "NOERROR") {
+                console.log(res);
+                window.location.href = res.response.redirect;
             }
         } else {
             resposta.innerHTML = "Erro ao enviar dados.";
