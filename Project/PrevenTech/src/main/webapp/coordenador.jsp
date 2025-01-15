@@ -177,5 +177,7 @@
         </main>
         <script   src="https://code.jquery.com/jquery-3.6.4.js"   integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="   crossorigin="anonymous"></script>
         <script src="js/expandir-retrair-div.js"></script>
+        <script src="js/json.js"></script>
+        <script src="js/requisicoes.js"></script>
     </body>
 </html>

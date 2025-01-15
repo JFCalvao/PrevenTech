@@ -15,9 +15,6 @@ function obterRequisicoes() {
             $('body').html('Carregando...');
         },
         success:(data) => {
-            let response = new Response(data);
-            data = response.getData();
-            data = JSON.parse(data);
             exibirRequisicoes(data);
         }
     });
