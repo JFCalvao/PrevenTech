@@ -8,6 +8,8 @@ package cefetmg.inf.preventech.dao;
  *
  * @author jfcalvao
  */
-public class Coordenador {
-    
+public class Coordenador extends User {
+    public Coordenador(User user) {
+        super(user);
+    }
 }

@@ -12,10 +12,17 @@ package cefetmg.inf.preventech.servers;
 
 import cefetmg.inf.preventech.Exceptions.*;
 import cefetmg.inf.preventech.dao.Categorias;
+import cefetmg.inf.preventech.dao.Coordenador;
 import cefetmg.inf.preventech.dao.Equipamento;
 import cefetmg.inf.preventech.dao.Historico;
+import cefetmg.inf.preventech.dao.Professor;
 import cefetmg.inf.preventech.dao.Requisicao;
+import cefetmg.inf.preventech.dao.Tecnico;
 import cefetmg.inf.preventech.dao.User;
+import cefetmg.inf.preventech.services.CoordenadorService;
+import cefetmg.inf.preventech.services.ProfessorService;
+import cefetmg.inf.preventech.services.TecnicoService;
+import cefetmg.inf.preventech.services.UserService;
 import cefetmg.inf.preventech.util.DatabaseManager;
 import cefetmg.inf.preventech.util.DataManager;
 import cefetmg.inf.preventech.util.Encryption;
@@ -79,9 +86,9 @@ public class MainServlet extends HttpServlet {
                     break;
                     case "RQ": {   
                         Requisicao requisicao = getRequisicao(content);
-                        if(DatabaseManager.hasRequisicao(requisicao)) {
-                            throw new RequisicaoJaExisteException();
-                        }
+//                        if(DatabaseManager.hasRequisicao(requisicao)) {;
+//                            throw new RequisicaoJaExisteException();
+//                        }
                         DatabaseManager.insertRequisicao(requisicao);
                     }
                     break;
@@ -193,8 +200,9 @@ public class MainServlet extends HttpServlet {
                     HttpSession session = request.getSession();
                     usuario.setServer(session);
                     session.setAttribute("usuario", usuario);
-                    session.setAttribute("nome", usuario.getNome());
-                    UsersList.add(usuario);
+                    
+                    UserService service = getUserService(usuario);
+                    session.setAttribute("service", service);
 
                     getRedirectJSP(jsonResponse, usuario);
                 }
@@ -226,6 +234,27 @@ public class MainServlet extends HttpServlet {
             
         }
     }
+    
+    private UserService getUserService(User user) {
+        String profissao = user.getProfissao();
+        switch (profissao) {
+            case "Professor": {
+                Professor prof = new Professor(user);
+                return new ProfessorService(prof);
+            }
+            case "Coordenador": {
+                Coordenador coord = new Coordenador(user);
+                return new CoordenadorService(coord);
+            }
+            case "Tecnico em Informatica":
+            case "Tecnico em Eletronica": {
+                Tecnico tec = new Tecnico(user);
+                return new TecnicoService(tec);
+            }
+            default:
+        }
+        return null;
+    }
 
     private void getRedirectJSP(JSONObject jsonResponse, User usuario) {
         switch (usuario.getProfissao()) {
@@ -254,12 +283,15 @@ public class MainServlet extends HttpServlet {
     
     private Requisicao getRequisicao(JSONObject content) throws NoSuchCategoriaException {
         String requisicao_id = "";
-        String requisitor_cpf = "";
+        String requisitor_cpf = content.getString("requisitor");
         String responsavel_cpf = "";
         String data_inicio = "";
         String categoria = content.getString("categoria");
         String equipamentos = content.getString("equipamentos");
         String descricao = content.getString("descricao");
+        
+        System.out.println("R: " + requisitor_cpf + "\nC: " + categoria + "\nE: " + equipamentos + "\nD: " + descricao);
+        
         return new Requisicao(requisicao_id, requisitor_cpf, responsavel_cpf, 
                               data_inicio, Categorias.getCategoriaCode(categoria), 
                               equipamentos, descricao);

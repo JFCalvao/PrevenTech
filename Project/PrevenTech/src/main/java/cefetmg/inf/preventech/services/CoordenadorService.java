@@ -4,7 +4,7 @@
  */
 package cefetmg.inf.preventech.services;
 
-import cefetmg.inf.preventech.dao.Professor;
+import cefetmg.inf.preventech.dao.Coordenador;
 import jakarta.servlet.http.HttpSession;
 import jakarta.websocket.Session;
 import java.util.List;
@@ -13,22 +13,22 @@ import java.util.List;
  *
  * @author jfcalvao
  */
-public class ProfessorService implements UserService {
-
-    public ProfessorService(Professor professor) {
-        this.nome = professor.getNome();
-        this.cpf = professor.getCPF();
-        this.email = professor.getEmail();
-        this.profissao = professor.getProfissao();
-        this.serverSession = professor.getServer();
-        this.chatSession = professor.getChat();
+public class CoordenadorService implements UserService {
+    
+    public CoordenadorService(Coordenador coordenador) {
+        this.nome = coordenador.getNome();
+        this.cpf = coordenador.getCPF();
+        this.email = coordenador.getEmail();
+        this.profissao = coordenador.getProfissao();
+        this.serverSession = coordenador.getServer();
+        this.chatSession = coordenador.getChat();
     }
     
-    private final String initialPage = "professor.jsp";
+    private final String initialPage = "coordenador.jsp";
     
     private final List<String> access = List.of(
-        "professor.jsp", "estados.jsp", "solicitacao.jsp",
-        "meus-dados.jsp"
+        "coordenador.jsp", "estados.jsp", "meus-dados.jsp",
+        "solicitacao.jsp", "remover.jsp", "cadastrar-maq.jsp"
     );
     
     @Override

@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="cefetmg.inf.preventech.services.ProfessorService, java.util.List, jakarta.servlet.http.HttpSession" %>
+<%@ page import="cefetmg.inf.preventech.dao.User, cefetmg.inf.preventech.services.ProfessorService, java.util.List, jakarta.servlet.http.HttpSession" %>
 <%@taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -17,20 +17,20 @@
         <link rel="stylesheet" href="css/professor.css">
     </head>
     <body>
+        <%@include file="Security/security.jsp" %>
         <%@include file="header.jsp" %>
         
         <%
             HttpSession s = request.getSession(false);
             ProfessorService service = null;
-            List<String> menuOptionsLinks = null;
-            List<String> menuOptionsNames = null;
+            String nome = "Joao";
             
             if(s != null) {
-                service = new ProfessorService(s);
-                menuOptionsLinks = service.getMenuOptionsLinks();
-                menuOptionsNames = service.getMenuOptionsNames();
+//                service = new ProfessorService(s);
+//                User user = (User)s.getAttribute("usuario");
                 
-                s.setAttribute("initialPage", service.getInitialPage());
+//                s.setAttribute("initialPage", service.getInitialPage());
+//                s.setAttribute("cpf", user.getCPF());
             }
         %>
         
@@ -38,18 +38,14 @@
             <div id="container">
                 <section id="form-header">
                     <line></line>
-                    <h2 id="form-title">Opções de <%=  s.getAttribute("nome")%></h2>
+                    <h2 id="form-title">Opções de <%= nome %></h2>
                     <line></line>
                 </section>
                 <section id="opcoes-container">
                     <ul id="opcoes">
-                        <%
-                            for(int i = 0; i < menuOptionsLinks.size(); i++) {
-                        %>
-                        <li class="opcao"><a href="<%= menuOptionsLinks.get(i) %>"><%= menuOptionsNames.get(i) %></a></li>
-                        <% 
-                            } 
-                        %>
+                        <li class="opcao"><a href="meus-dados.jsp">Minhas Informações</a></li>
+                        <li class="opcao"><a href="estados.jsp">Ver Equipamentos</a></li>
+                        <li class="opcao"><a href="solicitacao.jsp">Realizar Solicitação de Manutenção</a></li>
                     </ul>
                 </section>
             </div>

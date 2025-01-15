@@ -7,15 +7,18 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.time.ZonedDateTime, java.time.ZoneId, java.time.format.DateTimeFormatter, cefetmg.inf.preventech.dao.Categorias" %>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="stylesheet" type="text/css" href="css/header.css">
         <link rel="stylesheet" type="text/css" href="css/solicitacao.css">
         <script src="js/json.js" defer ></script>
-        <script defer>const categorias = <%= Categorias.getCategorias() %>;</script>
+        <%@include file="Security/security.jsp" %>
+        <script defer >
+            const categorias = <%= Categorias.getCategorias() %>;
+            const user_cpf = "<%= userService.getCPF() %>";
+        </script>
         <script src="js/solicitacao.js" defer ></script>
     </head>
     <body>
@@ -79,29 +82,17 @@
                             </section>
                         </box>
                         <div id="equipamentos-adicionados" style="display: flex !important;">
-                            <section class="adicionado" >
-                                <div class="n_patrimonio" >123456</div>
-                                <div class="nome" >Computador DELL</div>
-                                <div class="local" >Sala 107, p20</div>
-                                <div class="estado" >Com defeito</div>
-                            </section>
-                            <section class="adicionado" >
-                                <div class="n_patrimonio" >123456</div>
-                                <div class="nome" >Computador DELL</div>
-                                <div class="local" >Sala 107, p20</div>
-                                <div class="estado" >Com defeito</div>
-                            </section>
                         </div>
                     </block>
                     <block>
                         <desc>
                             <label>Descrição</label>
-                            <textarea title="Descricao" spellcheck="false" maxlength="600" ></textarea>
+                            <textarea id="descricao" title="Descricao" spellcheck="false" maxlength="600" ></textarea>
                             <div id="contador">0:600</div>
                         </desc>
                     </block>
                     <buttons>
-                        <button id="cancel-btn" data-link="<%= urlCancel %>">Cancelar</button>
+                        <button id="cancel-btn" data-link="<%= userService.getInitialPage() %>">Cancelar</button>
                         <button id="send-btn">Enviar Solicitação</button>
                     </buttons>
                 </section>

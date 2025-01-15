@@ -4,32 +4,25 @@
  */
 package cefetmg.inf.preventech.services;
 
-import cefetmg.inf.preventech.dao.Professor;
 import jakarta.servlet.http.HttpSession;
 import jakarta.websocket.Session;
-import java.util.List;
 
 /**
  *
  * @author jfcalvao
  */
-public class ProfessorService implements UserService {
-
-    public ProfessorService(Professor professor) {
-        this.nome = professor.getNome();
-        this.cpf = professor.getCPF();
-        this.email = professor.getEmail();
-        this.profissao = professor.getProfissao();
-        this.serverSession = professor.getServer();
-        this.chatSession = professor.getChat();
+public class DefaultService implements UserService {
+    
+    public DefaultService() {
+        this.nome = "";
+        this.cpf = "";
+        this.email = "";
+        this.profissao = "";
+        this.serverSession = null;
+        this.chatSession = null;
     }
     
-    private final String initialPage = "professor.jsp";
-    
-    private final List<String> access = List.of(
-        "professor.jsp", "estados.jsp", "solicitacao.jsp",
-        "meus-dados.jsp"
-    );
+    private final String initialPage = "index.jsp";
     
     @Override
     public String getInitialPage() {
@@ -38,7 +31,7 @@ public class ProfessorService implements UserService {
     
     @Override
     public boolean hasAccess(String page) {
-        return access.contains(page);
+        return false;
     }
     
     private final String nome;

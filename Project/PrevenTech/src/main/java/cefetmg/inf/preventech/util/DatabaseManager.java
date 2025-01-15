@@ -54,7 +54,7 @@ public class DatabaseManager {
     public static void insertRequisicao(Requisicao requisicao) throws SQLException, EncryptationException {
         Connection connection = getConnection();
         String values = DataManager.formatRequisicao(requisicao);
-        String sql = "INSERT INTO `requisicoes` VALUES(" + values + ")";
+        String sql = "INSERT INTO `requisicoes` (`requisitor_cpf`, `responsavel_cpf`, `data_inicio`, `categoria`, `equipamentos`, `descricao`) VALUES(" + values + ")";
         
         PreparedStatement pstmt = connection.prepareStatement(sql); 
         pstmt.executeUpdate(); 

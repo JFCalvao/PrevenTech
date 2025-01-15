@@ -23,7 +23,7 @@ main {
     justify-content: center;
 }
 
-#form-inputs option, #more-option, label {
+#form-inputs option, #more-option, label, .adicionado, #equipamentos {
     -webkit-touch-callout: none;  /* iPhone OS, Safari */
     -webkit-user-select: none;    /* Chrome, Safari 3 */
     -khtml-user-select: none;     /* Safari 2 */
@@ -140,6 +140,10 @@ block box #categorias-container, #equipamentos-container {
     flex-wrap: wrap;
     align-content: flex-end;
     flex-direction: column;
+}
+
+#equipamentos {
+    cursor: pointer;
 }
 
 #categorias-container #categorias, #equipamentos {
@@ -336,4 +340,27 @@ textarea::-webkit-scrollbar {display: none;}
 #form-inputs #cancel-btn:hover {
     background-color: #1A1A1A;
     color: white;
+}
+
+popup {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+popup #msg {
+    color: #4ab280;
+    text-align: center;
+}
+
+popup img {
+    justify-self: flex-end;
+    height: 25px;
+    width: 25px;
+}
+
+.correct {
+    border-color: #4ab280;
 }

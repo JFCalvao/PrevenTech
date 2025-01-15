@@ -25,3 +25,5 @@ function addEvents() {
         });
     }
 }
+
+addEvents();

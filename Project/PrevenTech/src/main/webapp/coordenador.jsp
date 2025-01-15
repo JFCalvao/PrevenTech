@@ -22,7 +22,7 @@
             <div class="requisicoes">
                 <div id="titulo">
                     <h3>Requisições</h3>
-                    <div id="linha-titulo"></div>
+                    <div class="linha-titulo"></div>
                 </div>
 
                 <div class="body">
@@ -74,7 +74,7 @@
                 </div>
             </div>
             
-            <div class="minhas-requisicoes">
+            <div class="minhas-requisicoes escondido">
                 <div id="titulo">
                     <h3>Minhas Requisições</h3>
                     <div class="linha-titulo"></div>
@@ -169,7 +169,7 @@
                 </div> 
             </div>
             
-            <div id="botao-nova-solicitacao">
+            <div id="botao-nova-solicitacao" class="escondido">
                 <span id="mais">+</span>
                 <span id="txt-nova-solicitacao">Enviar nova solicitação</span>
             </div>

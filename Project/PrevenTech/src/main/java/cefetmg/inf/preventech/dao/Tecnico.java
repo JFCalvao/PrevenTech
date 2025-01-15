@@ -4,10 +4,23 @@
  */
 package cefetmg.inf.preventech.dao;
 
+import cefetmg.inf.preventech.Exceptions.NoSuchCategoriaException;
+import java.util.List;
+
 /**
  *
  * @author jfcalvao
  */
-public class Tecnico {
+public class Tecnico extends User {
+    public Tecnico(User user) {
+        super(user);
+    }
     
+    public boolean canRecieveRequisicao(Requisicao requisicao) throws NoSuchCategoriaException {
+        List<String> categorias = Categorias.acceptedCategoriesFor(this.getProfissao());
+        if(categorias == null) return false;
+        
+        int idCategorias = requisicao.getCategoria();
+        return categorias.contains(Categorias.getCategoriaString(idCategorias));
+    }
 }

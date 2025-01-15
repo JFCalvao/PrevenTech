@@ -73,8 +73,6 @@ function addOptions() {
     } else {
         let couldAdd = 0, added = 0;
         categorias.forEach((categoria) => {
-            console.log(categoria.toUpperCase() + " === " + input.toUpperCase());
-            console.log("sc: " + categoria.toUpperCase().search(input.toUpperCase()));
             if(categoria.toUpperCase().search(input.toUpperCase()) !== -1) {
                 if(added < max_options_shown) {
                     options.innerHTML += `
@@ -237,6 +235,7 @@ function estilizaInputs() {
 }
 
 estilizaInputs();
+setTimeout(estilizaInputs, 50);
 
 window.addEventListener("resize", estilizaInputs);
 
@@ -245,7 +244,77 @@ const cancel_btn = document.querySelector("#cancel-btn");
 const send_btn = document.querySelector("#send-btn");
 const initialPage = cancel_btn.getAttribute("data-link");
 
+send_btn.addEventListener("click", send);
 cancel_btn.addEventListener("click", cancel);
+
+function send() {
+    const requisitor = user_cpf;
+    const categoria = document.querySelector("#categorias-input").value;
+    const descricao = document.querySelector("#descricao").value;
+    
+    if(!categoria) {
+        document.querySelector("#categorias-input").focus();
+        return;
+    }
+    
+    if(!categorias.includes(categoria)) {
+        document.querySelector("#categorias-input").focus();
+        return;
+    }
+    
+    if(!descricao && !maquinas_adicionadas.length) {
+        document.querySelector("#maquinas-input").focus();
+        return;
+    }
+    
+    let equipamentos = "";
+    for(let i = 0; i < maquinas_adicionadas.length; i++) {
+       equipamentos += maquinas_adicionadas[i]; 
+       if(i + 1 !== maquinas_adicionadas.length) {
+           equipamentos += "_";
+       }
+    }
+    
+    let ajax = new XMLHttpRequest();
+    ajax.open("POST", "MainServlet", true);
+    
+    let request = new Request();
+    request.setOperation("INSERT");
+    request.setType("RQ");
+    request.setData({
+        "requisitor": requisitor.toString(),
+        "categoria": categoria,
+        "equipamentos": equipamentos,
+        "descricao": descricao
+    });
+    
+    ajax.onload = function() {
+        if (ajax.status === 200) {
+            let response = new Response(ajax.responseText);
+
+            if (response.getStatus() === "OK") {
+                const form_inputs = document.querySelector("#form-inputs");
+                form_inputs.innerHTML = `
+                    <popup>
+                        <h2 id="msg">Sua solicitação foi enviada com sucesso.</h2>
+                        <img src="imgs/ok.png" />
+                    </popup>
+                `;
+                
+                setTimeout(
+                    () => window.location.href = initialPage
+                , 2000);
+            } else {
+                window.location.href = "erro.jsp?erro=" + response.getError() + "&url=" + window.location.href; 
+            }
+        } else {
+            window.location.href = "erro.jsp?erro=Parece que você está com um erro de conexão. Por favor, tente novamente mais tarde." + "&url=" + initialPage;
+        }
+    };
+    
+    ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");;
+    ajax.send(request.getRequest());
+}
 
 function cancel() {
    window.location.href = initialPage; 
@@ -290,7 +359,23 @@ function getMaquinasInterval() {
 //getMaquinasInterval();
 
 const equipamentos_adicionados_div = document.querySelector("#equipamentos-adicionados");
+const equipamentos = document.querySelector("#equipamentos");
 const input_maquinas = document.querySelector("#maquinas-input");
+
+let canRemoveEquipamentoInput = true;
+
+equipamentos.addEventListener("mouseenter", () => canRemoveEquipamentoInput = false);
+equipamentos.addEventListener("mouseleave", () => canRemoveEquipamentoInput = true);
+
+input_maquinas.addEventListener("blur", () => {
+    if(!canRemoveEquipamentoInput) return;
+    equipamentos.innerHTML = "";
+});
+
+input_maquinas.addEventListener("focus", () => {
+    searchMaquina();
+});
+
 let maquinas_adicionadas = [];
 let maquina_para_adicionar = null;
 
@@ -301,13 +386,7 @@ function searchMaquina() {
     const equipamentosRestantes = [];
     
     maquinas.forEach(maquina => {
-        let canAdd = true;
-        maquinas_adicionadas.forEach(adicionada => {
-           if(adicionada === maquina["n_patrimonio"])  {
-               canAdd = false;
-           }
-        });
-        if(canAdd)
+        if(!maquinas_adicionadas.includes(maquina["n_patrimonio"]))
             equipamentosRestantes.push(maquina);
     });
     
@@ -345,11 +424,15 @@ function searchMaquina() {
 function addEquipamentoAdicionarEvent() {
     if(maquina_para_adicionar === null) return;
     const equipamento_btn = document.querySelector(".equipamento");
+    const equipamentos_input = document.querySelector("#maquinas-input");
 
     equipamento_btn.addEventListener("click", () => {
+        
         maquinas_adicionadas.push(maquina_para_adicionar["n_patrimonio"]);
         addEquipamento(maquina_para_adicionar["n_patrimonio"]);
         maquina_para_adicionar = null;
+        equipamentos_input.focus();
+        equipamentos_input.value = "";
         searchMaquina();
     });
 }
@@ -359,9 +442,11 @@ function addRemoverBtnEvent() {
     
     btns.forEach(btn => btn.addEventListener("click", (e) => {
         const n_patrimonio = e.target.getAttribute("data-n_patrimonio");
-        let remover = document.querySelector("#" + n_patrimonio);
+        let remover = document.getElementById(n_patrimonio);
         
         equipamentos_adicionados_div.removeChild(remover);
+        maquinas_adicionadas = maquinas_adicionadas.filter(obj => obj !== n_patrimonio);
+        searchMaquina();
     }));
 }
 
@@ -377,6 +462,5 @@ function addEquipamento(n_patrimonio) {
             <img class="remover-btn" data-n_patrimonio="${maquina["n_patrimonio"]}" src="imgs/remove-btn.png" />
         </section>
     `;
-    
     addRemoverBtnEvent();
 }

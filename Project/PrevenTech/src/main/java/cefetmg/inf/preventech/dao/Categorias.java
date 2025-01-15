@@ -26,6 +26,14 @@ public class Categorias {
         "Manutenção de hardware"
     );
     
+    public static List<String> acceptedCategoriesFor(String profissao) {
+        switch(profissao) {
+            case "Tecnico Informatica": return falhasInformatica;
+            case "Tecnico Eletronica": return falhasEletronicas;
+            default: return null;
+        }
+    }
+    
     public static int getCategoriaCode(String categoria) throws NoSuchCategoriaException {
         int code = 0;
         
