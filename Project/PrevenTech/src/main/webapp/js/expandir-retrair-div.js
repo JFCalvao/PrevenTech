@@ -24,4 +24,4 @@ function addEvents() {
             expandirRetrairRequisicao(arrInformacoesExpandirEl[i], arrSetinhaExpandirRetrairEl[i]);
         });
     }
-}
+} 
