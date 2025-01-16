@@ -1,11 +1,9 @@
-let nome = document.querySelector("#maquina-cad");
-nome.addEventListener('change', buscarDados);
+const nPatrimonio = document.querySelector("#n-patrimonio").value;
+nPatrimonio.addEventListener('keyup', buscarDados);
 
 let resposta = document.querySelector('#resposta');
 
 function buscarDados() {
-    
-    const nPatrimonio = document.querySelector("#n-patrimonio").value;
 
     if (!nPatrimonio) {
         document.querySelector("#resposta").innerHTML = "Por favor, insira um número de patrimônio.";
@@ -56,7 +54,6 @@ let remover = document.getElementById('remove')
 remover.addEventListener('click', removerMaquina);
 
 function removerMaquina() {
-    const nPatrimonio = document.querySelector("#n-patrimonio")
 
     if (!nPatrimonio) {
         resposta.innerHTML = "Por favor, insira um número de patrimônio válido.";

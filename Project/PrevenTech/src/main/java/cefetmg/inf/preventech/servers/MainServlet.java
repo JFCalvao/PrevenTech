@@ -120,14 +120,19 @@ public class MainServlet extends HttpServlet {
                         }
                         
                         DatabaseManager.insertUsuario(usuario);
+                        UserService service = getUserService(usuario);
 
                         HttpSession session = request.getSession();
                         usuario.setServer(session);
                         session.setAttribute("usuario", usuario);
                         session.setAttribute("nome", usuario.getNome());
+                        session.setAttribute("service", service);
+                        
                         UsersList.add(usuario);
 
                         getRedirectJSP(jsonResponse, usuario);
+                        
+                        
                     }      
                     break;
                     case "CH": {
