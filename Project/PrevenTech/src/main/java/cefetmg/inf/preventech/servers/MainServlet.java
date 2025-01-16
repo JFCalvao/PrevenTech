@@ -41,6 +41,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.File;
 import java.nio.file.Files;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
@@ -141,7 +142,32 @@ public class MainServlet extends HttpServlet {
                         jsonResponse.put("content", DatabaseManager.getAllEquipamentos());
                         break;
                     case "RQ":
-                        jsonResponse.put("content", DatabaseManager.getAllRequisicoes());
+                        List<Requisicao> all = DatabaseManager.getAllRequisicoes();
+                        User usuario = UsersList.get(request.getSession());
+                        
+                        if(usuario == null) { // tem que remover
+                            jsonResponse.put("content", all);
+                            break;
+                        }   
+                        
+                        String profissao = usuario.getProfissao();
+                        switch(profissao) {
+                            case "Professor":
+                            case "Coordenador":
+                                jsonResponse.put("content", all);
+                                break;
+                            case "Tecnico em Informatica":
+                            case "Tecnico em Eletronica":
+                                List<Requisicao> accepted = new ArrayList<>();
+                                List<String> categorias = Categorias.acceptedCategoriesFor(profissao);
+                                for(Requisicao req : all) {
+                                    if(categorias.contains(req.getCategoria())) {
+                                        accepted.add(req);
+                                    }
+                                }
+                                jsonResponse.put("content", accepted);
+                            break;
+                        }
                         break;
                     case "HS": {
                         String savePath = getServletContext().getRealPath("uploads");
@@ -200,7 +226,7 @@ public class MainServlet extends HttpServlet {
                     HttpSession session = request.getSession();
                     usuario.setServer(session);
                     session.setAttribute("usuario", usuario);
-                    
+                    UsersList.add(usuario);
                     UserService service = getUserService(usuario);
                     session.setAttribute("service", service);
 

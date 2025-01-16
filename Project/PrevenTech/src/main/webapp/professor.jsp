@@ -20,25 +20,11 @@
         <%@include file="Security/security.jsp" %>
         <%@include file="header.jsp" %>
         
-        <%
-            HttpSession s = request.getSession(false);
-            ProfessorService service = null;
-            String nome = "Joao";
-            
-            if(s != null) {
-//                service = new ProfessorService(s);
-//                User user = (User)s.getAttribute("usuario");
-                
-//                s.setAttribute("initialPage", service.getInitialPage());
-//                s.setAttribute("cpf", user.getCPF());
-            }
-        %>
-        
         <main>
             <div id="container">
                 <section id="form-header">
                     <line></line>
-                    <h2 id="form-title">Opções de <%= nome %></h2>
+                    <h2 id="form-title">Opções de <%= userService.getNome() %></h2>
                     <line></line>
                 </section>
                 <section id="opcoes-container">

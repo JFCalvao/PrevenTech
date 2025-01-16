@@ -36,12 +36,6 @@
                 int minutos = dataHoraBrasil.getMinute(); 
                 
                 String data = dataHoraBrasil.format(formatter);
-                String nome = "Cristiano Maffort";
-                
-                if(session.getAttribute("nome") != null)
-                    nome = (String)session.getAttribute("nome");
-                    
-               String urlCancel = (String)session.getAttribute("initialPage");
             %>
             <div id="solicitacao-area">
                 <section id="form-header">
@@ -53,7 +47,7 @@
                     <block>
                         <box class="auto-preenchido">
                             <label>Requisitor: </label>
-                            <input type="text" value="<%= nome %>" spellcheck="false" disabled />
+                            <input type="text" value="<%= userService.getNome() %>" spellcheck="false" disabled />
                         </box>
                     </block>
                     <block>
