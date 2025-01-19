@@ -131,11 +131,11 @@ main {
     width: 109.5%;
 }
 
-#cor-status, .cor-status {
+.cor-status {
     border-radius: 50%;
 }
 
-#status, .status {
+#status {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -166,10 +166,6 @@ main {
 #txt-data,
 #nome-categoria {
     color: #4780cc;
-}
-
-#txt-status {
-    color: red;
 }
 
 #equipamentos {
@@ -274,7 +270,7 @@ body {
 }
 
 .bolinha-red {
-    border-color: 7.5px solid red;
+    border: 7.5px solid red;
 }
 
 .red {
@@ -282,8 +278,7 @@ body {
 }
 
 .bolinha-green {
-    border-color: 7.5px solid #4ab280;
-    color: #4ab280;
+    border: 7.5px solid #4ab280;
 }
 
 .green {
@@ -291,7 +286,7 @@ body {
 }
 
 .bolinha-blue {
-    border-color: 7.5px solid #4780cc;
+    border: 7.5px solid #4275b9;
 }
 
 .blue {

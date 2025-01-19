@@ -10,18 +10,22 @@ function exibirRequisicoes(data) {
         return;
     }
     
-    data.content[0].status = "Em andamento";
-    
     for(let i = 0; i < data.content.length; i++) {
         let content = data.content[i];
         
-        let color;
-        if(content.status === "Pendente")
+        let color, border;
+        if(content.status === "Pendente") {
             color = "red";
-        else if(content.status === "Em andamento")
+            border = "bolinha-red";
+        }
+        else if(content.status === "Em andamento") {
             color = "blue";
-        else
+            border = "bolinha-blue";
+        }
+        else {
             color = "green";
+            border = "bolinha-green";
+        }
         
         bodyRequisicoesEl.innerHTML += `
             <div class="requisicao">
@@ -35,8 +39,8 @@ function exibirRequisicoes(data) {
                 <div class="informacoes-expandir escondido">
                     <div id="linha-requisicao"></div>
                     <div id="status">
-                        <span id="cor-status" class="${color}"></span>
-                        <span id="txt-status" class="${color}">${content.status}</span>
+                        <span class="cor-status ${border}"></span>
+                        <span class="txt-status ${color}">${content.status}</span>
                     </div>
                     <div id="tecnico">
                         <span id="txt-tecnico">Técnico responsável: </span>
@@ -45,7 +49,7 @@ function exibirRequisicoes(data) {
                     <div id="data-horario-envio">
                         <span id="txt-enviado">Enviado: </span>
                         <span id="txt-horario">17:02</span>
-                        <span id="txt-data"> - ${content.dataInicio}</span>
+                        <span id="txt-data"> - ${content.data === "" ? "data indefinida" : content.data}</span>
                     </div>
                     <div id="categoria">
                         <span id="txt-categoria">Categoria: </span>
@@ -92,4 +96,4 @@ function obterRequisicoes() {
     });
 }
 
-//obterRequisicoes();
+obterRequisicoes();

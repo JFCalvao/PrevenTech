@@ -12,7 +12,7 @@
         <title>JSP Page</title>
         <link rel="shortcut icon" href="imgs/cefet.png" type="image/x-icon">
         <link rel="stylesheet" href="css/requisicoes.css">
-        <link rel="stylesheet" href="css/minhasrequisicoes.css"> 
+        <!--<link rel="stylesheet" href="css/minhasrequisicoes.css">--> 
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
