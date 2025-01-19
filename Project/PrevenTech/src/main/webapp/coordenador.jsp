@@ -37,8 +37,8 @@
                         <div class="informacoes-expandir escondido">
                             <div id="linha-requisicao"></div>
                             <div id="status">
-                                <span id="cor-status"></span>
-                                <span id="txt-status">Pendente</span>
+                                <span class="cor-status bolinha-blue"></span>
+                                <span class="txt-status blue">Pendente</span>
                             </div>
                             <div id="tecnico">
                                 <span id="txt-tecnico">Técnico responsável: </span>
@@ -175,7 +175,7 @@
             </div>
         </div>
         </main>
-        <script   src="https://code.jquery.com/jquery-3.6.4.js"   integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="   crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="js/expandir-retrair-div.js"></script>
         <script src="js/json.js"></script>
         <script src="js/requisicoes.js"></script>
