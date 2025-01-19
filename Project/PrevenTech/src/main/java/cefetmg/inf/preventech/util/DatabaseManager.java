@@ -317,9 +317,34 @@ public class DatabaseManager {
             requisicao.setRequisitor_cpf(rs.getString("requisitor_cpf"));
             requisicao.setResponsavel_cpf(rs.getString("responsavel_cpf"));
             
+            String categoriaString = Categorias.getCategoriaString(requisicao.getCategoria());
+            
+            if(categoriaString != null)
+                requisicao.setCategoriaString(categoriaString);
+            else 
+                requisicao.setCategoriaString("Nenhum");
+            
+            User requisitor = searchUsuario(requisicao.getRequisitor_cpf());
+            
+            if(requisitor != null)
+                requisicao.setRequisitorString(requisitor.getNome());
+            else
+                requisicao.setRequisitorString("Ninguém");
+            
+            User responsavel = searchUsuario(requisicao.getResponsavel_cpf());
+            
+            if(responsavel != null) {
+                requisicao.setResponsavelString(responsavel.getNome());
+                requisicao.setStatus("Em andamento");
+            }
+            else { 
+                requisicao.setResponsavelString("Ninguém");
+                requisicao.setStatus("Pendente");
+            }
+            
             requisicao = DataManager.unformatRequisicao(requisicao);
             
-            requisicoes.add(requisicao); 
+            requisicoes.add(requisicao);
         } 
         
         return requisicoes;
