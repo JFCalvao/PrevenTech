@@ -131,12 +131,11 @@ main {
     width: 109.5%;
 }
 
-#cor-status {
-    border: 7.5px solid red;
+#cor-status, .cor-status {
     border-radius: 50%;
 }
 
-#status {
+#status, .status {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -272,4 +271,29 @@ body {
     margin-right: 5%;
     color: #4780cc;
     font-weight: bold;
+}
+
+.bolinha-red {
+    border-color: 7.5px solid red;
+}
+
+.red {
+    color: red;
+}
+
+.bolinha-green {
+    border-color: 7.5px solid #4ab280;
+    color: #4ab280;
+}
+
+.green {
+    color: #4ab280;
+}
+
+.bolinha-blue {
+    border-color: 7.5px solid #4780cc;
+}
+
+.blue {
+    color: #4780cc;
 }
