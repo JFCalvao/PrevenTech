@@ -1,68 +1,76 @@
 function exibirRequisicoes(data) {
-    function exibirStatus() {
+    let bodyRequisicoesEl = document.querySelector('.body');
+    
+    if(data.content.length === 0) {
+        bodyRequisicoesEl.innerHTML += `
+            <div class="requisicao sem-requisicoes">
+                Você ainda não possui requisições
+            </div>`;
         
+        return;
     }
     
-    function exibirTecnico() {
+    data.content[0].status = "Em andamento";
+    
+    for(let i = 0; i < data.content.length; i++) {
+        let content = data.content[i];
         
+        let color;
+        if(content.status === "Pendente")
+            color = "red";
+        else if(content.status === "Em andamento")
+            color = "blue";
+        else
+            color = "green";
+        
+        bodyRequisicoesEl.innerHTML += `
+            <div class="requisicao">
+                <div class='view'>
+                    <div class="informacoes-basicas">
+                        <h4>Requisição <span id="numero-requisicao">${i+1}</span>/<span id="numero-requisicoes">${data.content.length}</span></h4>
+                        <p>Requisitor: ${content.requisitorString}</p>
+                    </div>
+                    <div class="setinha-expandir-retrair"></div>
+                </div>
+                <div class="informacoes-expandir escondido">
+                    <div id="linha-requisicao"></div>
+                    <div id="status">
+                        <span id="cor-status" class="${color}"></span>
+                        <span id="txt-status" class="${color}">${content.status}</span>
+                    </div>
+                    <div id="tecnico">
+                        <span id="txt-tecnico">Técnico responsável: </span>
+                        <span id="txt-nome-tecnico">${content.responsavelString}</span>
+                    </div>
+                    <div id="data-horario-envio">
+                        <span id="txt-enviado">Enviado: </span>
+                        <span id="txt-horario">17:02</span>
+                        <span id="txt-data"> - ${content.dataInicio}</span>
+                    </div>
+                    <div id="categoria">
+                        <span id="txt-categoria">Categoria: </span>
+                        <span id="nome-categoria">${content.categoriaString}</span>
+                    </div>
+                    <div id="equipamentos">
+                        <span id="txt-equipamentos">Equipamentos: </span>
+
+                        <span id="numero-das-maquinas">
+                            <span>4002</span>
+                            <span>4032</span>
+                            <span>4010</span>
+                            <span>3902</span>
+                        </span>
+                    </div>
+
+                    <div id="descricao">
+                        <h5>Descrição</h5>
+                        <span>${content.descricao}</span>
+                    </div>
+                </div>
+            </div>`;
     }
     
-    function exibirDataHorario() {
-        
-    }
-    
-    function exibirCategoria() {
-        
-    }
-    
-    function exibirEquipamentos() {
-        
-    }
-    
-    function exibirDescricao() {
-        
-    }
-    
-    for(let requisicao of data) {
-        let novaRequisicaoEl = document.createElement('div');
-        let viewBasicoEl = document.createElement('div');
-        let informacoesBasicasEl = document.createElement('div');
-        
-        let titleRequisicaoEl = document.createElement('h4');
-        let spanNumeroRequisicaoEl = document.createElement('span');
-        let spanNumeroRequisicoesEl = document.createElement('span');
-        
-        let informacoesExpandirEl = document.createElement('div');
-        let setinhaExpandirRetrairEl = document.createElement('div');
-        let linhaRequisicaoEl = document.createElement('div');
-        
-        let statusEl = document.createElement('div');
-        let corStatusEl = document.createElement('span');
-        let txtStatusEl = document.createElement('span');
-        
-        let tecnicoEl = document.createElement('div');
-        let spanTxtTecnicoEl = document.createElement('span');
-        let spanNomeTecnicoEl = document.createElement('span');
-    
-        let dataHorarioEnvioEl = document.createElement('div');
-        let txtEnviadoEl = document.createElement('span');
-        let txtHorarioEl = document.createElement('span');
-        let txtDataEl = document.createElement('span');
-        
-        let categoriaEl = document.createElement('div');
-        let txtCategoriaEl = document.createElement('span');
-        let nomeCategoriaEl = document.createElement('span');
-        
-        let equipamentosEl = document.createElement('div');
-        let txtEquipamentosEl = document.createElement('span');
-        let numeroDasMaquinasEl = document.createElement('span');
-        
-        let descricaoEl = document.createElement('div');
-        let tituloDescricaoEl = document.createElement('h5');
-        let spanDescricaoEl = document.createElement('span');
-    }
-    
-    console.log(data);
+    addEvents();
 }
 
 function obterRequisicoes() {
@@ -75,12 +83,13 @@ function obterRequisicoes() {
         url: 'MainServlet?' + request.getRequest(),
         dataType: 'json',
         beforeSend:() => {
-            $('body').html('Carregando...');
+            $('.body').html('Carregando...');
         },
         success:(data) => {
+            $('.body').html('');
             exibirRequisicoes(data);
         }
     });
 }
 
-obterRequisicoes();
+//obterRequisicoes();
