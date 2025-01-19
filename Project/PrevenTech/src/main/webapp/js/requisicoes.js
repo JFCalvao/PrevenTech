@@ -27,6 +27,8 @@ function exibirRequisicoes(data) {
             border = "bolinha-green";
         }
         
+        let maquinas = content.arrEquipamentos;
+        
         bodyRequisicoesEl.innerHTML += `
             <div class="requisicao">
                 <div class='view'>
@@ -59,10 +61,7 @@ function exibirRequisicoes(data) {
                         <span id="txt-equipamentos">Equipamentos: </span>
 
                         <span id="numero-das-maquinas">
-                            <span>4002</span>
-                            <span>4032</span>
-                            <span>4010</span>
-                            <span>3902</span>
+                            ${maquinas.length !== 0 ? maquinas.map(maquina => `<span>${maquina}</span>`).join('') : ""}
                         </span>
                     </div>
 

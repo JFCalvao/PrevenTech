@@ -35,6 +35,17 @@
                     </ul>
                 </section>
             </div>
+                    
+            <div class="requisicoes">
+                <div id="titulo">
+                    <h3>Requisições</h3>
+                    <div class="linha-titulo"></div>
+                </div>
+
+                <div class="body">
+                    <!-- Requisições aqui -->
+                </div>
+            </div>
         </main>
     </body>
 </html>

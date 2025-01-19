@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package cefetmg.inf.preventech.dao;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -42,6 +44,8 @@ public class Requisicao {
     String requisitorString;
     String categoriaString;
     String status;
+    
+    List<Equipamento> arrEquipamentos = new ArrayList<>();
     
     public void setID(String id) { 
         this.requisicao_id = id; 
@@ -130,4 +134,12 @@ public class Requisicao {
     public String getStatus() {
         return status;
     }
+    
+    public void setArrEquipamentos(List<Equipamento> arrEquipamentos) {
+        this.arrEquipamentos = arrEquipamentos;
+    }
+    
+    public List<Equipamento> getArrEquipamentos() {
+        return arrEquipamentos;
+    } 
 }

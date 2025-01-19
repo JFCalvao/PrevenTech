@@ -344,6 +344,26 @@ public class DatabaseManager {
             
             requisicao = DataManager.unformatRequisicao(requisicao);
             
+            String[] equipamentos = requisicao.getEquipamentos().split(",");
+            List<Equipamento> equipamentosAssociados = new ArrayList<>();
+            if(equipamentos != null) {
+                for(String equipamentoStr:equipamentos) {
+                    List<SQLData> equipamentosList = search("equipamentos", "nome", "'" + equipamentoStr + "'");
+                
+                    if(!equipamentosList.isEmpty()) {
+                        SQLData data = equipamentosList.get(0);
+                        Equipamento equipamento = new Equipamento();
+                        equipamento.setNome(data.get(0));
+                        equipamento.setN_patrimonio(data.get(1));
+                        equipamento.setEstado(data.get(2));
+                        equipamento.setLocal(data.get(3));
+                    
+                        equipamentosAssociados.add(equipamento);
+                    }
+                }
+            }
+            
+            requisicao.setArrEquipamentos(equipamentosAssociados);
             requisicoes.add(requisicao);
         } 
         
