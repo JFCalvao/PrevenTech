@@ -317,9 +317,54 @@ public class DatabaseManager {
             requisicao.setRequisitor_cpf(rs.getString("requisitor_cpf"));
             requisicao.setResponsavel_cpf(rs.getString("responsavel_cpf"));
             
+            String categoriaString = Categorias.getCategoriaString(requisicao.getCategoria());
+            
+            if(categoriaString != null)
+                requisicao.setCategoriaString(categoriaString);
+            else 
+                requisicao.setCategoriaString("Nenhum");
+            
+            User requisitor = searchUsuario(requisicao.getRequisitor_cpf());
+            
+            if(requisitor != null)
+                requisicao.setRequisitorString(requisitor.getNome());
+            else
+                requisicao.setRequisitorString("Ninguém");
+            
+            User responsavel = searchUsuario(requisicao.getResponsavel_cpf());
+            
+            if(responsavel != null) {
+                requisicao.setResponsavelString(responsavel.getNome());
+                requisicao.setStatus("Em andamento");
+            }
+            else { 
+                requisicao.setResponsavelString("Ninguém");
+                requisicao.setStatus("Pendente");
+            }
+            
             requisicao = DataManager.unformatRequisicao(requisicao);
             
-            requisicoes.add(requisicao); 
+            String[] equipamentos = requisicao.getEquipamentos().split(",");
+            List<Equipamento> equipamentosAssociados = new ArrayList<>();
+            if(equipamentos != null) {
+                for(String equipamentoStr:equipamentos) {
+                    List<SQLData> equipamentosList = search("equipamentos", "nome", "'" + equipamentoStr + "'");
+                
+                    if(!equipamentosList.isEmpty()) {
+                        SQLData data = equipamentosList.get(0);
+                        Equipamento equipamento = new Equipamento();
+                        equipamento.setNome(data.get(0));
+                        equipamento.setN_patrimonio(data.get(1));
+                        equipamento.setEstado(data.get(2));
+                        equipamento.setLocal(data.get(3));
+                    
+                        equipamentosAssociados.add(equipamento);
+                    }
+                }
+            }
+            
+            requisicao.setArrEquipamentos(equipamentosAssociados);
+            requisicoes.add(requisicao);
         } 
         
         return requisicoes;

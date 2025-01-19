@@ -34,7 +34,7 @@ main {
     height: 75vh;
     overflow-y: scroll;
     overflow-x: hidden;
-    margin-top: -60px;
+    margin-top: -20px;
 }
 
 .linha-titulo {
@@ -131,8 +131,7 @@ main {
     width: 109.5%;
 }
 
-#cor-status {
-    border: 7.5px solid red;
+.cor-status {
     border-radius: 50%;
 }
 
@@ -167,10 +166,6 @@ main {
 #txt-data,
 #nome-categoria {
     color: #4780cc;
-}
-
-#txt-status {
-    color: red;
 }
 
 #equipamentos {
@@ -272,4 +267,28 @@ body {
     margin-right: 5%;
     color: #4780cc;
     font-weight: bold;
+}
+
+.bolinha-red {
+    border: 7.5px solid red;
+}
+
+.red {
+    color: red;
+}
+
+.bolinha-green {
+    border: 7.5px solid #4ab280;
+}
+
+.green {
+    color: #4ab280;
+}
+
+.bolinha-blue {
+    border: 7.5px solid #4275b9;
+}
+
+.blue {
+    color: #4780cc;
 }

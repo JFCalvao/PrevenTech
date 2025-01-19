@@ -148,12 +148,15 @@ public class MainServlet extends HttpServlet {
                         break;
                     case "RQ":
                         List<Requisicao> all = DatabaseManager.getAllRequisicoes();
+                        jsonResponse.put("content", all);
+                        System.out.println(jsonResponse.toString());
                         User usuario = UsersList.get(request.getSession());
                         
                         if(usuario == null) { // tem que remover
                             jsonResponse.put("content", all);
                             break;
                         }   
+                        
                         
                         String profissao = usuario.getProfissao();
                         switch(profissao) {
