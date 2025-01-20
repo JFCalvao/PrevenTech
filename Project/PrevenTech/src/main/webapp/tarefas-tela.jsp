@@ -98,7 +98,6 @@
                         
                         </div>
                         
-                        
                         <div id="botao-maior">
                              <button onclick="finalizar()" id="btn-finaliza">FINALIZAR E ENVIAR RELATÓRIO</button>
                         </div>
