@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>JSP Page</title>
         <link rel="shortcut icon" href="imgs/cefet.png" type="image/x-icon">
         <link rel="stylesheet" href="css/requisicoes.css">
@@ -16,8 +17,8 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <%@include file="header.jsp" %>
         <%@include file="Security/security.jsp" %>
+        <%@include file="header.jsp" %>
 
         <main>
             <div class="requisicoes">

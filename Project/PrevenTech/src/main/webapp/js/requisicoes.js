@@ -27,7 +27,7 @@ function exibirRequisicoes(data) {
             border = "bolinha-green";
         }
         
-        let maquinas = content.arrEquipamentos;
+        let maquinas = content.equipamentos.split(',').map(maquina => maquina.trim());
         
         bodyRequisicoesEl.innerHTML += `
             <div class="requisicao">
