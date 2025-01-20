@@ -12,6 +12,10 @@
         <title>JSP Page</title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/historicos.css">
+        <%@include file="Security/security.jsp" %>
+        <script defer >
+            const initialPage = "<%= userService.getInitialPage() %>";
+        </script>
         <script src="js/json.js" defer ></script>
         <script src="js/historicos.js" defer ></script>
     </head>

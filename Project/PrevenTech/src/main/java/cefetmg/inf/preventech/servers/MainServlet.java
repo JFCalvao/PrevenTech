@@ -95,12 +95,12 @@ public class MainServlet extends HttpServlet {
                     break;
                     case "HS": {
                         Historico historico = getHistorico(content);
-//                        Requisicao requisicao = DatabaseManager.searchRequisicao(historico.getId());
+                        Requisicao requisicao = DatabaseManager.searchRequisicao(historico.getId());
 //                        
-//                        historico.setRequisitor_cpf(requisicao.getRequisitor_cpf());
-//                        historico.setResponsavel_cpf(requisicao.getResponsavel_cpf());
-                        historico.setRequisitor_cpf("12909832498");
-                        historico.setResponsavel_cpf("75739677302");
+                        historico.setRequisitor_cpf(requisicao.getRequisitor_cpf());
+                        historico.setResponsavel_cpf(requisicao.getResponsavel_cpf());
+//                        historico.setRequisitor_cpf("12909832498");
+//                        historico.setResponsavel_cpf("75739677302");
                         
                         if(DatabaseManager.hasHistorico(historico)) {
                             throw new HistoricoJaExisteException();
@@ -178,23 +178,26 @@ public class MainServlet extends HttpServlet {
                         }
                         break;
                     case "HS": {
-                        String savePath = getServletContext().getRealPath("uploads");
-                        Historico historico = getHistorico(content);
-                        historico = DatabaseManager.searchHistorico(historico.getId());
-
-                        File file = historico.getFile(savePath);
-                        String fileName = historico.getNomeArquivo();
-
-                        if (file.exists()) {
-                            byte[] fileBytes = Files.readAllBytes(file.toPath());
-                            String fileContentBase64 = Base64.getEncoder().encodeToString(fileBytes);
-
-                            JSONObject fileInfo = new JSONObject();
-                            fileInfo.put("nome", fileName);
-                            fileInfo.put("file", fileContentBase64);
-
-                            jsonResponse.put("content", fileInfo);
-                        }
+//                        String savePath = getServletContext().getRealPath("uploads");
+//                        Historico historico = getHistorico(content);
+//                        historico = DatabaseManager.searchHistorico(historico.getId());
+//
+//                        File file = historico.getFile(savePath);
+//                        String fileName = historico.getNomeArquivo();
+//
+//                        if (file.exists()) {
+//                            byte[] fileBytes = Files.readAllBytes(file.toPath());
+//                            String fileContentBase64 = Base64.getEncoder().encodeToString(fileBytes);
+//
+//                            JSONObject fileInfo = new JSONObject();
+//                            fileInfo.put("nome", fileName);
+//                            fileInfo.put("file", fileContentBase64);
+//
+//                            jsonResponse.put("content", fileInfo);
+//                        }
+                    }
+                    case "FL": {
+                        
                     }
                     break;
                     case "US":
