@@ -46,6 +46,8 @@ public class Historico {
         this.nomeArquivo = "RelatorioFinal(" + id + ")_" + this.data;
     }
     
+    public Historico() {}
+    
     private String id;
     private String requisitor_cpf;
     private String responsavel_cpf;
