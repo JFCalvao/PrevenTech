@@ -19,7 +19,7 @@ function cadastrar() {
     ajax.onload = function() {
         if (ajax.status == 200) {
             var res = ajax.responseText;
-            resposta.innerHTML = "Envio bem-sucedido: " + res;
+            resposta.innerHTML = "Envio bem-sucedido.";
             console.log(ajax.status)
             resposta.style.color = 'black';
             res = new Response(ajax.responseText);

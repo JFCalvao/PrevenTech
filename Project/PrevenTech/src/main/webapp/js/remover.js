@@ -1,5 +1,5 @@
 window.onload = function () {
-    const nPatrimonioInput = document.querySelector("#n-patrimonio-remov");
+    const nPatrimonioInput = document.querySelector("#n-patrimonio");
     let resposta = document.querySelector('#resposta');
     let remover = document.getElementById('remove');
 
