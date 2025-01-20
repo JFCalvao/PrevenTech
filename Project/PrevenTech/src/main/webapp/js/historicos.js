@@ -55,10 +55,8 @@ function downloadFileFromJson(fileJson) {
     
     const byteArray = new Uint8Array(byteNumbers); 
     
-    console.log("Array: " + byteArray);
     const blob = new Blob([byteArray], { type: 'application/pdf' }); // Cria um link de download temporário 
     
-    console.log("Blob: " + blob);
     const url = URL.createObjectURL(blob); 
     const a = document.createElement('a'); a.href = url; // Define o nome do arquivo a partir dos metadados no JSON 
     a.download = fileJson.nome || 'downloaded-file.pdf'; 
