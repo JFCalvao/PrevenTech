@@ -41,7 +41,7 @@
                             <select id="estados"> 
                             <option value="funcionamento">FUNCIONANDO</option>
                             <option value="defeito">COM DEFEITO</option>
-                            <option value="manuencao">EM MANUTENÇÃO</option>
+                            <option value="manutencao">EM MANUTENÇÃO</option>
                         </select> 
                         </div>
                         

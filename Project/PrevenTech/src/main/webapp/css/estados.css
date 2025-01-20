@@ -25,10 +25,11 @@ main {
     gap: 10px;
 }
 
-h4{
+h4 {
     margin-right: 72vw;
-     display: inline;
+    display: inline;
 }
+
 .aparelhos {
     display: flex;
     flex-direction: column;
@@ -40,21 +41,23 @@ h4{
     overflow-x: hidden;
     margin-top: -60px;
 }
+
 img {
     width: 2vw;
 }
+
 #pesquisar {
     border-radius: 15px;
     width: 10vw;
-    height:1vw;
+    height: 1vw;
     border-color: #004aad;
-    borrder-width: 2px;
+    border-width: 2px;
 }
 
 #linha-titulo {
     flex-grow: 1;
     height: 3px;
-    background-color:#004aad;
+    background-color: #004aad;
     border-width: 5px;
 }
 
@@ -94,7 +97,7 @@ img {
 }
 
 .setinha-expandir-retrair {
-    width: 20px;
+    width: 25px;
     height: 20px;
     border-top: 3px solid #004aad;
     border-right: 3px solid #004aad;
@@ -102,6 +105,8 @@ img {
     margin-right: 10px;
     cursor: pointer;
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @keyframes girarParaBaixo {
@@ -137,7 +142,7 @@ img {
 
 #linha-requisicao {
     height: 2.5px;
-    background-color:#4780cc;
+    background-color: #4780cc;
     border-width: 5px;
     position: relative;
     bottom: -5px;
@@ -183,11 +188,9 @@ img {
     border-radius: 7.5px;
 }
 
-
-
 #descricao h5 {
     font-size: 15px;
-    margin: 2px; /* diminui o espaço do h5 */ /* útil para diminuir a margem e o espaço que os elementos ocupam */
+    margin: 2px;
 }
 
 #descricao span {

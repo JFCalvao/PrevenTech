@@ -72,7 +72,7 @@ function buscarDados() {
     let resposta = document.getElementById('mutavel');
 
     if (!nPatrimonio) {
-        document.querySelector(".requisicao").innerHTML = "Por favor, insira um número de patrimônio.";
+        renderizarMaquinas(maquinas);  
         return;
     }
 
@@ -100,4 +100,4 @@ function buscarDados() {
     });
 
     addEvents();
-}  
+}

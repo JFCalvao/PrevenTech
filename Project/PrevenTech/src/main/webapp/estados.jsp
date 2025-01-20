@@ -26,7 +26,7 @@
                             <div id="linha-titulo"></div>
 
                             <input type="text" name="pesquisa" id="pesquisar">
-                            <div onclick="buscarDados()" id="btn-pesquisa"> <img src="imgs/lupa.png" alt="alt" /></div>
+                            <div onclick="buscarDados()" id="btn-pesquisa"> <img src="imgs/lupa.png" alt="alt"/></div>
 
                         </div>
                         <div id="mutavel">
@@ -39,14 +39,13 @@
                                         <h4 id="n-patrimonio"> FNQQVN2</h4>
                                         <p id="local">Local: Sala 107, Prédio 20</p>
                                     </div>
-    
+                                    
                                     <div class="setinha-expandir-retrair"></div>
                                 </div>
                                 <div class="informacoes-expandir escondido">
                                     <div id="linha-requisicao"></div>
                                     <div id="status">
                                         <span id="cor-status"></span>
-    
                                         <span id="txt-status">Pendente</span>
                                     </div>
                                 </div>
@@ -55,9 +54,6 @@
                         </div>
                         </div>
                         </div>
-
-
-                    <div class="setinha-expandir-retrair"></div>
                 </main>
                 <script src="https://code.jquery.com/jquery-3.6.4.js"
                     integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>

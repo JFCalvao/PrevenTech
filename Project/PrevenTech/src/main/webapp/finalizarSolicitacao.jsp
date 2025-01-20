@@ -12,27 +12,30 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-     <jsp:include page="header.jsp"></jsp:include>
-    <div id="header">
-    </div>
+    <jsp:include page="header.jsp"></jsp:include>
+    <div id="header"></div>
     <main>
-    <form action="MainServlet" method="post" enctype="multipart/form-data" id="finalizar-form">
-        <label for="anexo">Anexar Relatório (docx, pdf):</label>
-        <input type="file" id="anexo" name="anexo" accept=".docx,.pdf" required>
-        <br><br>
-        <input type="hidden" name="solicitacaoId" value="${param.solicitacaoId}">
-        <div class="button-container">
-            <button type="submit" id="finalizar-btn">Finalizar</button>
-            <button type="button" id="cancelar-btn" onclick="window.location.href='tarefas-tela.jsp';">Cancelar</button>
+        <form action="MainServlet" method="post" enctype="multipart/form-data" id="finalizar-form">
+            <label for="anexo">Anexar Relatório (docx, pdf):</label>
+            <input type="file" id="anexo" name="anexo" accept=".docx,.pdf" required>
+            <br><br>
+            <input type="hidden" name="solicitacaoId" value="${param.solicitacaoId}">
+            <div class="button-container">
+                <button type="submit" id="finalizar-btn">Finalizar</button>
+                <button type="button" id="cancelar-btn" onclick="window.location.href='tarefas-tela.jsp';">Cancelar</button>
+            </div>
+        </form>
+
+        <div id="success-message" style="display:none; color: green; margin-top: 20px;">
+            Relatório enviado com sucesso!
         </div>
-    </form>
-</main>
+    </main>
 
     <script src="js/json.js"></script>
     <script>
         let id_file = document.querySelector("#id_file");
         let insert = document.querySelector("#finalizar-form");
-        let response = document.querySelector("response");
+        let successMessage = document.querySelector("#success-message"); 
         
         insert.addEventListener("submit", (e) => {
             e.preventDefault();
@@ -54,7 +57,10 @@
                         if(res.getStatus() !== "OK") {
                             window.location.href = "erro.jsp?erro=" + res.getError() + "&url=" + window.location.href; 
                         } else {
-                            window.location.href = "tarefas-tela.jsp";
+                            successMessage.style.display = "block";
+                            setTimeout(function() {
+                                window.location.href = "tarefas-tela.jsp"; 
+                            }, 2000); 
                         }
                     } 
                 };

@@ -56,7 +56,6 @@
                                 <span id="nome-categoria">Falha nos cabos de conexão</span>
                             </div>
                             </div>
-                            
                          
                             <div id="mutavel-2">
                                       
@@ -98,7 +97,6 @@
                         <button onclick="editar()" id="btn-edita">EDITAR</button>
                         
                         </div>
-                        
                         
                         <div id="botao-maior">
                              <button onclick="finalizar()" id="btn-finaliza">FINALIZAR E ENVIAR RELATÓRIO</button>
