@@ -16,6 +16,8 @@ main {
     height: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 #historicos-area {
@@ -170,4 +172,21 @@ main {
     justify-self: center;
     margin-left: 5px;
     margin-right: 5px;
+}
+
+#voltar-area {
+    height: auto;
+    width: auto;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+    border-radius: 50px;
+    background-color: #004aad;
+}
+
+#voltar-link {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
 }

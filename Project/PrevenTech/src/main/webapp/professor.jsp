@@ -25,27 +25,17 @@
             <div id="container">
                 <section id="form-header">
                     <line></line>
-                    <h2 id="form-title">Opções de <%= userService.getNome() %></h2>
+                    <h2 id="form-title">Menu</h2>
                     <line></line>
                 </section>
                 <section id="opcoes-container">
-                    <ul id="opcoes">
-                        <li class="opcao"><a href="meus-dados.jsp">Minhas Informações</a></li>
-                        <li class="opcao"><a href="estados.jsp">Ver Equipamentos</a></li>
-                        <li class="opcao"><a href="solicitacao.jsp">Realizar Solicitação de Manutenção</a></li>
-                    </ul>
+                    <lista id="opcoes">
+                        <a href="meus-dados.jsp"><li class="opcao" >Minhas Informações</li></a>
+                        <a href="estados.jsp"><li class="opcao">Ver Equipamentos</li></a>
+                        <a href="solicitacao.jsp"><li class="opcao">Realizar Solicitação de Manutenção</li></a>
+                        <a href="historicos.jsp"><li class="opcao">Ver Histórico</li></a>
+                    </lista>
                 </section>
-            </div>
-                    
-            <div class="requisicoes">
-                <div id="titulo">
-                    <h3>Requisições</h3>
-                    <div class="linha-titulo"></div>
-                </div>
-
-                <div class="body">
-                    <!-- Requisições aqui -->
-                </div>
             </div>
         </main>
     </body>

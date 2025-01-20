@@ -57,3 +57,46 @@ main {
     border-radius: 15px;
     display: block;
 }
+
+#opcoes-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#opcoes {
+    list-style: none;
+    align-items: center;
+}
+
+#opcoes .opcao {
+    margin-top: 15px;
+    background-color: #3498db; /* Cor de fundo do botão */
+    color: white; /* Cor do texto */
+    border: none; /* Remover borda */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 10px 20px; /* Espaçamento interno */
+    font-size: 16px; /* Tamanho da fonte */
+    cursor: pointer; /* Mudança do cursor ao passar por cima */
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2), /* Primeira camada de sombra */
+                0px 7px 13px rgba(0, 0, 0, 0.2); /* Segunda camada de sombra */
+}
+
+#opcoes .opcao:last-child {
+    margin-bottom: 15px;
+}
+
+/* Efeito ao passar o mouse por cima do botão */
+#opcoes .opcao:hover {
+    background-color: #004aad;
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3), /* Primeira camada de sombra */
+              0px 10px 20px rgba(0, 0, 0, 0.3); /* Segunda camada de sombra */
+}
+
+
+a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}

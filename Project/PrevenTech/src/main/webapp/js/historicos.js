@@ -42,28 +42,14 @@ function fixBase64String(base64) {
     return base64; 
 }
 
-function downloadFileFromJson(fileJson) { 
-    
-    let byteCharacters = atob(""); 
-    console.log(byteCharacters);
-    byteCharacters = fixBase64String(byteCharacters);
-    
-    const byteNumbers = new Array(byteCharacters.length); 
-    for (let i = 0; i < byteCharacters.length; i++) { 
-        byteNumbers[i] = byteCharacters.charCodeAt(i); 
-    } 
-    
-    const byteArray = new Uint8Array(byteNumbers); 
-    
-    const blob = new Blob([byteArray], { type: 'application/pdf' }); // Cria um link de download temporário 
-    
-    const url = URL.createObjectURL(blob); 
-    const a = document.createElement('a'); a.href = url; // Define o nome do arquivo a partir dos metadados no JSON 
-    a.download = fileJson.nome || 'downloaded-file.pdf'; 
-    document.body.appendChild(a); // Aciona o link programaticamente 
-    a.click(); // Remove o link depois que o download é iniciado 
-    document.body.removeChild(a); 
-    URL.revokeObjectURL(url);
+function showPDF(fileJson) { 
+    var url = fileJson.file;
+    var iframe = `<iframe width="100%" height="100%" src="${url}"></iframe>"`;
+    var x = window.open();
+    x.document.open();
+    x.document.write(iframe);
+    x.document.close();
+    document.location.href = url;
 }
 
 function addBtnsEvents() {
@@ -89,12 +75,12 @@ function addBtnsEvents() {
 
                     if (response.getStatus() === "OK") {
                         let file = response.getData();
-                        downloadFileFromJson(file);
+                        showPDF(file);
                     } else {
                         window.location.href = "erro.jsp?erro=" + response.getError() + "&url=" + window.location.href; 
                     }
                 } else {
-                    //window.location.href = "erro.jsp?erro=Parece que você está com um erro de conexão. Por favor, tente novamente mais tarde." + "&url=" + initialPage;
+                    window.location.href = "erro.jsp?erro=Parece que você está com um erro de conexão. Por favor, tente novamente mais tarde." + "&url=" + initialPage;
                 }
             };
 

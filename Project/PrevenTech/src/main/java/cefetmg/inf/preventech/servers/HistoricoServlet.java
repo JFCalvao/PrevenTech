@@ -52,17 +52,14 @@ public class HistoricoServlet extends HttpServlet {
                     
                     for(Historico h : DatabaseManager.getAllHistoricos()) {
                         JSONObject obj = new JSONObject();
-                        System.out.println("ID: " + h.getId());
                         obj.put("id", h.getId());
                         User requisitor = DatabaseManager.searchUsuario("33333333333");
                         User responsavel = DatabaseManager.searchUsuario(h.getResponsavel_cpf());
-                        System.out.println("req: " + requisitor.getNome());
                         obj.put("requisitor", requisitor.getNome());
                         if(responsavel != null)
                             obj.put("responsavel", responsavel.getNome());
                         else
                             obj.put("responsavel", "Ninguem");
-                        System.out.println("data: " + h.getData());
                         obj.put("data", h.getData());
 
                         result.put(obj);
