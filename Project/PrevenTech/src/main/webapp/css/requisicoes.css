@@ -255,7 +255,7 @@ body {
     height: 2em;
 }
 
-.sem-requisicoes {
+.sem-requisicoes, .carregando {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -267,6 +267,7 @@ body {
     margin-right: 5%;
     color: #4780cc;
     font-weight: bold;
+    background-color: white;
 }
 
 .bolinha-red {

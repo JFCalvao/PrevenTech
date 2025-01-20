@@ -1,12 +1,9 @@
 function exibirRequisicoes(data) {
-    let bodyRequisicoesEl = document.querySelector('.body');
+    let bodyRequisicoesEl = document.querySelector('.requisicoes .body');
     
     if(data.content.length === 0) {
-        bodyRequisicoesEl.innerHTML += `
-            <div class="requisicao sem-requisicoes">
-                Você ainda não possui requisições
-            </div>`;
-        
+        bodyRequisicoesEl.classList.add('sem-requisicoes');
+        bodyRequisicoesEl.innerHTML = "Você ainda não possui requisições";
         return;
     }
     
@@ -87,9 +84,11 @@ function obterRequisicoes() {
         dataType: 'json',
         beforeSend:() => {
             $('.body').html('Carregando...');
+            $('.body').addClass('carregando');
         },
         success:(data) => {
             $('.body').html('');
+            $('.body').removeClass('carregando');
             exibirRequisicoes(data);
         }
     });
