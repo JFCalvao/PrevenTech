@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Minhas tarefas</title>
         <link rel="shortcut icon" href="imgs/cefet.png" type="image/x-icon">
         <link rel="stylesheet" href="css/tarefas.css">
@@ -35,7 +36,9 @@
                         </div>
                         <div class="informacoes-expandir escondido">
                             <div id="linha-requisicao"></div>
-                            <div id="status">
+                            
+                            <div id="mutavel-1">
+                                   <div id="status">
                                 <span id="cor-status"></span>
                                 <span id="txt-status">Pendente</span>
                             </div>
@@ -52,36 +55,29 @@
                                 <span id="txt-categoria">Categoria: </span>
                                 <span id="nome-categoria">Falha nos cabos de conexão</span>
                             </div>
-                           
+                            </div>
+                            
+                         
+                            <div id="mutavel-2">
+                                      
                             <div id="equipamentos">
                                 
                                 <span id="txt-equipamentos">Equipamentos: </span>
 
                                 <div class="maquina">
-                                    <div id="informacoes">
-                                        <span id="numero-nome">
-                                            <span id="numero">3902</span>
-                                            <span id="nome">Ventilador Tron - 156165</span>
-                                        </span>
-                                        <span id="local">Local: Sala 107, Prédio 20</span>
-                                        <span id="situacao">Situação: </span> 
+                                   <div class="informacoes>
+                                        <span id="maquina-cad">Computador Dell</span>
+                                        <span id="n-patrimonio"> FNQQVN2</span>
+                                        <p id="local">Local: Sala 107, Prédio 20</p>
+                                         <p  id="situacao">Situação: </p> 
                                     </div>
-                                
+                            </div>
+                          
+                                  
+             
                                     <div class="linha-maquina"></div>
                                 </div>
-                                
-                                    <div class="maquina">
-                                    <div id="informacoes">
-                                        <span id="numero-nome">
-                                            <span id="numero">4002</span>
-                                            <span id="nome">Computador Dell - 53732 </span>
-                                        </span>
-                                        <span id="local">Local: Sala 108, Prédio 20</span>
-                                        <span id="situacao">Situação:</span>
-                                    </div>
-                                
-                                    <div class="linha-maquina"></div>
-                                </div>
+                             
                                 
                             </div>
                             

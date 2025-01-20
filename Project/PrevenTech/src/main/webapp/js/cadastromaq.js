@@ -10,40 +10,80 @@ function cadastrar() {
     const local = document.querySelector("#local").value;
     const estado = document.querySelector("#estados").value;
 
-    const url = "MainServlet";
-    const ajax = new XMLHttpRequest();
+    verificarPatrimonioExistente(nPatrimonio, function(existe) {
+        if (existe) {
+            resposta.innerHTML = "Número de patrimônio já cadastrado. Não é possível cadastrar novamente.";
+            resposta.style.color = 'red';
+            return;
+        }
 
-    console.log("clicou");
-    console.log("url: " + url);
+        const url = "MainServlet";
+        const ajax = new XMLHttpRequest();
+
+        ajax.open("POST", url, true);
+        ajax.onload = function() {
+            if (ajax.status == 200) {
+                var res = ajax.responseText;
+                resposta.innerHTML = "Cadastro bem-sucedido.";
+                resposta.style.color = 'black';
+                res = new Response(ajax.responseText);
+                if(res.getStatus() != "OK") {
+                    window.location.href = "erro.jsp?erro=" + res.getError() + "&url=" + window.location.href; 
+                }
+            }
+            else {
+                resposta.innerHTML = "Erro ao enviar dados.";
+            }
+        };
+
+        let json = new Request();
+        json.setOperation("INSERT");
+        json.setType("EQ");
+        json.setData({
+            "n_patrimonio": nPatrimonio,
+            "nome": nome,
+            "local": local,
+            "estado": estado
+        });
+
+        ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        ajax.send(json.getRequest());
+    });
+}
+
+function verificarPatrimonioExistente(nPatrimonio, callback) {
+    const ajax = new XMLHttpRequest();
+    const url = "MainServlet";
+
     ajax.open("POST", url, true);
     ajax.onload = function() {
         if (ajax.status == 200) {
-            var res = ajax.responseText;
-            resposta.innerHTML = "Envio bem-sucedido: " + res;
-            console.log(ajax.status)
-            resposta.style.color = 'black';
-            res = new Response(ajax.responseText);
-            if(res.getStatus() != "OK") {
-                window.location.href = "erro.jsp?erro=" + res.getError() + "&url=" + window.location.href; 
+            var res = new Response(ajax.responseText);
+
+            if (res.getStatus() == "OK") {
+                const data = res.getData();
+                let existe = false;
+
+                data.forEach(function(item) {
+                    if (item.n_patrimonio == nPatrimonio) {
+                        existe = true;
+                    }
+                });
+
+                callback(existe);
+            } else {
+                callback(false);
             }
-        }
-        else {
-            resposta.innerHTML = "Erro ao enviar dados.";
+        } else {
+            callback(false);
         }
     };
-    
-    let json = new Request();
-    json.setOperation("INSERT");
-    json.setType("EQ");
-    json.setData({
-        "n_patrimonio": nPatrimonio,
-        "nome": nome,
-        "local": local,
-        "estado": estado
-    });
+
+    const request = new Request();
+    request.setOperation("GET");
+    request.setType("EQ");
+    request.setData({ "n_patrimonio": nPatrimonio });
 
     ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    ajax.send(json.getRequest());
-
-
+    ajax.send(request.getRequest());
 }

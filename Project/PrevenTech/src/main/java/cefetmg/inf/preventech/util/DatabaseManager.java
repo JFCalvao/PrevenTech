@@ -157,7 +157,7 @@ public class DatabaseManager {
            throws SQLException, NoSuchTableException {
         
         Connection connection = getConnection();
-        String sql = "SELECT * FROM `" + tableName + "` WHERE " + key + " = " + id;
+        String sql = "SELECT * FROM `" + tableName + "` WHERE " + key + " = '" + id + "'";
         
         PreparedStatement pstmt = connection.prepareStatement(sql); 
         
@@ -248,6 +248,28 @@ public class DatabaseManager {
 
         connection.close();
         return user;
+    }
+    
+    public static Equipamento searchEquipamento(String n_patrimonio) throws SQLException, EncryptationException {
+        Connection connection = getConnection();
+        String nPatrimonioEncrypt = Encryption.encrypt(n_patrimonio);
+        String sql = "SELECT * FROM `equipamentos` WHERE n_patrimonio = '" + nPatrimonioEncrypt + "'";
+        
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+        
+        Equipamento equipamento = null;
+        
+        if(rs.next()) {
+            String nome = Encryption.decrypt(rs.getString("nome"));
+            String local = Encryption.decrypt(rs.getString("local"));
+            String estado = Encryption.decrypt(rs.getString("estado"));
+            
+            equipamento = new Equipamento(nome, n_patrimonio, local, estado);
+        }
+        
+        connection.close();
+        return equipamento;
     }
     
     public static List<SQLData> getAll(String tableName) 
@@ -375,28 +397,26 @@ public class DatabaseManager {
                 requisicao.setStatus("Pendente");
             }
             
-            requisicao = DataManager.unformatRequisicao(requisicao);
+            String equipamentosStr = requisicao.getEquipamentos();
+            System.out.println("Equipamentos: " + equipamentosStr);
+            equipamentosStr = Encryption.decrypt(equipamentosStr);
             
-            String[] equipamentos = requisicao.getEquipamentos().split(",");
-            List<Equipamento> equipamentosAssociados = new ArrayList<>();
-            if(equipamentos != null) {
-                for(String equipamentoStr:equipamentos) {
-                    List<SQLData> equipamentosList = search("equipamentos", "nome", "'" + equipamentoStr + "'");
+            if(equipamentosStr != null && !equipamentosStr.isEmpty()) {
+                List<Equipamento> equipamentosAssociados = new ArrayList<>();
+                String[] equipamentos = equipamentosStr.split("_");
                 
-                    if(!equipamentosList.isEmpty()) {
-                        SQLData data = equipamentosList.get(0);
-                        Equipamento equipamento = new Equipamento();
-                        equipamento.setNome(data.get(0));
-                        equipamento.setN_patrimonio(data.get(1));
-                        equipamento.setEstado(data.get(2));
-                        equipamento.setLocal(data.get(3));
-                    
+                for(String equipamentoStr:equipamentos) {
+                    Equipamento equipamento = searchEquipamento(equipamentoStr.trim());
+                    if(equipamento != null) {
                         equipamentosAssociados.add(equipamento);
                     }
                 }
+                
+                requisicao.setArrEquipamentos(equipamentosAssociados);
             }
             
-            requisicao.setArrEquipamentos(equipamentosAssociados);
+            requisicao = DataManager.unformatRequisicao(requisicao);
+          
             requisicoes.add(requisicao);
         } 
         

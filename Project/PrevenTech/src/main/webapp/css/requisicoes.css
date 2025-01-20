@@ -292,3 +292,9 @@ body {
 .blue {
     color: #4780cc;
 }
+
+@media (max-width: 800px) and (orientation:portrait) {
+    .requisicoes {
+        margin-top: 3%;
+    }
+}
