@@ -34,6 +34,8 @@
                         <a href="estados.jsp"><li class="opcao">Ver Equipamentos</li></a>
                         <a href="solicitacao.jsp"><li class="opcao">Realizar Solicitação de Manutenção</li></a>
                         <a href="historicos.jsp"><li class="opcao">Ver Histórico</li></a>
+                        <a href="requisicoes.jsp"><li class="opcao">Ver todas as requisições</li></a>
+                        <a href="minhasRequisicoes.jsp"><li class="opcao">Ver minhas requisições</li></a>
                     </lista>
                 </section>
             </div>
