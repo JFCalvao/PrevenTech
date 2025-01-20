@@ -22,7 +22,7 @@
                         
                         <div class="campo-texto">
                     <label for="n-patrimonio">N patrimônio: </label>
-                    <input type="text" name="n-patrimonio" id="n-patrimonio-remov">
+                    <input type="text" name="n-patrimonio" id="n-patrimonio">
                     </div>
                     
                     <div class="campo-texto">
