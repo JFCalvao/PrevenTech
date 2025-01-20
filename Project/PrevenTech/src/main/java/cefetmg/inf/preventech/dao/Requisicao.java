@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package cefetmg.inf.preventech.dao;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -26,6 +28,16 @@ public class Requisicao {
         this.responsavelString = null;
         this.requisitorString = null;
         this.status = null;
+        
+        ZoneId fusoHorarioBrasil = ZoneId.of("America/Sao_Paulo"); 
+        ZonedDateTime dataHoraBrasil = ZonedDateTime.now(fusoHorarioBrasil); 
+        int dia = dataHoraBrasil.getDayOfMonth(); 
+        int mes = dataHoraBrasil.getMonthValue(); 
+        int ano = dataHoraBrasil.getYear(); 
+        int horas = dataHoraBrasil.getHour(); 
+        int minutos = dataHoraBrasil.getMinute(); 
+        
+        this.data_inicio = dia + "-" + mes + "-" + ano + "_" + horas + "-" + minutos;
     }
     
     public Requisicao() {

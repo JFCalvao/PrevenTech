@@ -204,18 +204,23 @@ public class DatabaseManager {
     public static Historico searchHistorico(String id) throws SQLException, EncryptationException {
         Connection connection = getConnection();
         String value = id;
-        String sql = "SELECT * FROM `historico` WHERE requisicao_id = " + value;
+        String sql = "SELECT * FROM `historicos` WHERE requisicao_id = " + Integer.valueOf(value);
         
         PreparedStatement pstmt = connection.prepareStatement(sql); 
         ResultSet rs = pstmt.executeQuery(); 
         
-        String requisitor_cpf = rs.getString("requisitor_cpf");
-        String responsavel_cpf = rs.getString("responsavel_cpf");
-        String data_fim = rs.getString("data_fim");
-        String nomeArquivo = rs.getString("nome_arquivo");
+        Historico historico = null;
+        while(rs.next()) {
+            String requisitor_cpf = rs.getString("requisitor_cpf");
+            String responsavel_cpf = rs.getString("responsavel_cpf");
+            String data_fim = rs.getString("data_fim");
+            String nomeArquivo = rs.getString("nome_arquivo");
+            
+            historico = new Historico(id, requisitor_cpf, responsavel_cpf, data_fim, nomeArquivo);
+        }
         
-        Historico historico = new Historico(id, requisitor_cpf, responsavel_cpf, data_fim, nomeArquivo);
         
+        connection.close();
         return DataManager.unformatHistorico(historico);
     }
 
@@ -291,9 +296,37 @@ public class DatabaseManager {
         
         return results;
     }
+    
+    public static List<Historico> getAllHistoricos()
+           throws SQLException, EncryptationException {
+        Connection connection = getConnection();
+        String sql = "SELECT * FROM `historicos`";
+
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+        
+        List<Historico> historicos = new ArrayList<>();
+        System.out.println("Pegando os dados: ");
+        while (rs.next()) {
+            Historico data = new Historico();
+            
+            System.out.println("Pego " + rs.getString("requisicao_id"));
+            data.setId(rs.getString("requisicao_id"));
+            data.setRequisitor_cpf(rs.getString("requisitor_cpf"));
+            data.setResponsavel_cpf(rs.getString("responsavel_cpf"));
+            data.setData(rs.getString("data_fim"));
+            data.setNomeArquivo(rs.getString("nome_arquivo"));
+            
+            data = DataManager.unformatHistorico(data);
+            
+            historicos.add(data);
+        } 
+        System.out.println("Pronto!");
+        return historicos;
+    }
 
     public static List<Equipamento> getAllEquipamentos()
-           throws SQLException, NoSuchTableException, EncryptationException {
+           throws SQLException, EncryptationException {
         Connection connection = getConnection();
         String sql = "SELECT * FROM `equipamentos`";
 

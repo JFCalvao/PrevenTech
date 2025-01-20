@@ -28,7 +28,7 @@ public class CoordenadorService implements UserService {
     
     private final List<String> access = List.of(
         "coordenador.jsp", "estados.jsp", "meus-dados.jsp",
-        "solicitacao.jsp", "remover.jsp", "cadastrar-maq.jsp"
+        "solicitacao.jsp", "remover.jsp", "cadastrar-maq.jsp", "historicos.jsp"
     );
     
     @Override

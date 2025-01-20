@@ -59,19 +59,24 @@ main {
 
 #finalizar-form {
   background-color: var(--cor-fundo-claro);
-  padding: 2rem;
+  padding: 2.5rem;
   border-radius: var(--border-radius);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 450px;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid #ddd;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#finalizar-form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
 .button-container {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   justify-content: space-between;
   margin-top: 20px;
 }
@@ -83,12 +88,13 @@ main {
   border-radius: var(--border-radius);
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 #finalizar-btn {
   background: var(--cor-btn-primaria);
   color: white;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 #finalizar-btn:hover {
@@ -98,12 +104,13 @@ main {
 
 #finalizar-btn:focus {
   outline: none;
-  box-shadow: 0 0 10px var(--cor-btn-primaria);
+  box-shadow: 0 0 12px var(--cor-btn-primaria);
 }
 
 #cancelar-btn {
   background: #d3d3d3;
   color: #333;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 #cancelar-btn:hover {
@@ -113,7 +120,15 @@ main {
 
 #cancelar-btn:focus {
   outline: none;
-  box-shadow: 0 0 10px #d3d3d3;
+  box-shadow: 0 0 12px #d3d3d3;
+}
+
+#finalizar-btn {
+  order: 2; 
+}
+
+#cancelar-btn {
+  order: 1; 
 }
 
 label {
@@ -149,18 +164,60 @@ input[type="file"]:hover {
   background-color: #f1f1f1;
 }
 
-/* Modificação para inverter a ordem dos botões */
-#finalizar-btn {
-  order: 2; /* "Finalizar" vai aparecer depois */
+#finalizar-btn:hover,
+#cancelar-btn:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
 }
 
-#cancelar-btn {
-  order: 1; /* "Cancelar" vai aparecer primeiro */
+#finalizar-btn:active,
+#cancelar-btn:active {
+  transform: translateY(2px);
+}
+
+@media (max-width: 1024px) {
+  #header {
+    padding: 1.5rem;
+  }
+
+  #project-title {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  #finalizar-form {
+    width: 80%;
+    padding: 2rem;
+  }
+
+  #finalizar-btn, #cancelar-btn {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #project-title {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  #finalizar-form {
+    width: 85%;
+    padding: 1.5rem;
+  }
+
+  input[type="file"] {
+    font-size: 1rem;
+  }
+
+  #finalizar-btn, #cancelar-btn {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 600px) {
   #project-title {
-    font-size: 2.2rem;
+    font-size: 2rem;
     text-align: center;
     margin: 1rem 0;
   }
@@ -184,7 +241,21 @@ input[type="file"]:hover {
     padding: 1.5rem;
   }
 
-  #imgcefet {
-    margin-bottom: 12px;
+  .button-container {
+    flex-direction: column;
+  }
+
+  #finalizar-btn,
+  #cancelar-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #finalizar-btn {
+    order: 2;
+  }
+
+  #cancelar-btn {
+    order: 1;
   }
 }
