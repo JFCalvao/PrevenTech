@@ -26,7 +26,7 @@
                             <div id="linha-titulo"></div>
 
                             <input type="text" name="pesquisa" id="pesquisar">
-                            <div onclick="buscarDados()" id="btn-pesquisa"> <img src="imgs/lupa.png" alt="alt" /></div>
+                            <div onclick="buscarDados()" id="btn-pesquisa"> <img src="imgs/lupa.png" alt="alt"/></div>
 
                         </div>
                         <div id="mutavel">
@@ -39,7 +39,6 @@
                                         <h4 id="n-patrimonio"> FNQQVN2</h4>
                                         <p id="local">Local: Sala 107, Prédio 20</p>
                                     </div>
-    
                                     <div class="setinha-expandir-retrair"></div>
                                 </div>
                                 <div class="informacoes-expandir escondido">

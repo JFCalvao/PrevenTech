@@ -56,7 +56,6 @@
                                 <span id="nome-categoria">Falha nos cabos de conexão</span>
                             </div>
                             </div>
-                            
                          
                             <div id="mutavel-2">
                                       
