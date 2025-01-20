@@ -1,12 +1,7 @@
-h1 {
-    font-family: "Contrail One", serif;
-    margin-left: 2%;
-}
-
 main {
-        background: white;
+    background: white;
     border-radius: 15px;
-    width: 85vw;
+     width: 80%;
     max-width: 1200px;
     margin: 12vh auto 20vh auto;
     padding-top: 1vh;
@@ -16,24 +11,19 @@ main {
     align-items: center;
 }
 
-button {
-    position: auto;
-    border-radius: 15px;
-    width: 90%;
-    height: 5vh;
-    background-color: #004aad;
-    font-size: 100%;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    color: white;
+h1 {
+    font-family: "Contrail One", serif;
+    margin-left: 2%;
+    font-size: 2.5rem;
+    color: #004aad;
 }
 
-input {
-    display: block;
-    width: 35vw;
-    height: 3vh;
-     background-color: #e1f8ff;
-    margin: 0;
+#linha-titulo {
+    flex-grow: 1;
+    height: 3px;
+    background-color: #004aad;
+    margin: 1rem 0;
+    width: 50%;
 }
 
 .campo-texto {
@@ -42,32 +32,60 @@ input {
     padding: 0.5vh;
     width: 50vw;
     justify-content: space-between;
-}
-select {
-    margin: 0;
-    width: 35.2vw;
-    height: 3vh;
-    background-color: #c4f1ff;
+    margin-bottom: 1vh;
 }
 
-
-label{
+label {
     color: #004aad;
     font-family: 'Open Sans', sans-serif;
-    font-size: larger;
+    font-size: 1.1rem;
     font-weight: 700;
     margin-right: 0.5vw;
 }
+
+input {
+    display: block;
+    width: 35vw;
+    height: 3vh;
+    background-color: #e1f8ff;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #004aad;
+}
+
+button {
+    border-radius: 15px;
+    width: 80vw;
+    height: 7vh;
+    background-color: #004aad;
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    color: white;
+    border: none;
+    cursor: pointer;
+    max-width: 400px;
+}
+
+button:hover {
+    background-color: #00368d;
+}
+
+
+button:hover {
+    background-color: #00368d;
+}
+
+#resposta {
+    margin-top: 2vh;
+    font-size: 1.2rem;
+    color: #004aad;
+}
+
 form {
     padding: 2.5%;
-}
-#linha-titulo {
-    flex-grow: 1;
-    height: 3px;
-    background-color:#004aad;
-    border-width: 5px;
-}
-#n-patrimonio-remov {
-    border-radius: 15px;
-    background-color: #e1f8ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
