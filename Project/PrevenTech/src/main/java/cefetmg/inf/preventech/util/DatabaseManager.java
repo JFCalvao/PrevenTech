@@ -260,10 +260,7 @@ public class DatabaseManager {
             String local = Encryption.decrypt(rs.getString("local"));
             String estado = Encryption.decrypt(rs.getString("estado"));
             
-            equipamento.setNome(nome);
-            equipamento.setN_patrimonio(n_patrimonio);
-            equipamento.setLocal(local);
-            equipamento.setEstado(estado);
+            equipamento = new Equipamento(nome, n_patrimonio, local, estado);
         }
         
         connection.close();
@@ -367,39 +364,23 @@ public class DatabaseManager {
                 requisicao.setStatus("Pendente");
             }
             
-            /*String equipamentosStr = requisicao.getEquipamentos();
-            System.out.println(equipamentosStr);
-            List<Equipamento> equipamentosAssociados = new ArrayList<>();
+            String equipamentosStr = requisicao.getEquipamentos();
+            System.out.println("Equipamentos: " + equipamentosStr);
+            equipamentosStr = Encryption.decrypt(equipamentosStr);
             
             if(equipamentosStr != null && !equipamentosStr.isEmpty()) {
-                String[] equipamentos = equipamentosStr.split(",");
+                List<Equipamento> equipamentosAssociados = new ArrayList<>();
+                String[] equipamentos = equipamentosStr.split("_");
+                
                 for(String equipamentoStr:equipamentos) {
                     Equipamento equipamento = searchEquipamento(equipamentoStr.trim());
                     if(equipamento != null) {
                         equipamentosAssociados.add(equipamento);
                     }
                 }
+                
+                requisicao.setArrEquipamentos(equipamentosAssociados);
             }
-            
-            */
-            String equipamentosStr = requisicao.getEquipamentos();
-            
-            List<Equipamento> equipamentosAssociados = new ArrayList<>();
-            List<Equipamento> equipamentosList = getAllEquipamentos();
-            
-            if(equipamentosStr != null && !equipamentosStr.isEmpty()) {
-                String[] equipamentos = equipamentosStr.split(",");
-                for(String equipamentoStr:equipamentos) {
-                    for(Equipamento equipamento:equipamentosList) {
-                        if(equipamento.getN_patrimonio().equals(equipamentoStr.trim())) {
-                            equipamentosAssociados.add(equipamento);
-                            break;
-                        }
-                    }
-                }
-            }
-            
-            requisicao.setArrEquipamentos(equipamentosAssociados);
             
             requisicao = DataManager.unformatRequisicao(requisicao);
           
