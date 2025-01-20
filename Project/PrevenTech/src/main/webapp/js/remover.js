@@ -17,7 +17,7 @@ window.onload = function () {
         request.setData({ "n_patrimonio": nPatrimonio });
 
         const ajax = new XMLHttpRequest();
-        ajax.open("POST", MainServlet, true); 
+        ajax.open("POST", 'RemoverMaq', true); 
         ajax.onload = function() {
             if (ajax.status == 200) {
                 let response = new Response(ajax.responseText);
@@ -65,7 +65,7 @@ window.onload = function () {
         request.setData({ "n_patrimonio": nPatrimonio });
 
         const ajax = new XMLHttpRequest();
-        ajax.open("POST", 'MainServlet ', true);  
+        ajax.open("POST", 'RemoverMaq', true);  
         ajax.onload = function() {
             if (ajax.status == 200) {
                 let response = new Response(ajax.responseText);
