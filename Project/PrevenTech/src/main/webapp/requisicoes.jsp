@@ -16,7 +16,6 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <%@include file="Security/security.jsp" %>
         <%@include file="header.jsp" %>
 
         <main>
@@ -32,4 +31,8 @@
             </div>
         </main>
     </body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/expandir-retrair-div.js"></script>
+    <script src="js/json.js"></script>
+    <script src="js/requisicoes.js"></script>
 </html>
