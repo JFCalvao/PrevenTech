@@ -4,7 +4,7 @@
  */
 package cefetmg.inf.preventech.services;
 
-import cefetmg.inf.preventech.dao.Professor;
+import cefetmg.inf.preventech.dto.Professor;
 import jakarta.servlet.http.HttpSession;
 import jakarta.websocket.Session;
 import java.util.List;
@@ -28,7 +28,8 @@ public class ProfessorService implements UserService {
     
     private final List<String> access = List.of(
         "professor.jsp", "estados.jsp", "solicitacao.jsp",
-        "meus-dados.jsp", "historicos.jsp"
+        "meus-dados.jsp", "historicos.jsp", "requisicoes.jsp",
+        "minhasRequisicoes.jsp"
     );
     
     @Override

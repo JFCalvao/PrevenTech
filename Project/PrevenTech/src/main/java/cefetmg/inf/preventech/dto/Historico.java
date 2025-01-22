@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package cefetmg.inf.preventech.dao;
+package cefetmg.inf.preventech.dto;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -41,7 +41,7 @@ public class Historico {
         
         this.data = dia + "-" + mes + "-" + ano + "_" + horas + "-" + minutos;
         
-        this.conteudoArquivo = conteudoArquivo;
+        this.conteudoArquivo = conteudoArquivo.split(",")[1];
         
         this.nomeArquivo = "RelatorioFinal(" + id + ")_" + this.data;
     }

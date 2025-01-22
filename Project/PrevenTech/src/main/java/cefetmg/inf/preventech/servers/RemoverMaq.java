@@ -1,6 +1,6 @@
 package cefetmg.inf.preventech.servers;
 
-import cefetmg.inf.preventech.dao.Remover; 
+import cefetmg.inf.preventech.dto.Remover; 
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;

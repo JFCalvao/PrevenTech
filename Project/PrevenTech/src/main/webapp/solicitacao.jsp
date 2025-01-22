@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="java.time.ZonedDateTime, java.time.ZoneId, java.time.format.DateTimeFormatter, cefetmg.inf.preventech.dao.Categorias" %>
+<%@ page import="java.time.ZonedDateTime, java.time.ZoneId, java.time.format.DateTimeFormatter, cefetmg.inf.preventech.util.Categorias" %>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>

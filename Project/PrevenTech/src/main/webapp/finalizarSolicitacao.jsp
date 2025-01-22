@@ -26,9 +26,6 @@
             </div>
         </form>
 
-        <div id="success-message" style="display:none; color: green; margin-top: 20px;">
-            Relatório enviado com sucesso!
-        </div>
     </main>
 
     <script src="js/json.js"></script>

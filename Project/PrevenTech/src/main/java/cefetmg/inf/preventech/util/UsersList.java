@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.websocket.Session;
 import java.util.LinkedList;
 import java.util.List;
-import cefetmg.inf.preventech.dao.User;
+import cefetmg.inf.preventech.dto.User;
 
 /**
  *

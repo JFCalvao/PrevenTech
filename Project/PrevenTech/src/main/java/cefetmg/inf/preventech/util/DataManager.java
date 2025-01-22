@@ -5,11 +5,11 @@
 package cefetmg.inf.preventech.util;
 
 import cefetmg.inf.preventech.Exceptions.EncryptationException;
-import cefetmg.inf.preventech.dao.Equipamento;
-import cefetmg.inf.preventech.dao.Historico;
-import cefetmg.inf.preventech.dao.Mensagem;
-import cefetmg.inf.preventech.dao.Requisicao;
-import cefetmg.inf.preventech.dao.User;
+import cefetmg.inf.preventech.dto.Equipamento;
+import cefetmg.inf.preventech.dto.Historico;
+import cefetmg.inf.preventech.dto.Mensagem;
+import cefetmg.inf.preventech.dto.Requisicao;
+import cefetmg.inf.preventech.dto.User;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Base64;
 import javax.crypto.SecretKey;
@@ -123,15 +123,6 @@ public class DataManager {
                "'" + user + "'," +
                "'" + mensagem + "'";
     }
-        
-    public static SQLData format(String[] params) throws EncryptationException {
-        SQLData formattedData = new SQLData();
-
-        for(int i = 0; i < params.length; i++)
-            formattedData.add(Encryption.encrypt(params[i]));
-
-        return formattedData;
-    }
     
     public static Equipamento unformatEquipamento(Equipamento equipamento) throws EncryptationException {
         String nome = Encryption.decrypt(equipamento.getNome());
@@ -150,20 +141,26 @@ public class DataManager {
     }
     
     public static Requisicao unformatRequisicao(Requisicao requisicao) throws EncryptationException {
+        System.out.println("1");
         String requisitor_cpf = Encryption.decrypt(requisicao.getRequisitor_cpf());
         requisicao.setRequisitor_cpf(requisitor_cpf);
         
+        System.out.println("2");
         String responsavel_cpf = Encryption.decrypt(requisicao.getResponsavel_cpf());
         requisicao.setResponsavel_cpf(responsavel_cpf);
         
+        System.out.println("3");
         String data = Encryption.decrypt(requisicao.getData());
         requisicao.setData(data);
         
+        System.out.println("4");
         String equipamentos = Encryption.decrypt(requisicao.getEquipamentos());
         requisicao.setEquipamentos(equipamentos);
         
+        System.out.println("5");
         String descricao = Encryption.decrypt(requisicao.getDescricao());
         requisicao.setDescricao(descricao);
+        System.out.println("OK");
         
         return requisicao;
     }

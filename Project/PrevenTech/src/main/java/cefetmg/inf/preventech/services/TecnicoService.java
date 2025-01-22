@@ -4,7 +4,7 @@
  */
 package cefetmg.inf.preventech.services;
 
-import cefetmg.inf.preventech.dao.Tecnico;
+import cefetmg.inf.preventech.dto.Tecnico;
 import jakarta.servlet.http.HttpSession;
 import jakarta.websocket.Session;
 import java.util.List;

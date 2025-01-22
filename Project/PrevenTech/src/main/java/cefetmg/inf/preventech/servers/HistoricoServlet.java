@@ -4,8 +4,8 @@
  */
 package cefetmg.inf.preventech.servers;
 
-import cefetmg.inf.preventech.dao.Historico;
-import cefetmg.inf.preventech.dao.User;
+import cefetmg.inf.preventech.dto.Historico;
+import cefetmg.inf.preventech.dto.User;
 import cefetmg.inf.preventech.util.DatabaseManager;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -100,7 +100,6 @@ public class HistoricoServlet extends HttpServlet {
         } catch(Exception e) {
             e.printStackTrace();
         } finally {
-            
             response.setContentType("application/json");
             try (PrintWriter out = response.getWriter()) {
                 System.out.println("Response H: " + jsonResponse);

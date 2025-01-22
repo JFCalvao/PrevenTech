@@ -2,10 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package cefetmg.inf.preventech.dao;
+package cefetmg.inf.preventech.dto;
 
 import cefetmg.inf.preventech.util.DatabaseManager;
-import cefetmg.inf.preventech.util.SQLData;
 
 public class Remover {
 

@@ -24,7 +24,7 @@ function getHistoricos() {
                 window.location.href = "erro.jsp?erro=" + response.getError() + "&url=" + window.location.href; 
             }
         } else {
-            //window.location.href = "erro.jsp?erro=Parece que você está com um erro de conexão. Por favor, tente novamente mais tarde." + "&url=" + initialPage;
+            window.location.href = "erro.jsp?erro=Parece que você está com um erro de conexão. Por favor, tente novamente mais tarde." + "&url=" + initialPage;
         }
     };
     
@@ -33,14 +33,6 @@ function getHistoricos() {
 }
 
 getHistoricos();
-
-function fixBase64String(base64) { 
-    base64 = base64.replace(/[^A-Za-z0-9+/=]/g, '');  
-    while (base64.length % 4 !== 0) { 
-        base64 += '='; 
-    } 
-    return base64; 
-}
 
 function showPDF(fileJson) { 
     var url = fileJson.file;

@@ -18,7 +18,6 @@
             const initialPage = "<%= userService.getInitialPage() %>";
         </script>
         <script src="js/json.js" defer ></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js" defer ></script>
         <script src="js/historicos.js" defer ></script>
     </head>
     <body>

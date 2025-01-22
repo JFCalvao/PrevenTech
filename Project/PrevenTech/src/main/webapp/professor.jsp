@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="cefetmg.inf.preventech.dao.User, cefetmg.inf.preventech.services.ProfessorService, java.util.List, jakarta.servlet.http.HttpSession" %>
+<%@ page import="cefetmg.inf.preventech.services.ProfessorService" %>
 <%@taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html>

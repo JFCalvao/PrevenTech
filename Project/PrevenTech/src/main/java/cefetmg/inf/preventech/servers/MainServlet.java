@@ -11,22 +11,20 @@
 package cefetmg.inf.preventech.servers;
 
 import cefetmg.inf.preventech.Exceptions.*;
-import cefetmg.inf.preventech.dao.Categorias;
-import cefetmg.inf.preventech.dao.Coordenador;
-import cefetmg.inf.preventech.dao.Equipamento;
-import cefetmg.inf.preventech.dao.Historico;
-import cefetmg.inf.preventech.dao.Professor;
-import cefetmg.inf.preventech.dao.Requisicao;
-import cefetmg.inf.preventech.dao.Tecnico;
-import cefetmg.inf.preventech.dao.User;
+import cefetmg.inf.preventech.util.Categorias;
+import cefetmg.inf.preventech.dto.Coordenador;
+import cefetmg.inf.preventech.dto.Equipamento;
+import cefetmg.inf.preventech.dto.Historico;
+import cefetmg.inf.preventech.dto.Professor;
+import cefetmg.inf.preventech.dto.Requisicao;
+import cefetmg.inf.preventech.dto.Tecnico;
+import cefetmg.inf.preventech.dto.User;
 import cefetmg.inf.preventech.services.CoordenadorService;
 import cefetmg.inf.preventech.services.ProfessorService;
 import cefetmg.inf.preventech.services.TecnicoService;
 import cefetmg.inf.preventech.services.UserService;
 import cefetmg.inf.preventech.util.DatabaseManager;
-import cefetmg.inf.preventech.util.DataManager;
 import cefetmg.inf.preventech.util.Encryption;
-import cefetmg.inf.preventech.util.SQLData;
 import cefetmg.inf.preventech.util.UsersList;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -95,21 +93,28 @@ public class MainServlet extends HttpServlet {
                     break;
                     case "HS": {
                         Historico historico = getHistorico(content);
+                        System.out.println("Pegando id: " + historico.getId());
+                        System.out.println("Pegando file: " + historico.getConteudoArquivo());
                         Requisicao requisicao = DatabaseManager.searchRequisicao(historico.getId());
-//                        
+                        System.out.println("Pego");
+                        
                         historico.setRequisitor_cpf(requisicao.getRequisitor_cpf());
                         historico.setResponsavel_cpf(requisicao.getResponsavel_cpf());
 //                        historico.setRequisitor_cpf("12909832498");
 //                        historico.setResponsavel_cpf("75739677302");
-                        
+                        System.out.println("Req: " + requisicao.getRequisitor_cpf());
+                        System.out.println("Res: " + requisicao.getResponsavel_cpf());
                         if(DatabaseManager.hasHistorico(historico)) {
+                            System.out.println("Ja existe");
                             throw new HistoricoJaExisteException();
                         }
                         
+                        System.out.println("Arquivo uploading...");
                         String savePath = getServletContext().getRealPath("uploads");
                         historico.uploadFile(savePath);
-                        
+                        System.out.println("Arquivo uploaded");
                         DatabaseManager.insertHistorico(historico);
+                        System.out.println("Inseted");
                     }
                     break;
                     case "US": {
@@ -176,29 +181,6 @@ public class MainServlet extends HttpServlet {
                                 jsonResponse.put("content", accepted);
                             break;
                         }
-                        break;
-                    case "HS": {
-//                        String savePath = getServletContext().getRealPath("uploads");
-//                        Historico historico = getHistorico(content);
-//                        historico = DatabaseManager.searchHistorico(historico.getId());
-//
-//                        File file = historico.getFile(savePath);
-//                        String fileName = historico.getNomeArquivo();
-//
-//                        if (file.exists()) {
-//                            byte[] fileBytes = Files.readAllBytes(file.toPath());
-//                            String fileContentBase64 = Base64.getEncoder().encodeToString(fileBytes);
-//
-//                            JSONObject fileInfo = new JSONObject();
-//                            fileInfo.put("nome", fileName);
-//                            fileInfo.put("file", fileContentBase64);
-//
-//                            jsonResponse.put("content", fileInfo);
-//                        }
-                    }
-                    case "FL": {
-                        
-                    }
                     break;
                     case "US":
                         break;
