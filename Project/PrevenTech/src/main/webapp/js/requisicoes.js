@@ -47,8 +47,7 @@ function exibirRequisicoes(data) {
                     </div>
                     <div id="data-horario-envio">
                         <span id="txt-enviado">Enviado: </span>
-                        <span id="txt-horario">17:02</span>
-                        <span id="txt-data"> - ${content.data === "" ? "data indefinida" : content.data}</span>
+                        <span id="txt-data">${content.data === "" ? "data indefinida" : content.data}</span>
                     </div>
                     <div id="categoria">
                         <span id="txt-categoria">Categoria: </span>
