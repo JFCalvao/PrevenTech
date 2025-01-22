@@ -1,8 +1,8 @@
 let maquinas = null;
 pegarMAQ();
 
-function pegarMAQ(){
-    let nPatrimonio = document.querySelector('#n-patrimonio');
+function pegarMAQ() {
+    let nPatrimonio = document.querySelector('#n-patrimonio').value;
     let request = new Request();
     request.setOperation("GET");
     request.setType("EQ");
@@ -40,6 +40,20 @@ function renderizarMaquinas(maquinas) {
     }
 
     maquinas.forEach((maquina) => {
+        let color, border;
+        if(maquina.status === "defeito") {
+            color = "red";
+            border = "bolinha-red";
+        }
+        else if(maquina.status === "manutencao") {
+            color = "blue";
+            border = "bolinha-blue";
+        }
+        else {
+            color = "green";
+            border = "bolinha-green";
+        }
+
         resposta.innerHTML += `
             <div class='requisicao'> 
                 <div class='view'>
@@ -53,7 +67,7 @@ function renderizarMaquinas(maquinas) {
                 </div>
                 <div class="informacoes-expandir escondido">
                     <div id="linha-requisicao"></div>
-                    <div id="status">
+                    <div id="status" class="${border}">
                         <span id="cor-status"></span>
                         <span id="txt-status">${maquina.estado}</span>
                     </div>

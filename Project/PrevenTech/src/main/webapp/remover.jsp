@@ -39,8 +39,11 @@
                         <label for="estados">Estados:</label> 
                         <input disabled type="text" name="local" id="estados">
                         </div>
-
-                    <p> <button id="remove" type="button">REMOVER</button> <br></p>
+                        
+                        <div id="botao-container">
+                    <button id="remove" type="button">REMOVER</button> 
+                    <button type="button" id="cancelar" >CANCELAR</button>
+                    </div>
                     <div id="resposta"></div>
                         
                   

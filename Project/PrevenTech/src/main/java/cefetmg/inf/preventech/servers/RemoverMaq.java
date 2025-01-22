@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.json.JSONObject;
 
 @WebServlet(name = "RemoverMaq", urlPatterns = {"/RemoverMaq"})
 public class RemoverMaq extends HttpServlet {
@@ -15,23 +16,47 @@ public class RemoverMaq extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/json;charset=UTF-8");
-        PrintWriter out = response.getWriter();
 
-        String nPatrimonio = request.getParameter("n_patrimonio");
+        response.setContentType("application/json");
+        JSONObject json = new JSONObject();
 
-        if (nPatrimonio == null || nPatrimonio.trim().isEmpty()) {
-            out.print("{\"status\":\"ERROR\", \"message\":\"Número de patrimônio inválido.\"}");
-            return;
+        try {
+            String jsonData = request.getParameter("json");
+            if (jsonData == null || jsonData.isEmpty()) {
+                json.put("status", "ERROR");
+                json.put("error", "JSON inválido ou ausente");
+                response.getWriter().print(json);
+                return;
+            }
+
+            JSONObject input = new JSONObject(jsonData);
+            JSONObject content = input.getJSONObject("content");
+            String nPatrimonio = content.getString("n_patrimonio");
+
+            if (nPatrimonio == null || nPatrimonio.trim().isEmpty()) {
+                json.put("status", "ERROR");
+                json.put("error", "Número de patrimônio não pode estar vazio");
+                response.getWriter().print(json);
+                return;
+            }
+
+            Remover remover = new Remover();
+            boolean sucesso = remover.removerEquipamento(nPatrimonio);
+
+            if (sucesso) {
+                json.put("status", "OK");
+            } else {
+                json.put("status", "ERROR");
+                json.put("error", "Falha ao remover o equipamento");
+            }
+
+        } catch (Exception e) {
+            json.put("status", "ERROR");
+            json.put("error", e.getMessage());
         }
 
-        Remover remover = new Remover(); 
-        boolean sucesso = remover.removerEquipamento(nPatrimonio); 
-
-        if (sucesso) {
-            out.print("{\"status\":\"OK\", \"message\":\"Máquina removida com sucesso.\"}");
-        } else {
-            out.print("{\"status\":\"ERROR\", \"message\":\"Erro ao remover a máquina. Verifique se o número de patrimônio está correto.\"}");
+        try (PrintWriter out = response.getWriter()) {
+            out.print(json);
         }
     }
 
