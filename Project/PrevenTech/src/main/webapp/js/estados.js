@@ -40,18 +40,22 @@ function renderizarMaquinas(maquinas) {
     }
 
     maquinas.forEach((maquina) => {
-        let color, border;
-        if(maquina.status === "defeito") {
-            color = "red";
-            border = "bolinha-red";
-        }
-        else if(maquina.status === "manutencao") {
-            color = "blue";
-            border = "bolinha-blue";
-        }
-        else {
-            color = "green";
-            border = "bolinha-green";
+        let statusClass = "";
+        let statusText = "";
+        let corStatus = "";
+
+        if (maquina.status === "defeito") {
+            statusClass = "defeito";
+            statusText = "Defeito";
+            corStatus = "red";
+        } else if (maquina.status === "manutencao") {
+            statusClass = "manutencao";
+            statusText = "Manutenção";
+            corStatus = "blue";
+        } else {
+            statusClass = "operacional";
+            statusText = "Operacional";
+            corStatus = "green";
         }
 
         resposta.innerHTML += `
@@ -62,14 +66,13 @@ function renderizarMaquinas(maquinas) {
                         <h4 id="n-patrimonio">${maquina.n_patrimonio}</h4>
                         <p id="local">${maquina.local}</p>
                     </div>
-
                     <div class="setinha-expandir-retrair"></div>
                 </div>
                 <div class="informacoes-expandir escondido">
                     <div id="linha-requisicao"></div>
-                    <div id="status" class="${border}">
-                        <span id="cor-status"></span>
-                        <span id="txt-status">${maquina.estado}</span>
+                    <div id="status" class="${statusClass}">
+                        <span id="cor-status" style="border: 7.5px solid ${corStatus};"></span>
+                        <span id="txt-status">${statusText}</span>
                     </div>
                 </div>
             </div>`;
@@ -104,9 +107,9 @@ function buscarDados() {
                                     </div>
                                     <div class="informacoes-expandir escondido">
                                         <div id="linha-requisicao"></div>
-                                        <div id="status">
-                                            <span id="cor-status"></span>
-                                            <span id="txt-status">${maquina.estado}</span>
+                                        <div id="status" class="${maquina.status}">
+                                            <span id="cor-status" style="border: 7.5px solid ${maquina.status === 'defeito' ? 'red' : maquina.status === 'manutencao' ? 'blue' : 'green'};"></span>
+                                            <span id="txt-status">${maquina.status.charAt(0).toUpperCase() + maquina.status.slice(1)}</span>
                                         </div>
                                     </div>
                                 </div>`;
