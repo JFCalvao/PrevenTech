@@ -320,14 +320,17 @@ public class DatabaseManager {
             else 
                 requisicao.setCategoriaString("Nenhum");
             
-            User requisitor = searchUsuario(requisicao.getRequisitor_cpf());
+            User requisitor = searchUsuario(Encryption.decrypt(requisicao.getRequisitor_cpf()));
             
-            if(requisitor != null)
+            if(requisitor != null) {
                 requisicao.setRequisitorString(requisitor.getNome());
-            else
+                System.out.println("Nome do requisitor: " + requisitor.getNome());
+            }
+            else {
                 requisicao.setRequisitorString("Ninguém");
+            }
             
-            User responsavel = searchUsuario(requisicao.getResponsavel_cpf());
+            User responsavel = searchUsuario(Encryption.decrypt(requisicao.getResponsavel_cpf()));
             
             if(responsavel != null) {
                 requisicao.setResponsavelString(responsavel.getNome());
