@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        <%@include file="Security/security.jsp" %>
         <%@include file="header.jsp" %>
 
         <main>
