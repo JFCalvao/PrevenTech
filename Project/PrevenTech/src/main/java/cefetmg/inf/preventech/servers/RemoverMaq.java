@@ -22,23 +22,9 @@ public class RemoverMaq extends HttpServlet {
 
         try {
             String jsonData = request.getParameter("json");
-            if (jsonData == null || jsonData.isEmpty()) {
-                json.put("status", "ERROR");
-                json.put("error", "JSON inválido ou ausente");
-                response.getWriter().print(json);
-                return;
-            }
-
             JSONObject input = new JSONObject(jsonData);
             JSONObject content = input.getJSONObject("content");
             String nPatrimonio = content.getString("n_patrimonio");
-
-            if (nPatrimonio == null || nPatrimonio.trim().isEmpty()) {
-                json.put("status", "ERROR");
-                json.put("error", "Número de patrimônio não pode estar vazio");
-                response.getWriter().print(json);
-                return;
-            }
 
             Remover remover = new Remover();
             boolean sucesso = remover.removerEquipamento(nPatrimonio);

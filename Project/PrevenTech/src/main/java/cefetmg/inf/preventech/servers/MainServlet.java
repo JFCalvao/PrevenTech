@@ -152,6 +152,7 @@ public class MainServlet extends HttpServlet {
                         jsonResponse.put("content", DatabaseManager.getAllEquipamentos());
                         break;
                     case "RQ":
+                        System.out.println("Olhando requisições");
                         List<Requisicao> all = DatabaseManager.getAllRequisicoes();
                         jsonResponse.put("content", all);
                         System.out.println(jsonResponse.toString());
