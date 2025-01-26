@@ -29,7 +29,7 @@ public class ProfessorService implements UserService {
     private final List<String> access = List.of(
         "professor.jsp", "estados.jsp", "solicitacao.jsp",
         "meus-dados.jsp", "historicos.jsp", "requisicoes.jsp",
-        "minhasRequisicoes.jsp"
+        "minhasRequisicoes.jsp", "chat.jsp"
     );
     
     @Override

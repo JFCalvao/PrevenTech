@@ -95,6 +95,10 @@ public class DatabaseManager {
         connection.close();
     }
     
+    public static void updateEquipamento(Equipamento eq) throws SQLException, EncryptationException {
+        
+    }
+    
     public static boolean hasEquipamento(Equipamento equipamento) throws SQLException, EncryptationException {
         Connection connection = getConnection();
         String value = Encryption.encrypt(equipamento.getN_patrimonio());

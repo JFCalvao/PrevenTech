@@ -11,6 +11,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/chat.css">
+        <%@include file="Security/security.jsp" %>
+        <script> const username = "<%= userService.getNome() %>"; </script>
         <script src="js/chat.js" defer ></script>
         <title>JSP Page</title>
     </head>
@@ -24,11 +26,12 @@
                         <p><span>User 1:</span> Olá! Como você está?</p>
                     </div>
                     <div class="message outgoing">
+                        <div class="lateral-bar" ></div>
                         <p><span>User 2:</span> Estou bem, obrigado! E você?</p>
                     </div>
                 </div>
                 <div class="input-box">
-                    <input type="text" id="message" placeholder="Digite sua mensagem...">
+                    <input spellcheck="false" autocomplete="off" type="text" id="message" placeholder="Digite sua mensagem...">
                     <button type="button" id="sendButton">Enviar</button>
                 </div>
             </div>

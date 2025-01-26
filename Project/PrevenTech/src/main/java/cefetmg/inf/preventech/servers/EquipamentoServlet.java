@@ -7,7 +7,7 @@ package cefetmg.inf.preventech.servers;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import cefetmg.inf.preventech.dao.Equipamento;
+import cefetmg.inf.preventech.dto.Equipamento;
 import cefetmg.inf.preventech.util.DatabaseManager;
 import cefetmg.inf.preventech.Exceptions.EncryptationException;
 import cefetmg.inf.preventech.Exceptions.EquipamentoNaoEncontradoException;
@@ -34,7 +34,7 @@ public class EquipamentoServlet extends HttpServlet {
                 DatabaseManager.updateEquipamento(equipamento);
             }
             response.getWriter().write("Equipamento processado com sucesso!");
-        } catch (SQLException | EncryptationException | EquipamentoNaoEncontradoException e) {
+        } catch (SQLException | EncryptationException e) {
             e.printStackTrace();
             response.getWriter().write("Erro ao processar o equipamento: " + e.getMessage());
         }

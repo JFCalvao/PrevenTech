@@ -14,12 +14,12 @@ main {
     align-items: center;
     flex-grow: 1;
     background-color: #f4f4f4;
+    overflow: hidden;
 }
 
 .chat-container {
-    width: 100%;
-    max-width: 600px;
-    height: 80%;
+    width: clamp(425px, 80%, 1000px);
+    height: 90%;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -36,18 +36,17 @@ main {
 }
 
 .chat-box::-webkit-scrollbar {
-    width: 8px; /* Largura da barra lateral */
+    width: 5px; /* Largura da barra lateral */
 }
 
 .chat-box::-webkit-scrollbar-track {
-    background: #f4f4f4; /* Cor de fundo */
+    background: transparent; /* Cor de fundo */
     border-radius: 10px;
 }
 
 .chat-box::-webkit-scrollbar-thumb {
     background-color: #ccc; /* Cor da barra */
-    border-radius: 10px;
-    border: 2px solid #f4f4f4; /* Cores de fora e dentro para a barra */
+    border-radius: 0px;
 }
 
 .chat-box::-webkit-scrollbar-thumb:hover {
@@ -66,15 +65,38 @@ main {
     text-align: right;
 }
 
+.incoming p {
+    color: #004aad;
+    background-color: #f4f4f4;
+}
+
+.outgoing p {
+    color: #fff;
+    background-color: #004aad;
+}
+
+.outgoing span {
+    text-align: right;
+}
+
+.message .lateral-bar {
+    height: 100%;
+    width: 5px;
+    background-color: #004aad;
+}
+
 .message p {
-    background-color: #f1f0f0;
+    font-size: 0.9rem;
+    text-align: justify;
     display: inline-block;
     padding: 10px;
     border-radius: 8px;
     max-width: 70%;
+    margin: 0;
 }
 
 .message span {
+    font-size: 1.0rem;
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
@@ -100,9 +122,33 @@ main {
     background-color: #007bff;
     color: white;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .input-box button:hover {
     background-color: #0056b3;
+}
+
+@media (max-width: 980px) {
+    main .chat-container {
+        height: 100%;
+        width: 100% !important;
+    }
+    
+    .message span {
+        font-size: 1.8rem;
+    }
+    
+    .message p {
+        font-size: 1.6rem;
+    }
+    
+    .input-box input {
+        font-size: 2rem;
+        padding: 20px;
+    }
+    
+    .input-box button {
+        font-size: 2rem;
+    }
 }

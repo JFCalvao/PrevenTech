@@ -148,7 +148,15 @@ function addMoreBtnEvent() {
     more_btn.addEventListener("click", moreBtnEvent);
 }
 
-function search() {
+function search(e) {
+    if(e.key === "Enter") {
+        const categorias_input = document.querySelector("#categorias-input");
+        const option = document.querySelector("#categorias > *");
+        categorias_input.value = option.value;
+        canDestroyCategoriesList = true;
+        destroyCategoriesList();
+    }
+    
     addOptions();
     addOptionsEvent();
     addMoreBtnEvent();
