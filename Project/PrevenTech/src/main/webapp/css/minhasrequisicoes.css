@@ -119,20 +119,18 @@ main {
 }
 
 .informacoes-expandir {
-    width: 100%;
+    width: 90%;
     margin-left: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
 }
 
 #linha-requisicao {
     height: 2.5px;
     background-color:#4780cc;
     border-width: 5px;
-    width: 101%;
-    margin-right: 2px;
-    opacity: 0.5;
+    position: relative;
+    bottom: -5px;
+    left: -19px;
+    width: 100%;
 }
 
 #cor-status {
@@ -187,6 +185,7 @@ main {
     margin-top: 4px;
     padding-left: 4px;
     border-radius: 10px;
+    width: 90%;
 }
 
 #descricao h5 {
@@ -202,7 +201,7 @@ main {
 .requisicao .informacoes-expandir {
     display: flex;
     flex-direction: column;
-    gap: 0px;
+    gap: 2px;
     padding-bottom: 8px;
     width: 96.5%;
     user-select: none;
@@ -290,7 +289,7 @@ body {
     bottom: 3px;
 }
 
-#span-situacao #cor-situacao {
+.cor-situacao {
     border: 7px solid red;
     border-radius: 50%;
 }
@@ -306,7 +305,7 @@ body {
     flex-direction: row;
     gap: 5px;
     align-items: center;
-    width: 75%;
+    width: 90%;
     justify-content: space-between;
 }
 
@@ -351,7 +350,7 @@ body {
     padding-bottom: 5px;
     margin-top: 4px;
     padding-left: 4px;
-    width: 99.5%;
+    width: 95%;
 }
 
 .maquina #numero {
@@ -367,6 +366,80 @@ body {
     height: 2.5px;
     background-color:#4780cc;
     opacity: 0.5;
-    width: 77%;
+    width: 90%;
     margin-right: 15%;
+}
+
+.sem-requisicoes, .carregando, .erro {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Open Sans';
+    font-size: 30px;
+    height: 70%;
+    margin-left: 5%;
+    margin-right: 5%;
+    color: #4780cc;
+    font-weight: bold;
+    background-color: white;
+}
+
+.bolinha-red {
+    border: 7.5px solid red;
+}
+
+.red {
+    color: red;
+}
+
+.bolinha-green {
+    border: 7.5px solid #4ab280;
+}
+
+.green {
+    color: #4ab280;
+}
+
+.bolinha-blue {
+    border: 7.5px solid #4275b9;
+}
+
+.blue {
+    color: #4780cc;
+}
+
+.cor-status {
+    border-radius: 50%;
+}
+
+@media (max-width: 618px) and (orientation: portrait) {
+    #numero {
+        height: 50%;
+    }
+    
+    .maquina #informacoes {
+        gap: 2%;
+    }
+}
+
+@media (max-width: 550px) and (orientation: portrait) {
+    .maquina #informacoes, .linha-maquina {
+        width: 99.5%;
+    }
+}
+
+@media (max-width: 500px) and (orientation:portrait) {
+    .maquina #informacoes {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    
+    .linha-maquina {
+        display: none;
+    }
+    
+    .maquina {
+        width: 90%;
+    }
 }
