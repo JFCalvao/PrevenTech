@@ -155,6 +155,8 @@ function search(e) {
         categorias_input.value = option.value;
         canDestroyCategoriesList = true;
         destroyCategoriesList();
+        categorias_input.blur();
+        return;
     }
     
     addOptions();
@@ -191,6 +193,7 @@ function destroyCategoriesList() {
     resizeCategoriesSpace();
     hideOptions();
     created = false;
+    canDestroyCategoriesList = false;
 }
 
 const categorias_input = document.querySelector("#categorias-input");
@@ -243,7 +246,7 @@ function estilizaInputs() {
 }
 
 estilizaInputs();
-setTimeout(estilizaInputs, 50);
+setTimeout(estilizaInputs, 200);
 
 window.addEventListener("resize", estilizaInputs);
 
@@ -378,6 +381,7 @@ equipamentos.addEventListener("mouseleave", () => canRemoveEquipamentoInput = tr
 input_maquinas.addEventListener("blur", () => {
     if(!canRemoveEquipamentoInput) return;
     equipamentos.innerHTML = "";
+    equipamentos.style.display = "none";
 });
 
 input_maquinas.addEventListener("focus", () => {
@@ -389,7 +393,7 @@ let maquina_para_adicionar = null;
 
 input_maquinas.addEventListener("keyup", searchMaquina);
 
-function searchMaquina() {
+function searchMaquina(e) {
     if(maquinas === null) return;
     const equipamentosRestantes = [];
     
@@ -398,11 +402,21 @@ function searchMaquina() {
             equipamentosRestantes.push(maquina);
     });
     
-    
     const equipamentos = document.querySelector("#equipamentos");
     let value = input_maquinas.value;
     
+    if(e && e.key === "Enter" && maquina_para_adicionar !== null) {
+        maquinas_adicionadas.push(maquina_para_adicionar["n_patrimonio"]);
+        addEquipamento(maquina_para_adicionar["n_patrimonio"]);
+        maquina_para_adicionar = null;
+        const equipamentos_input = document.querySelector("#maquinas-input");
+        equipamentos_input.focus();
+        equipamentos_input.value = "";
+        value = "";
+    }
+    
     if(value === "") {
+        console.log("vazio");
         equipamentos.style.display = "none";
         equipamentos.innerHTML = "";
         maquina_para_adicionar = null;
@@ -411,6 +425,7 @@ function searchMaquina() {
     
     for(let i = 0; i < equipamentosRestantes.length; i++) {
         if(equipamentosRestantes[i]["n_patrimonio"].startsWith(value)) {
+            console.log("achou: " + value);
             equipamentos.innerHTML = `
                 <section class="equipamento">
                     <div class="n_patrimonio">${equipamentosRestantes[i]["n_patrimonio"]}</div>
@@ -423,7 +438,7 @@ function searchMaquina() {
             return;
         }
     }
-
+    console.log("nao encontrou");
     equipamentos.style.display = "none";
     equipamentos.innerHTML = "";
     maquina_para_adicionar = null;
@@ -435,7 +450,6 @@ function addEquipamentoAdicionarEvent() {
     const equipamentos_input = document.querySelector("#maquinas-input");
 
     equipamento_btn.addEventListener("click", () => {
-        
         maquinas_adicionadas.push(maquina_para_adicionar["n_patrimonio"]);
         addEquipamento(maquina_para_adicionar["n_patrimonio"]);
         maquina_para_adicionar = null;

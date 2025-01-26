@@ -61,7 +61,7 @@
                         <box>
                             <label>Categoria do defeito: </label>
                             <section id="categorias-container">
-                                <input placeholder="Escolher" id="categorias-input" />
+                                <input autocomplete="off" placeholder="Escolher" id="categorias-input" />
                                     <div id="categorias">
                                         
                                     </div>
@@ -72,7 +72,7 @@
                         <box>
                             <label>Adicionar equipamento: </label>
                             <section id="equipamentos-container">
-                                <input id="maquinas-input" spellcheck="false" />
+                                <input autocomplete="off" id="maquinas-input" spellcheck="false" />
                                 <div id="equipamentos" ></div>
                             </section>
                         </box>

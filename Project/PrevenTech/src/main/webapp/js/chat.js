@@ -39,7 +39,9 @@ function sendIncoming() {
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-
+function putAllMsgs() {
+    
+}
 
 /* * Aqui começa o código para a comunicação do chat * */
 const url = "ws://" + document.location.host + "/PrevenTech/chat";
