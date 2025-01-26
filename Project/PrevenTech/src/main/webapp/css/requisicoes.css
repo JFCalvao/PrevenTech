@@ -253,6 +253,7 @@ body {
     font-family: 'Open Sans';
     width: 6em;
     height: 2em;
+    cursor: 'pointer';
 }
 
 .sem-requisicoes, .carregando, .erro {
@@ -298,4 +299,11 @@ body {
     .requisicoes {
         margin-top: 3%;
     }
+}
+
+.aceitar-e-setinha {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
 }
