@@ -7,6 +7,12 @@ function exibirRequisicoes(data) {
         return;
     }
     
+    if(data.error !== "NOERROR") {
+        bodyRequisicoesEl.classList.add('erro');
+        bodyRequisicoesEl.innerHTML = data.error;
+        return;
+    }
+    
     for(let i = 0; i < data.content.length; i++) {
         let content = data.content[i];
         
@@ -26,11 +32,17 @@ function exibirRequisicoes(data) {
         
         let maquinas = content.equipamentos.split(',').map(maquina => maquina.trim());
         
+        let dataSplit = content.data.split('_');
+        dataSplit[0] = dataSplit[0].replace(/-/g, '/');
+        let dataEnvio = dataSplit[0];
+        dataSplit[1] = dataSplit[1].replace(/-/g, ':');
+        let dataStr = dataSplit.join(' - ');
+        
         bodyRequisicoesEl.innerHTML += `
             <div class="requisicao">
                 <div class='view'>
                     <div class="informacoes-basicas">
-                        <h4>Requisição <span id="numero-requisicao">${i+1}</span>/<span id="numero-requisicoes">${data.content.length}</span></h4>
+                        <h4>Requisição ${dataEnvio}</h4>
                         <p>Requisitor: ${content.requisitorString}</p>
                     </div>
                     <div class="setinha-expandir-retrair"></div>
@@ -47,7 +59,7 @@ function exibirRequisicoes(data) {
                     </div>
                     <div id="data-horario-envio">
                         <span id="txt-enviado">Enviado: </span>
-                        <span id="txt-data">${content.data === "" ? "data indefinida" : content.data}</span>
+                        <span id="txt-data">${dataStr}</span>
                     </div>
                     <div id="categoria">
                         <span id="txt-categoria">Categoria: </span>
