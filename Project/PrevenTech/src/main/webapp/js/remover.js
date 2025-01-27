@@ -27,7 +27,7 @@ window.onload = function () {
                     let response = JSON.parse(ajax.responseText);
 
                     if (response.status === "OK") {
-                        maquinas = response.data; 
+                        maquinas = response.data;
                         let found = false;
 
                         maquinas.forEach(function (item) {
@@ -122,6 +122,9 @@ window.onload = function () {
     }
 
     if (remover) {
-        remover.addEventListener('click', removerMaquina);
+        remover.addEventListener('click', function() {
+            buscarDados();
+            removerMaquina();
+        });
     }
 };

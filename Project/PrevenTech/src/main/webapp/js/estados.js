@@ -53,9 +53,11 @@ function renderizarMaquinas(maquinas) {
             statusText = "Manutenção";
             corStatus = "blue";
         } else {
-            statusClass = "operacional";
-            statusText = "Operacional";
+            statusClass = "funcionamento";
+            statusText = "Funcionando";
             corStatus = "green";
+            console.log("Status da máquina:", maquina.status);
+
         }
 
         resposta.innerHTML += `
