@@ -39,9 +39,6 @@ function exibirMinhasRequisicoes(data) {
         for (let i = 0; i < data.content.length; i++) { 
             let content = data.content[i];
             
-            console.log(userNome); // Verifique o valor do userNome
-            console.log(content.requisitorString); // Verifique o valor de requisitorString
-            
             if (userNome !== content.requisitorString)
                 continue;
             
@@ -124,17 +121,24 @@ function exibirMinhasRequisicoes(data) {
                             <span class="cor-status ${border}"></span>
                             <span class="txt-status ${color}">${content.status}</span>
                         </div>
-                        <div id="tecnico">
-                            <span id="txt-tecnico">Técnico responsável: </span>
-                            <span id="txt-nome-tecnico">${content.responsavelString}</span>
-                        </div>
-                        <div id="data-horario-envio">
-                            <span id="txt-enviado">Enviado: </span>
-                            <span id="txt-data">${dataStr}</span>
-                        </div>
-                        <div id="categoria">
-                            <span id="txt-categoria">Categoria: </span>
-                            <span id="nome-categoria">${content.categoriaString}</span>
+                        <div id="informacoes-e-chat">
+                            <div id="informacoes">
+                                <div id="tecnico">
+                                    <span id="txt-tecnico">Técnico responsável: </span>
+                                    <span id="txt-nome-tecnico">${content.responsavelString}</span>
+                                </div>
+                                <div id="data-horario-envio">
+                                    <span id="txt-enviado">Enviado: </span>
+                                    <span id="txt-data">${dataStr}</span>
+                                </div>
+                                <div id="categoria">
+                                    <span id="txt-categoria">Categoria: </span>
+                                    <span id="nome-categoria">${content.categoriaString}</span>
+                                </div>
+                            </div>
+                            <div id="chat">
+                                <button id="botao-chat"><img id="img-chat" src="imgs/chat.jpg"></button>
+                            </div>
                         </div>
                         <div id="equipamentos">
                             <span id="txt-equipamentos">Equipamentos: </span>

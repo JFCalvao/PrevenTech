@@ -1,9 +1,11 @@
 main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 80%;
     margin-top: 5%;
+    gap: 10px;
 }
 
 .requisicoes h3 {
@@ -178,7 +180,7 @@ main {
 #numero-das-maquinas {
     display: flex;
     flex-direction: row;
-    gap: 15px;
+    gap: 7px;
     font-size: 11.5px;
 }
 
@@ -306,4 +308,19 @@ body {
     flex-direction: row;
     align-items: center;
     gap: 15px;
+}
+
+#voltar-area {
+    height: auto;
+    width: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 50px;
+    background-color: #004aad;
+}
+
+#voltar-link {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
 }
