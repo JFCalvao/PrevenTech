@@ -8,6 +8,7 @@ aluno --%> <%@page contentType="text/html" pageEncoding="UTF-8" %>
     <title>Cadastrar</title>
     <link rel="stylesheet" href="css/cadastromaq.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <%@include file="Security/security.jsp" %>
   </head>
 
   <body>
@@ -43,7 +44,7 @@ aluno --%> <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
         <div id="botao-container">
           <button id="cadastro" type="button">CADASTRAR</button>
-          <button type="button" id="cancelar">CANCELAR</button>
+          <button type="button" id="cancelar"<%= userService.getInitialPage() %>">CANCELAR</button>
         </div>
 
         <div id="resposta"></div>
