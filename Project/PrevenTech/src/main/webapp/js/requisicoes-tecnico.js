@@ -36,7 +36,7 @@ function exibirRequisicoesTecnico(data) {
             border = "bolinha-green";
         }
         
-        let maquinas = content.equipamentos.split(',').map(maquina => maquina.trim());
+        let maquinas = content.equipamentos.split('_').map(maquina => maquina.trim());
         
         let dataSplit = content.data.split('_');
         dataSplit[0] = dataSplit[0].replace(/-/g, '/');
@@ -119,19 +119,10 @@ function obterRequisicoesTecnico() {
 obterRequisicoesTecnico();
 
 function aceitarSolicitacao() {
-    const botaoAceitar = $('#botao-aceitar');
+    const botaoAceitar = document.querySelector('#botao-aceitar');
     
-    $('.requisicao .view').click((event) => {
-        // Verifica se o clique foi no botão #botao-aceitar
-        if ($(event.target).is(botaoAceitar)) {
-            if ($('#botao-aceitar').html() === 'Aceito') {
-                return; // Se já for "Aceito", não faz nada
-            }
-            $('#botao-aceitar').html('Aceito'); // Muda o texto para "Aceito"
-        } else {
-            // Aqui você pode colocar o que deve acontecer quando clicar em outros elementos dentro da div
-            console.log("Outro elemento foi clicado dentro da div");
-        }
+    botaoAceitar.addEventListener('click', () => {
+        botaoAceitar.innerHTML = ("Aceito"); 
     });
 }
 
