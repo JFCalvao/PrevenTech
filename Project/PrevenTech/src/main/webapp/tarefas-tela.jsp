@@ -30,7 +30,7 @@
             $(document).ready(function() {
                 function carregarRequisicoes() {
                     $.ajax({
-                        url: 'tecnico',
+                        url: 'Tecnico',
                         type: 'GET',
                         dataType: 'json',
                         success: function(data) {

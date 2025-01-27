@@ -21,7 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 
-@WebServlet("/tecnico")
+@WebServlet(name = "Tecnico", urlPatterns = {"/Tecnico"})
 public class Tecnico extends HttpServlet {
 
     private DatabaseManager databaseManager;
