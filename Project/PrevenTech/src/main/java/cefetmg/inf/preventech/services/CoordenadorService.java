@@ -30,7 +30,7 @@ public class CoordenadorService implements UserService {
         "coordenador.jsp", "estados.jsp", "meus-dados.jsp",
         "solicitacao.jsp", "remover.jsp", "cadastrar-maq.jsp", 
         "historicos.jsp", "requisicoes.jsp", "minhasRequisicoes.jsp", 
-        "chat.jsp"
+        "chat.jsp", "cadastrar-maq.jsp", "remover.js", "estados.jsp"
     );
     
     @Override

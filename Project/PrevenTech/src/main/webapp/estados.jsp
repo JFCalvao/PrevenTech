@@ -11,6 +11,7 @@
             <link rel="shortcut icon" href="imgs/cefet.png" type="image/x-icon">
             <link rel="stylesheet" href="css/estados.css">
             <link rel="stylesheet" href="css/style.css">
+            <%@include file="Security/security.jsp" %>
         </head>
 
         <body>
@@ -51,11 +52,11 @@
                                 </div>
                             </div>
                            <div id="voltar-container">
-                         <button id="voltar">VOLTAR</button>
-                        </div>
-
-                        </div>
                        
+                        </div>
+                           
+                        </div>
+                         <button id="voltar" <%= userService.getInitialPage() %>">VOLTAR</button>
                         </div>
                         </div>
                 </main>

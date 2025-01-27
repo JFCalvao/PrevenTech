@@ -10,6 +10,7 @@
             <title>Remover</title>
             <link rel="stylesheet" href="css/cadastromaq.css">
             <link rel="stylesheet" href="css/style.css">
+            <%@include file="Security/security.jsp" %>
         </head>
 
         <body>
@@ -42,7 +43,7 @@
                         
                         <div id="botao-container">
                     <button id="remove" type="button">REMOVER</button> 
-                    <button type="button" id="cancelar" >CANCELAR</button>
+                    <button type="button" id="cancelar"<%= userService.getInitialPage() %>" >CANCELAR</button>
                     </div>
                     <div id="resposta"></div>
                         
