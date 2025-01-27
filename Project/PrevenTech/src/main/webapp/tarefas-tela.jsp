@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="body">
-                    <!-- As requisições serão carregadas aqui -->
+                    <!-- Requisições serão carregadas aqui dinamicamente -->
                 </div>
             </div>
         </main>
@@ -38,7 +38,7 @@
                                 const requisicoes = data.content;
                                 requisicoes.forEach(function(requisicao) {
                                     let requisicaoHTML = `
-                                        <div class="requisicao">
+                                        <div class="requisicao" id="requisicao-${requisicao.requisicao_id}">
                                             <div class="view">
                                                 <div class="informacoes-basicas">
                                                     <h4>Requisição <span>${requisicao.requisicao_id}</span></h4>
@@ -68,6 +68,11 @@
                                                     <span>${requisicao.descricao}</span>
                                                 </div>
                                             </div>
+                                            <div class="botoes-requisicao">
+                                                <button class="btn" onclick="window.location.href='finalizarSolicitacao.jsp?requisicao_id=${requisicao.requisicao_id}';">Finalizar e Enviar Relatório</button>
+                                                <button class="btn" onclick="window.location.href='tarefas-tela.jsp';">Cancelar</button>
+                                                <button class="btn" onclick="window.location.href='editar-tarefa.jsp?requisicao_id=${requisicao.requisicao_id}';">Editar</button>
+                                            </div>
                                         </div>
                                     `;
                                     $(".requisicoes .body").append(requisicaoHTML);
@@ -82,7 +87,6 @@
                     });
                 }
                 carregarRequisicoes();
-
             });
         </script>
         <script src="js/expandir-retrair-div.js"></script>
