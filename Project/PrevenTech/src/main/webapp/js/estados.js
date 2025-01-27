@@ -28,6 +28,7 @@ function pegarMAQ() {
     ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     ajax.send(request.getRequest());
 }
+pegarMAQ();
 
 function renderizarMaquinas(maquinas) {
     let resposta = document.getElementById('mutavel');
