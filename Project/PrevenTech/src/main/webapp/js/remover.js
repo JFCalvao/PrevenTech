@@ -29,19 +29,8 @@ window.onload = function () {
                     if (response.status === "OK") {
                         maquinas = response.data;
                         let found = false;
-
-                        maquinas.forEach(function (item) {
-                            if (item.n_patrimonio == nPatrimonio) {
-                                document.querySelector("#maquina-cad").value = item.nome;
-                                document.querySelector("#local").value = item.local;
-                                document.querySelector("#estados").value = item.estado;
-                                found = true;
-                            }
-                        });
-
-                        if (!found) {
-                            resposta.innerHTML = "Máquina não encontrada.";
-                        }
+                        console.log(maquinas)
+                        resposta.innerHTML = " Remoção bem sucedida.";
                     } else {
                         resposta.innerHTML = "Erro ao processar a resposta: " + response.error;
                     }

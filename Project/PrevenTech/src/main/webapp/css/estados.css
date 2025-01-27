@@ -170,19 +170,24 @@ img {
     font-weight: bold;
 }
 
-#txt-status {
+#txt-status.defeito {
     color: red;
 }
-
-#status.defeito {
-    border-color: red;
+#txt-status.manutencao {
+    color: blue;
+}
+#txt-status.defeito {
+    color: red;
+}
+#status.funcionamento {
+    border-color: green;
 }
 
 #status.manutencao {
     border-color: blue;
 }
 
-#status.operacional {
+#status.funcionamento {
     border-color: green;
 }
 
