@@ -20,70 +20,71 @@
                 </div>
 
                 <div class="body">
-                    <div class="requisicao">
-                        <div class="view">
-                            <div class="informacoes-basicas">
-                                <h4>Requisição <span id="numero-requisicao">01</span>/<span id="numero-requisicoes">10</span></h4>
-                                <p>Requisitor: Cristiano Amaral Maffort</p>
-                            </div>
-                            <div class="setinha-expandir-retrair"></div>
-                        </div>
-                        <div class="informacoes-expandir escondido">
-                            <div id="linha-requisicao"></div>
-                            <div id="mutavel-1">
-                                <div id="status">
-                                    <span id="cor-status"></span>
-                                    <span id="txt-status">Pendente</span>
-                                </div>
-                                <div id="tecnico">
-                                    <span id="txt-tecnico">Técnico responsável: </span>
-                                    <span id="txt-nome-tecnico">Ninguém</span>
-                                </div>
-                                <div id="data-horario-envio">
-                                    <span id="txt-enviado">Enviado: </span>
-                                    <span id="txt-horario">17:02</span>
-                                    <span id="txt-data"> - 04/10/2024</span>
-                                </div>
-                                <div id="categoria">
-                                    <span id="txt-categoria">Categoria: </span>
-                                    <span id="nome-categoria">Falha nos cabos de conexão</span>
-                                </div>
-                            </div>
-                            <div id="mutavel-2">
-                                <div id="equipamentos">
-                                    <span id="txt-equipamentos">Equipamentos: </span>
-                                    <div class="maquina">
-                                        <div class="informacoes">
-                                            <span id="maquina-cad">Computador Dell</span>
-                                            <span id="n-patrimonio">FNQQVN2</span>
-                                            <p id="local">Local: Sala 107, Prédio 20</p>
-                                            <p id="situacao">Situação: </p> 
-                                        </div>
-                                    </div>
-                                    <div class="linha-maquina"></div>
-                                </div>
-                            </div>
-                            <div id="descricao">
-                                <h5>Descrição</h5>
-                                <span>As máquinas da sala 310 estão com falhas em seus cabos de rede e algumas não estão sendo alimentadas.</span>
-                            </div>
-                            <div id="botoes">
-                                <div id="botoes-menores">
-                                    <button onclick="window.location.href='tarefas-tela.jsp';" id="btn-cancela">CANCELAR</button>
-                                    <button onclick="window.location.href='editar-tarefa.jsp';" id="btn-edita">EDITAR</button>
-                                </div>
-                                <div id="botao-maior">
-                                    <button onclick="window.location.href='finalizarSolicitacao.jsp';" id="btn-finaliza">FINALIZAR E ENVIAR RELATÓRIO</button>
-                                </div>
-                            </div>
-                         
-                            
-                        </div>
-                    </div>
+                    <!-- As requisições serão carregadas aqui -->
                 </div>
             </div>
         </main>
+
         <script src="https://code.jquery.com/jquery-3.6.4.js" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function() {
+                function carregarRequisicoes() {
+                    $.ajax({
+                        url: 'tecnico',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            if (data.status === "OK") {
+                                const requisicoes = data.content;
+                                requisicoes.forEach(function(requisicao) {
+                                    let requisicaoHTML = `
+                                        <div class="requisicao">
+                                            <div class="view">
+                                                <div class="informacoes-basicas">
+                                                    <h4>Requisição <span>${requisicao.requisicao_id}</span></h4>
+                                                    <p>Requisitor: ${requisicao.requisitor_nome}</p>
+                                                </div>
+                                                <div class="setinha-expandir-retrair"></div>
+                                            </div>
+                                            <div class="informacoes-expandir escondido">
+                                                <div id="status">
+                                                    <span id="cor-status"></span>
+                                                    <span id="txt-status">${requisicao.categoriaString}</span>
+                                                </div>
+                                                <div id="tecnico">
+                                                    <span id="txt-tecnico">Técnico responsável: </span>
+                                                    <span id="txt-nome-tecnico">${requisicao.responsavel_nome || 'Ninguém'}</span>
+                                                </div>
+                                                <div id="data-horario-envio">
+                                                    <span id="txt-enviado">Enviado: </span>
+                                                    <span id="txt-horario">${requisicao.data_inicio}</span>
+                                                </div>
+                                                <div id="categoria">
+                                                    <span id="txt-categoria">Categoria: </span>
+                                                    <span id="nome-categoria">${requisicao.categoria}</span>
+                                                </div>
+                                                <div id="descricao">
+                                                    <h5>Descrição</h5>
+                                                    <span>${requisicao.descricao}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                    $(".requisicoes .body").append(requisicaoHTML);
+                                });
+                            } else {
+                                alert("Erro ao carregar as requisições.");
+                            }
+                        },
+                        error: function() {
+                            alert("Erro de conexão com o servidor.");
+                        }
+                    });
+                }
+                carregarRequisicoes();
+
+            });
+        </script>
         <script src="js/expandir-retrair-div.js"></script>
     </body>
 </html>
