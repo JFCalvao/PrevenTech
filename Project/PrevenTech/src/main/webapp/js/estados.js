@@ -1,5 +1,4 @@
 let maquinas = null;
-pegarMAQ();
 
 function pegarMAQ() {
     let nPatrimonio = document.querySelector('#n-patrimonio').value;
@@ -56,8 +55,6 @@ function renderizarMaquinas(maquinas) {
             statusClass = "funcionamento";
             statusText = "Funcionando";
             corStatus = "green";
-            console.log("Status da máquina:", maquina.status);
-
         }
 
         resposta.innerHTML += `
@@ -87,36 +84,24 @@ let nome = document.querySelector("#pesquisar");
 nome.addEventListener('keyup', buscarDados);
 
 function buscarDados() {
-    const nPatrimonio = document.querySelector("#pesquisar").value;
+    const nPatrimonio = document.querySelector("#pesquisar").value.trim();
     let resposta = document.getElementById('mutavel');
 
     if (!nPatrimonio) {
-        renderizarMaquinas(maquinas);  
+        renderizarMaquinas(maquinas); 
         return;
     }
 
-    resposta.innerHTML = "";
-    maquinas.forEach((maquina) => {
-        if (maquina.n_patrimonio == nPatrimonio) {
-            resposta.innerHTML += `<div class='requisicao'> 
-                                    <div class='view'>
-                                        <div class="informacoes-basicas">
-                                            <h4 id="maquina-cad">${maquina.nome}</h4>
-                                            <h4 id="n-patrimonio">${maquina.n_patrimonio}</h4>
-                                            <p id="local">${maquina.local}</p>
-                                        </div>
-                                        <div class="setinha-expandir-retrair"></div>
-                                    </div>
-                                    <div class="informacoes-expandir escondido">
-                                        <div id="linha-requisicao"></div>
-                                        <div id="status" class="${maquina.status}">
-                                            <span id="cor-status" style="border: 7.5px solid ${maquina.status === 'defeito' ? 'red' : maquina.status === 'manutencao' ? 'blue' : 'green'};"></span>
-                                            <span id="txt-status">${maquina.status.charAt(0).toUpperCase() + maquina.status.slice(1)}</span>
-                                        </div>
-                                    </div>
-                                </div>`;
-        }
+    resposta.innerHTML = ""; 
+
+
+    const maquinasFiltradas = maquinas.filter((maquina) => {
+        return maquina.n_patrimonio.includes(nPatrimonio); 
     });
 
-    addEvents();
+    if (maquinasFiltradas.length > 0) {
+        renderizarMaquinas(maquinasFiltradas);
+    } else {
+        resposta.innerHTML = "<p>Nenhuma máquina encontrada para este número de patrimônio.</p>";
+    }
 }
