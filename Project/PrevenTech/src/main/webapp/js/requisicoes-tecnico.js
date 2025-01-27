@@ -52,15 +52,17 @@ function exibirRequisicoesTecnico(data) {
                         <p>Requisitor: ${content.requisitorString}</p>
                     </div>
                     <div class="aceitar-e-setinha">
-                        <button id="botao-aceitar">Aceitar</button>
                         <div class="setinha-expandir-retrair"></div>
                     </div>
                 </div>
                 <div class="informacoes-expandir escondido">
                     <div id="linha-requisicao"></div>
-                    <div id="status">
-                        <span class="cor-status ${border}"></span>
-                        <span class="txt-status ${color}">${content.status}</span>
+                    <div id="status-e-aceitar">
+                        <div id="status">
+                            <span class="cor-status ${border}"></span>
+                            <span class="txt-status ${color}">${content.status}</span>
+                        </div>
+                        <button id="botao-aceitar">Aceitar</button>
                     </div>
                     <div id="tecnico">
                         <span id="txt-tecnico">Técnico responsável: </span>
@@ -114,11 +116,14 @@ function obterRequisicoesTecnico() {
     });
 }
 
+obterRequisicoesTecnico();
+
 function aceitarSolicitacao() {
-    obterRequisicoesTecnico();
+    const botaoAceitar = $('#botao-aceitar');
+    
     $('.requisicao .view').click((event) => {
         // Verifica se o clique foi no botão #botao-aceitar
-        if ($(event.target).is('#botao-aceitar')) {
+        if ($(event.target).is(botaoAceitar)) {
             if ($('#botao-aceitar').html() === 'Aceito') {
                 return; // Se já for "Aceito", não faz nada
             }

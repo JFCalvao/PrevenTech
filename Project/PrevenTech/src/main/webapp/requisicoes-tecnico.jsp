@@ -14,6 +14,7 @@
         <link rel="shortcut icon" href="imgs/cefet.png" type="image/x-icon">
         <link rel="stylesheet" href="css/requisicoes.css">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/requisicoesTecnico.css">
     </head>
     <body>
         <%@include file="header.jsp" %>

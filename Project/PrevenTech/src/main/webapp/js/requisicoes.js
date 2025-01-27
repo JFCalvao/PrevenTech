@@ -30,6 +30,7 @@ function exibirRequisicoes(data) {
             border = "bolinha-green";
         }
         
+        
         let maquinas = content.equipamentos.split('_').map(maquina => maquina.trim());
         
         let dataSplit = content.data.split('_');

@@ -29,3 +29,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     font-family: 'Open Sans';
     font-size: 32px;
 }
+
+#status-e-aceitar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    height: 90%;
+}

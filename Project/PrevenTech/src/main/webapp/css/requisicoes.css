@@ -303,11 +303,9 @@ body {
     }
 }
 
-.aceitar-e-setinha {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
+#botao-aceitar {
+    margin-top: 1.15%;
+    cursor: pointer;
 }
 
 #voltar-area {
