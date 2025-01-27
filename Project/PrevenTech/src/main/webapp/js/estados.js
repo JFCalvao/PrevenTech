@@ -44,11 +44,11 @@ function renderizarMaquinas(maquinas) {
         let statusText = "";
         let corStatus = "";
 
-        if (maquina.status === "defeito") {
+        if (maquina.estado === "defeito") {
             statusClass = "defeito";
             statusText = "Defeito";
             corStatus = "red";
-        } else if (maquina.status === "manutencao") {
+        } else if (maquina.estado === "manutencao") {
             statusClass = "manutencao";
             statusText = "Manutenção";
             corStatus = "blue";
