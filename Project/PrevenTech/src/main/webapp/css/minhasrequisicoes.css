@@ -5,7 +5,7 @@ main {
     height: 80%;
     margin-top: 5%;
     flex-direction: column;
-    gap: 7px;
+    gap: 10px;
 }
 
 .minhas-requisicoes h3 {
@@ -36,7 +36,6 @@ main {
     height: 70vh;
     overflow-y: scroll;
     overflow-x: hidden;
-    margin-bottom: 100px;
 }
 
 .linha-titulo {
@@ -281,6 +280,7 @@ body {
 #chat {
     display: flex;
     align-items: center;
+    margin-right: 10px;
 }
 
 #img-chat {
@@ -442,4 +442,19 @@ body {
     .maquina {
         width: 90%;
     }
+}
+
+#voltar-area {
+    height: auto;
+    width: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 50px;
+    background-color: #004aad;
+}
+
+#voltar-link {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
 }

@@ -30,7 +30,7 @@ function exibirRequisicoes(data) {
             border = "bolinha-green";
         }
         
-        let maquinas = content.equipamentos.split(',').map(maquina => maquina.trim());
+        let maquinas = content.equipamentos.split('_').map(maquina => maquina.trim());
         
         let dataSplit = content.data.split('_');
         dataSplit[0] = dataSplit[0].replace(/-/g, '/');
