@@ -74,7 +74,7 @@
                 json.setType("HS");
                 json.setData({
                     "file": fileContent,
-                    "requisicao_id": "<%= requisicaoId %>" // Adiciona o requisicao_id aqui
+                    "requisicao_id": "<%= requisicaoId %>" 
                 });
 
                 ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

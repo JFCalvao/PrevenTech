@@ -1,5 +1,8 @@
 package cefetmg.inf.preventech.servers;
 
+import cefetmg.inf.preventech.Exceptions.EncryptationException;
+import cefetmg.inf.preventech.Exceptions.NoSuchCategoriaException;
+import cefetmg.inf.preventech.Exceptions.NoSuchTableException;
 import cefetmg.inf.preventech.dao.RequisicaoDAO;
 import cefetmg.inf.preventech.dto.Requisicao;
 import cefetmg.inf.preventech.dto.User;
@@ -18,6 +21,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -94,13 +98,11 @@ public class Tecnico extends HttpServlet {
             try (PrintWriter out = response.getWriter()) {
                 out.write("{\"error\": \"Erro ao acessar o banco de dados\"}");
             }
-            e.printStackTrace();
-        } catch (Exception e) {
+        } catch (EncryptationException | NoSuchCategoriaException | NoSuchTableException | JSONException e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             try (PrintWriter out = response.getWriter()) {
                 out.write("{\"error\": \"Erro interno\"}");
             }
-            e.printStackTrace();
         }
     }
     
