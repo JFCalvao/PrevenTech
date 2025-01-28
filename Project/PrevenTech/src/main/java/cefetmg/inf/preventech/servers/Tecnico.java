@@ -103,4 +103,16 @@ public class Tecnico extends HttpServlet {
             e.printStackTrace();
         }
     }
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String requisitor = request.getParameter("requisitor");
+        String status = request.getParameter("status");
+        String nomeTecnico = request.getParameter("nomeTecnico");
+        String dataHora = request.getParameter("dataHora");
+        String categoria = request.getParameter("categoria");
+
+        String[] partesRequisitor = requisitor.split(":");
+        requisitor = partesRequisitor[1].trim();
+    }
 }

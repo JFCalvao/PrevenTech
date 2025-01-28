@@ -49,7 +49,7 @@ function exibirRequisicoesTecnico(data) {
                 <div class='view'>
                     <div class="informacoes-basicas">
                         <h4>Requisição ${dataEnvio}</h4>
-                        <p>Requisitor: ${content.requisitorString}</p>
+                        <p>Requisitor: <span id="nome-responsavel">${content.requisitorString}</span></p>
                     </div>
                     <div class="aceitar-e-setinha">
                         <div class="setinha-expandir-retrair"></div>
@@ -93,6 +93,7 @@ function exibirRequisicoesTecnico(data) {
     }
     
     addEvents();
+    aceitarSolicitacao();
 }
 
 function obterRequisicoesTecnico() {
@@ -111,6 +112,7 @@ function obterRequisicoesTecnico() {
         success:(data) => {
             $('.body').html('');
             $('.body').removeClass('carregando');
+            //console.log(data);
             exibirRequisicoesTecnico(data);
         }
     });
@@ -119,11 +121,41 @@ function obterRequisicoesTecnico() {
 obterRequisicoesTecnico();
 
 function aceitarSolicitacao() {
-    const botaoAceitar = document.querySelector('#botao-aceitar');
-    
-    botaoAceitar.addEventListener('click', () => {
-        botaoAceitar.innerHTML = ("Aceito"); 
+    const requisicoesBody = document.querySelector('.requisicoes .body');
+
+    requisicoesBody.addEventListener('click', (event) => {
+        if (event.target && event.target.id === 'botao-aceitar') 
+            if (event.target.innerHTML !== 'Aceito') 
+                event.target.innerHTML = 'Aceito';
+        
+        const requisicao = event.target.closest('.requisicao');  // Encontrar o contêiner da requisição
+
+        const requisitor = requisicao.querySelector('#nome-responsavel').innerHTML;
+        const status = requisicao.querySelector('.txt-status').innerHTML;
+        const nomeTecnico = requisicao.querySelector('#txt-nome-tecnico').innerHTML;
+        const dataHora = requisicao.querySelector('#txt-data').innerHTML;
+        const categoria = requisicao.querySelector('#nome-categoria').innerHTML;
+        
+        const json = JSON.stringify({
+                requisitor: requisitor,
+                status: status,
+                nomeTecnico: nomeTecnico,
+                dataHora: dataHora,
+                categoria: categoria
+            });
+
+        $.ajax({
+            url: 'Tecnico',
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: json,
+            success: (resposta) => {
+                console.log(resposta);
+            },
+            error: (erro) => {
+                console.error('Erro ao aceitar solicitação:', erro);
+            }
+        });
     });
 }
-
-aceitarSolicitacao();

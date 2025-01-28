@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="css/requisicoesTecnico.css">
     </head>
     <body>
+        <%@include file="Security/security.jsp" %>
         <%@include file="header.jsp" %>
 
         <main>
