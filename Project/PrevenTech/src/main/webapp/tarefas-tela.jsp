@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="cefetmg.inf.preventech.dao.EquipamentoDAO"%>
+<%@page import="cefetmg.inf.preventech.dto.Equipamento"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

@@ -1,387 +1,196 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 7 de jan. de 2025, 11:09:31
-    Author     : Aluno
-*/
+/* Responsividade geral */
+@media (max-width: 1200px) {
+    #titulo {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 
-#btn-finaliza {
-    position: auto;
-    border-radius: 15px;
-    font-size: larger;
-    width: 85%;
-    height: 5vh;
-    background-color: #004aad;
-    font-size: 80%;
-     font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 2vw;
-}
-#btn-cancela {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: larger;
-    border-radius: 15px;
-    height: 5vh;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    color:black;
-    margin-top: 1vw;
-    background-color: #a6a6a6;
-    width: 40%;
-    margin-left: 0.8vw;
-}
-#btn-edita {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: larger;
-    border-radius: 15px;
-    height: 5vh;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    color: white;
-    margin: 0;
-    background-color: #004aad;
-    width: 40%;
-}
-#botoes-menores {
-    display: flex;
-    flex-direction: row;
-    gap: 2px;
-    margin-left: 15vw;
-    align-items: baseline;    
-    margin-top: 8px;
-}
-#botao-maior {
-  width: 66vw;
-  margin-left: 15.7vw;
-}
-#botoes {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
+    .requisicoes {
+        width: 95%;
+        height: auto;
+        margin-top: 20px;
+        padding: 10px;
+    }
+
+    .requisicao {
+        margin: 10px;
+    }
+
+    .requisicao .view {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .informacoes-basicas {
+        margin-left: 0;
+    }
+
+    .botoes-requisicao {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
 
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80%;
-    margin-top: 5%;
-    border-radius: 15px;
+@media (max-width: 992px) {
+    main {
+        flex-direction: column;
+        margin-top: 2%;
+        height: auto;
+    }
+
+    .requisicoes {
+        width: 100%;
+        margin: 0;
+    }
+
+    #linha-titulo {
+        width: 100%;
+    }
+
+    #botoes-menores {
+        margin-left: 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    #botao-maior {
+        margin-left: 0;
+        width: 100%;
+    }
 }
 
-.requisicoes h3 {
-    font-size: 32px;
-    color: #004aad;
-    font-family: 'Open Sans';
-    margin-right: 10px;
+@media (max-width: 768px) {
+    body {
+        overflow-y: auto;
+    }
+
+    .requisicoes h3 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .requisicao .view {
+        padding: 10px;
+    }
+
+    .setinha-expandir-retrair {
+        margin-right: 0;
+    }
+
+    .requisicao {
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    #descricao {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .botoes-requisicao {
+        gap: 5px;
+    }
 }
 
-#titulo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    width: 97%;
-    height: 15%;
-    margin-left: 20px;
-    margin-right: 20px;
-    gap: 10px;
+@media (max-width: 576px) {
+    #header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    #project-title {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    #imgcefet {
+        width: 80px;
+        height: 80px;
+    }
+
+    #titulo {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    #linha-titulo {
+        height: 2px;
+    }
+
+    .requisicoes {
+        width: 100%;
+        margin: 0;
+        padding: 5px;
+    }
+
+    .requisicao {
+        margin: 5px;
+        padding: 5px;
+    }
+
+    .informacoes-basicas h4 {
+        font-size: 14px;
+    }
+
+    .informacoes-basicas p {
+        font-size: 12px;
+    }
+
+    .botoes-requisicao button {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    .modal-conteudo {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .modal {
+        padding: 10px;
+    }
 }
 
+/* Adições gerais para responsividade */
 .requisicoes {
     display: flex;
     flex-direction: column;
-    background-color: white;
-    border-radius: 15px;
-    width: 97%;
-    height: 75vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    margin-top: -60px;
-}
-
-#linha-titulo {
-    flex-grow: 1;
-    height: 3px;
-    background-color:#004aad;
-    border-width: 5px;
+    gap: 15px;
 }
 
 .requisicao {
     display: flex;
     flex-direction: column;
-    background-color: #c4f1ff;
-    margin: 20px;
-}
-
-.requisicao .view {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #c4f1ff;
-    cursor: pointer;
-}
-
-.informacoes-basicas {
-    margin-left: 5px;
-}
-
-.informacoes-basicas h4 {
-    font-family: 'Open Sans';
-    color: #004aad;
-    font-size: 17.2px;
-    margin-bottom: 5px;
-    margin-top: 0;
-}
-
-.informacoes-basicas p {
-    font-family: 'Open Sans';
-    color: #004aad;
-    font-size: 13px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.setinha-expandir-retrair {
-    width: 20px;
-    height: 20px;
-    border-top: 3px solid #004aad;
-    border-right: 3px solid #004aad;
-    transform: rotate(45deg);
-    margin-right: 10px;
-    cursor: pointer;
-    display: flex;
-}
-
-@keyframes girarParaBaixo {
-    from {
-        transform: rotate(45deg);
-    }
-    to {
-        transform: rotate(135deg);
-    }
-}
-
-@keyframes girarDeVolta {
-    from {
-        transform: rotate(135deg);
-    }
-    to {
-        transform: rotate(45deg);
-    }
-}
-
-.girar-setinha-para-baixo {
-    animation: girarParaBaixo 0.5s ease 0s 1 normal forwards;
-}
-
-.girar-setinha-para-posicao-normal {
-    animation: girarDeVolta 0.5s ease 0s 1 normal forwards;
-}
-
-.informacoes-expandir {
-    width: 90%;
-    margin-left: 24px;
-}
-
-#linha-requisicao {
-    height: 2.5px;
-    background-color:#4780cc;
-    border-width: 5px;
-    position: relative;
-    bottom: -5px;
-    left: -19px;
-    width: 109.5%;
-}
-
-#cor-status {
-    border: 7.5px solid red;
-    border-radius: 50%;
-}
-
-#status {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 17px;
-    gap: 4px;
-    margin-top: 10px;
-}
-
-#tecnico,
-#data-horario-envio,
-#categoria,
-#equipamentos,
-#status {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-#txt-tecnico,
-#txt-enviado,
-#txt-categoria,
-#txt-equipamentos {
-    color: #004aad;
-}
-
-#txt-nome-tecnico,
-#txt-horario,
-#txt-data,
-#nome-categoria {
-    color: #4780cc;
-}
-
-#txt-status {
-    color: red;
-}
-
-
-#equipamentos {
-    display: flex;
-    flex-direction: row;
     gap: 10px;
-    align-items: baseline;
-    background-color: #c4f1ff;
 }
 
-#numero-das-maquinas {
+.botoes-requisicao {
     display: flex;
     flex-direction: row;
-    gap: 15px;
-    font-size: 11.5px;
-}
-
-#numero-das-maquinas span {
-    background-color: white;
-    padding: 2px;
-    border-radius: 7.5px;
-}
-
-#descricao {
-    font-family: 'Open Sans', sans-serif;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-bottom: 5px;
-    margin-top: 4px;
-    padding-left: 4px;
-    border-radius: 10px;
-}
-
-#descricao h5 {
-    font-size: 15px;
-    margin: 2px; 
-    
-}
-
-#descricao span {
-    font-size: 12px;
-    margin-left: 2px;
-}
-
-.requisicao .informacoes-expandir {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    padding-bottom: 10px;
-}
-
-body {
-    overflow-y: hidden;
-}
-
-@keyframes expandir {
-    0% {
-        opacity: 0;
-        max-height: 0;
-    }
-    100% {
-        opacity: 1;
-        max-height: 100%;
-    }
-}
-
-div .expandir {
-    animation: expandir 1s ease 0s 1 normal forwards;
-}
-
-#equipamentos {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    
-}
-
-.maquina #informacoes {
-    display: flex;
-    flex-direction: row;
-    gap: 5%;
+    justify-content: space-between;
     align-items: center;
-   
 }
 
-.maquina #nome {
-    color: #004aad;
+.modal-conteudo {
+    max-width: 500px;
+    margin: auto;
+}
+
+button {
+    padding: 10px;
+    border-radius: 5px;
     font-size: 16px;
 }
 
-.maquina #local {
-    font-size: 14.1px;
-    color: #004aad;
-}
-
-.maquina #situacao {
-    color: #4780cc;
-}
-
-#numero-nome {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-}
-
-.maquina {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    background-color: #e1f8ff;
-    padding: 1%;
-    width: 80%;
- 
-}
-
-.maquina #numero {
-    background-color: white;
-    padding: 2px;
-    border-radius: 7.5px;
-    font-size: 10.4px;
-    margin-left: 2px;
-    margin-top: 2px;
-}
-
-.linha-maquina {
-    height: 2.5px;
-    background-color:#4780cc;
-    opacity: 0.5;
-}
-
-
-#botao-chat {
-    font-size: 1px;
-}
-.maquina,
-#numero,
-#numero-nome,
-#situacao {
-    margin-right: 15vw;
+#novo-estado {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
 }

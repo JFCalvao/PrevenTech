@@ -1,0 +1,92 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    height: 100%;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    height: auto;
+    width: clamp(290px, 80%, 1000px);
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#form-header {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#form-title {
+    margin: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: #004aad;
+}
+
+#form-header line {
+    height: 5px;
+    flex-grow: 1;
+    background-color: #004aad;
+    border-radius: 15px;
+    display: block;
+}
+
+#opcoes-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#opcoes {
+    list-style: none;
+    align-items: center;
+}
+
+#opcoes .opcao {
+    margin-top: 15px;
+    background-color: #3498db; 
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2), 
+                0px 7px 13px rgba(0, 0, 0, 0.2); 
+}
+
+#opcoes .opcao:last-child {
+    margin-bottom: 15px;
+}
+
+
+#opcoes .opcao:hover {
+    background-color: #004aad;
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3), 
+              0px 10px 20px rgba(0, 0, 0, 0.3); 
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
