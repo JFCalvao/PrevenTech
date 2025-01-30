@@ -26,13 +26,12 @@ import java.util.List;
  *
  * @author jfcalvao
  */
-public class MensagensDAO implements CRUD<Mensagem, Integer>, GenericDAO<Mensagem, Integer>, EntityExistenceChecker<Mensagem> {
+public class MensagemDAO implements GenericDAO<Mensagem, Integer>, EntityExistenceChecker<Mensagem> {
     @Override
     public void create(Mensagem msg) throws SQLException, EncryptationException {
         Connection connection = DatabaseManager.getConnection();
         String values = DataManager.formatMensagem(msg);
         String sql = "INSERT INTO `mensagens` (`id`, `user`, `conteudo`) VALUES(" + values + ")";
-        
         PreparedStatement pstmt = connection.prepareStatement(sql); 
         pstmt.executeUpdate(); 
         connection.close();

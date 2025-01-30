@@ -12,7 +12,12 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/chat.css">
         <%@include file="Security/security.jsp" %>
-        <script> const username = "<%= userService.getNome() %>"; </script>
+        <script> 
+            const initialPage = "<%= userService.getInitialPage() %>";
+            const username = "<%= userService.getNome() %>"; 
+            const userCPF = "<%= userService.getCPF() %>";
+            const id = "1";
+        </script>
         <script src="js/chat.js" defer ></script>
         <title>JSP Page</title>
     </head>
@@ -22,13 +27,7 @@
             <div class="chat-container">
                 <div class="chat-box" id="chatBox">
                     <!-- Aqui as mensagens serão exibidas -->
-                    <div class="message incoming">
-                        <p><span>User 1:</span> Olá! Como você está?</p>
-                    </div>
-                    <div class="message outgoing">
-                        <div class="lateral-bar" ></div>
-                        <p><span>User 2:</span> Estou bem, obrigado! E você?</p>
-                    </div>
+                    
                 </div>
                 <div class="input-box">
                     <input spellcheck="false" autocomplete="off" type="text" id="message" placeholder="Digite sua mensagem...">

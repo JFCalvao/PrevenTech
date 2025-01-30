@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
-<%@ page import="cefetmg.inf.preventech.dao.Equipamento" %>
+<%@ page import="cefetmg.inf.preventech.dto.Equipamento" %>
 <%@ page import="cefetmg.inf.preventech.util.DatabaseManager" %>
-<%@ page import="cefetmg.inf.preventech.dao.Requisicao" %>
+<%@ page import="cefetmg.inf.preventech.dto.Requisicao" %>
 
 <!DOCTYPE html>
 <html>
@@ -16,7 +16,6 @@
     Requisicao requisicao = (Requisicao) request.getAttribute("requisicao");
     if (requisicao == null) {
         response.sendRedirect("erro.jsp");
-        return;
     }
 
     List<Equipamento> equipamentos = DatabaseManager.getAllEquipamentos();

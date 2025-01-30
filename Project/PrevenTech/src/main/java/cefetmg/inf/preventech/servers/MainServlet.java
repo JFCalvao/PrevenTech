@@ -217,7 +217,7 @@ public class MainServlet extends HttpServlet {
                     if(!Encryption.encrypt(usuarioLogin.getSenha()).equals(usuario.getSenha()))
                         throw new Exception("Dados de login invalidos");
 
-                    HttpSession session = request.getSession();
+                    HttpSession session = request.getSession(true);
                     usuario.setServer(session);
                     session.setAttribute("usuario", usuario);
                     UsersList.add(usuario);

@@ -28,6 +28,21 @@ public class Requisicao {
         this.responsavelString = null;
         this.requisitorString = null;
         this.status = null;
+    }
+    
+    public Requisicao(String requisicao_id, String requisitor_cpf,
+                      String responsavel_cpf, int categoria,
+                      String equipamentos, String descricao) {
+        this.requisicao_id = requisicao_id;
+        this.requisitor_cpf = requisitor_cpf;
+        this.responsavel_cpf = responsavel_cpf;;
+        this.categoria = categoria;
+        this.equipamentos = equipamentos;
+        this.descricao = descricao;
+        this.categoriaString = null;
+        this.responsavelString = null;
+        this.requisitorString = null;
+        this.status = null;
         
         ZoneId fusoHorarioBrasil = ZoneId.of("America/Sao_Paulo"); 
         ZonedDateTime dataHoraBrasil = ZonedDateTime.now(fusoHorarioBrasil); 
@@ -40,8 +55,12 @@ public class Requisicao {
         this.data_inicio = dia + "-" + mes + "-" + ano + "_" + horas + "-" + minutos;
     }
     
+    public Requisicao(String id) {
+        this(id, null, null, -1, null, null);
+    }
+    
     public Requisicao() {
-        this(null, null, null, null, -1, null, null);
+        this(null, null, null, -1, null, null);
     }
     
     String requisicao_id;

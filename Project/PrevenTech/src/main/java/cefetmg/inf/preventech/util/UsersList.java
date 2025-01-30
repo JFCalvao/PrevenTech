@@ -39,6 +39,15 @@ public class UsersList {
         return null;
     }
     
+    public static User get(String cpf) {
+        for(User user : Users) {
+            if(cpf.equals(user.getCPF())) {
+                return user;
+            }
+        }
+        return null;
+    }
+    
     public static void remove(HttpSession session) {
         for(User user : Users) {
             if(user.getServer() == session) {
@@ -50,6 +59,14 @@ public class UsersList {
     public static void remove(Session session) {
         for(User user : Users) {
             if(user.getChat() == session) {
+                Users.remove(user);
+            }
+        }
+    }
+    
+    public static void remove(String cpf) {
+        for(User user : Users) {
+            if(cpf.equals(user.getCPF())) {
                 Users.remove(user);
             }
         }

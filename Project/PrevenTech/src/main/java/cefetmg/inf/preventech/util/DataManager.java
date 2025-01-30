@@ -119,7 +119,7 @@ public class DataManager {
         String mensagem = msg.getMensagem();
         mensagem = Encryption.encrypt(mensagem);
         
-        return "'" + id + "'," +
+        return "" + id + "," +
                "'" + user + "'," +
                "'" + mensagem + "'";
     }

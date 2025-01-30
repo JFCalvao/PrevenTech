@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="cefetmg.inf.preventech.services.ProfessorService" %>
+<%@ page import="cefetmg.inf.preventech.util.Logout" %>
 <%@taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -36,6 +37,7 @@
                         <a href="historicos.jsp"><li class="opcao">Ver Histórico</li></a>
                         <a href="requisicoes.jsp"><li class="opcao">Ver todas as requisições</li></a>
                         <a href="minhasRequisicoes.jsp"><li class="opcao">Ver minhas requisições</li></a>
+                        <a href="Logout"><li class="opcao">Logout</li></a>
                     </lista>
                 </section>
             </div>
