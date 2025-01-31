@@ -57,7 +57,7 @@ function exibirRequisicoesTecnico(data) {
                             <span class="cor-status ${border}"></span>
                             <span class="txt-status ${color}">${content.status}</span>
                         </div>
-                        <button id="botao-aceitar" class="${content.status === "Em andamento" ? 'red' : 'green'}">${content.status === "Em andamento" ? 'Aceito' : 'Aceitar'}</button>
+                        <button id="botao-aceitar" class="${content.status === "Em andamento" ? 'aceito' : 'aceitar'}">${content.status === "Em andamento" ? 'Aceito' : 'Aceitar'}</button>
                     </div>
                     <div id="tecnico">
                         <span id="txt-tecnico">Técnico responsável: </span>
@@ -145,12 +145,9 @@ function aceitarSolicitacao() {
             success: (data) => {
                 $('#txt-nome-tecnico').html(data.nomeTecnico);
                 $('.txt-status').html(data.status);
+                event.target.innerHTML = 'Aceito';
             }
         });
-        
-        if (event.target.innerHTML !== 'Aceito') 
-            event.target.innerHTML = 'Aceito';
-        
     });
 }
 

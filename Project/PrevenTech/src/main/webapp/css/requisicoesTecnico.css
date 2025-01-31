@@ -37,3 +37,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     align-items: baseline;
     height: 90%;
 }
+
+.aceito {
+    background-color: red !important;
+}
+
+.aceitar {
+    background-color: #4ab280 !important;
+}
