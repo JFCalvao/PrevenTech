@@ -33,6 +33,7 @@
                         <a href="historicos.jsp"><li class="opcao">Histórico</li></a>
                         <a href="requisicoes-tecnico.jsp"><li class="opcao">Todas Requisições</li></a>
                         <a href="tarefas-tela.jsp"><li class="opcao">Minhas Requisições</li></a>
+                        <a href="Logout"><li class="opcao">Logout</li></a>
                     </lista>
                 </section>
             </div>
