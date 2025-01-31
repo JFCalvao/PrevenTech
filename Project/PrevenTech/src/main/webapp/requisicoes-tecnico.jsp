@@ -19,6 +19,10 @@
     <body>
         <%@include file="Security/security.jsp" %>
         <%@include file="header.jsp" %>
+        
+        <script>
+            const cpfTecnico = "<%= userService.getCPF() %>";
+        </script>
 
         <main>
             <div class="requisicoes">

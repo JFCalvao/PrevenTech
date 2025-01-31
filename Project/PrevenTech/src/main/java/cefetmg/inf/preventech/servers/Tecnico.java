@@ -7,6 +7,8 @@ import cefetmg.inf.preventech.dao.RequisicaoDAO;
 import cefetmg.inf.preventech.dto.Requisicao;
 import cefetmg.inf.preventech.dto.User;
 import cefetmg.inf.preventech.util.DataManager;
+import cefetmg.inf.preventech.util.Encryption;
+import cefetmg.inf.preventech.util.Categorias;
 import cefetmg.inf.preventech.util.DatabaseManager;
 import cefetmg.inf.preventech.util.UsersList;
 import jakarta.servlet.ServletException;
@@ -106,15 +108,39 @@ public class Tecnico extends HttpServlet {
         }
     }
     
+    
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String requisitor = request.getParameter("requisitor");
-        String status = request.getParameter("status");
-        String nomeTecnico = request.getParameter("nomeTecnico");
-        String dataHora = request.getParameter("dataHora");
-        String categoria = request.getParameter("categoria");
-
-        String[] partesRequisitor = requisitor.split(":");
-        requisitor = partesRequisitor[1].trim();
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        
+        JSONObject jsonResponse = new JSONObject();
+        try {
+            String cpfTecnico = request.getParameter("cpfTecnico");
+            String id = request.getParameter("id");
+            
+            
+            RequisicaoDAO dao = new RequisicaoDAO();
+            Requisicao requisicao = dao.search(id);
+            
+            if(requisicao.getResponsavel_cpf().equals(""))
+                requisicao.setResponsavel_cpf(cpfTecnico);
+            
+            User user = DatabaseManager.searchUsuario(requisicao.getResponsavel_cpf());
+            requisicao.setResponsavelString(user.getNome());
+            requisicao.setStatus("Em andamento");
+            dao.update(requisicao);
+            
+            jsonResponse.put("nomeTecnico", requisicao.getResponsavelString());
+            jsonResponse.put("status", requisicao.getStatus());
+        }
+        catch(Exception e) {
+            jsonResponse.put("erro", e.getMessage());
+        }
+        finally {
+            response.setContentType("application/json");
+            try (PrintWriter out = response.getWriter()) {
+                out.print(jsonResponse);
+            }
+        }
     }
 }

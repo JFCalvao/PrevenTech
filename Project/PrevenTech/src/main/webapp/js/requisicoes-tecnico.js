@@ -13,11 +13,6 @@ function exibirRequisicoesTecnico(data) {
         return;
     }
     
-    if(data.error !== "NOERROR") {
-        bodyRequisicoesEl.classList.add('erro');
-        bodyRequisicoesEl.innerHTML = data.error;
-        return;
-    }
     
     for(let i = 0; i < data.content.length; i++) {
         let content = data.content[i];
@@ -45,7 +40,7 @@ function exibirRequisicoesTecnico(data) {
         let dataStr = dataSplit.join(' - ');
         
         bodyRequisicoesEl.innerHTML += `
-            <div class="requisicao">
+            <div class="requisicao" data-id="${content.id}">
                 <div class='view'>
                     <div class="informacoes-basicas">
                         <h4>Requisição ${dataEnvio}</h4>
@@ -62,7 +57,7 @@ function exibirRequisicoesTecnico(data) {
                             <span class="cor-status ${border}"></span>
                             <span class="txt-status ${color}">${content.status}</span>
                         </div>
-                        <button id="botao-aceitar">Aceitar</button>
+                        <button id="botao-aceitar" class="${content.status === "Em andamento" ? 'red' : 'green'}">${content.status === "Em andamento" ? 'Aceito' : 'Aceitar'}</button>
                     </div>
                     <div id="tecnico">
                         <span id="txt-tecnico">Técnico responsável: </span>
@@ -93,7 +88,6 @@ function exibirRequisicoesTecnico(data) {
     }
     
     addEvents();
-    aceitarSolicitacao();
 }
 
 function obterRequisicoesTecnico() {
@@ -103,7 +97,7 @@ function obterRequisicoesTecnico() {
     request.setData({});
     
     $.ajax ({
-        url: 'MainServlet?' + request.getRequest(),
+        url: 'RequisicaoServlet?' + request.getRequest(),
         dataType: 'json',
         beforeSend:() => {
             $('.body').html('Carregando...');
@@ -124,38 +118,40 @@ function aceitarSolicitacao() {
     const requisicoesBody = document.querySelector('.requisicoes .body');
 
     requisicoesBody.addEventListener('click', (event) => {
-        if (event.target && event.target.id === 'botao-aceitar') 
-            if (event.target.innerHTML !== 'Aceito') 
-                event.target.innerHTML = 'Aceito';
+        if (event.target && event.target.id !== 'botao-aceitar')
+            return;
         
         const requisicao = event.target.closest('.requisicao');  // Encontrar o contêiner da requisição
 
         const requisitor = requisicao.querySelector('#nome-responsavel').innerHTML;
+        const id = requisicao.getAttribute('data-id');
         const status = requisicao.querySelector('.txt-status').innerHTML;
-        const nomeTecnico = requisicao.querySelector('#txt-nome-tecnico').innerHTML;
         const dataHora = requisicao.querySelector('#txt-data').innerHTML;
         const categoria = requisicao.querySelector('#nome-categoria').innerHTML;
         
-        const json = JSON.stringify({
-                requisitor: requisitor,
-                status: status,
-                nomeTecnico: nomeTecnico,
-                dataHora: dataHora,
-                categoria: categoria
-            });
-
+        if(status === 'Em andamento')
+           return;
+        
+        console.log(requisitor);
+        
         $.ajax({
             url: 'Tecnico',
             type: 'POST',
-            contentType: 'application/json',
             dataType: 'json',
-            data: json,
-            success: (resposta) => {
-                console.log(resposta);
+            data: {
+                id: id,
+                cpfTecnico: cpfTecnico,
             },
-            error: (erro) => {
-                console.error('Erro ao aceitar solicitação:', erro);
+            success: (data) => {
+                $('#txt-nome-tecnico').html(data.nomeTecnico);
+                $('.txt-status').html(data.status);
             }
         });
+        
+        if (event.target.innerHTML !== 'Aceito') 
+            event.target.innerHTML = 'Aceito';
+        
     });
 }
+
+aceitarSolicitacao();

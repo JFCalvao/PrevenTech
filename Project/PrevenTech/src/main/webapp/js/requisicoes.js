@@ -92,7 +92,7 @@ function obterRequisicoes() {
     request.setData({});
     
     $.ajax ({
-        url: 'MainServlet?' + request.getRequest(),
+        url: 'RequisicaoServlet?' + request.getRequest(),
         dataType: 'json',
         beforeSend:() => {
             $('.body').html('Carregando...');

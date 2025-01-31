@@ -28,7 +28,7 @@ public class TecnicoService implements UserService {
     
     private final List<String> access = List.of(
         "tecnico.jsp", "tarefas-tela.jsp", "finalizarSolicitacao.jsp",
-        "meus-dados.jsp", "chat.jsp"
+        "meus-dados.jsp", "chat.jsp", "requisicoes-tecnico.jsp"
     );
     
     @Override
