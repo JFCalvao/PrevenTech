@@ -145,7 +145,13 @@ function aceitarSolicitacao() {
             success: (data) => {
                 $('#txt-nome-tecnico').html(data.nomeTecnico);
                 $('.txt-status').html(data.status);
+                event.target.classList.remove("aceitar");
+                event.target.classList.add("aceito");
                 event.target.innerHTML = 'Aceito';
+                $('.cor-status').removeClass('bolinha-red');
+                $('.txt-status').removeClass('red');
+                $('.cor-status').addClass('bolinha-blue');
+                $('.txt-status').addClass('blue');
             }
         });
     });
