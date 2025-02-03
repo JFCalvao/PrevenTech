@@ -2,50 +2,45 @@ html {
     overflow: hidden !important;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+}
+
 #login {
     display: flex;
+    flex-direction: column; /* Para garantir que os itens fiquem em coluna */
     background: rgba(255, 255, 255, 0.6);
-    padding-top: 3%;
-    align-items: center;
-    justify-content: center;
-    width: 20%;
-    padding: 5%;
-    width: 40vh;
-    height: 30vh;
-    /*! top: 9.0rem; */
+    align-items: center; /* Centraliza o conteúdo no eixo horizontal */
+    justify-content: center; /* Centraliza o conteúdo no eixo vertical */
+    width: auto;
+    height: auto;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
     border-radius: 25px;
     position: relative;
-    /*! bottom: 0%; */
-    /*! left: 50%; */
-    z-index: 1;
-    /*! transform: translate(-50%, -50%); */
-    grid-template-columns: max-content;
-    grid-area: login;
     margin: 0 auto;
 }
+
 #semi-circulo {
     position: relative;
-    /*! left: 50%; */
-    /*! top: 85%; */
-    /*! transform: translate(-50%, -50%); */
     width: 23vh;
-    height: 100%;
+    height: clamp(50px, 20vh, 120px);
     background: rgba(255, 255, 255, 0.6);
-    /* opacity: 50%; */
     z-index: 2;
     border-radius: 150px 150px 0 0;
-    grid-area: semi-circulo;
-    /*! bottom: 0rem; */
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #img-login {
     opacity: 100% !important;
-    display: flex;
-    height: 100%;
-    margin: auto;
-    top: 2.3rem;
+    height: 90%;
     position: relative;
+    top: 10%;
     z-index: 2 !important;
 }
 
@@ -56,10 +51,20 @@ html {
     border: none;
     width: 100%;
     font: bold 15px arial, sans-serif;
-    /* margin: 1rem 0; */
     border-radius: 5px;
     display: block;
     cursor: pointer;
+}
+
+#buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#buttons button {
+    width: 45%;
 }
 
 button:not(.edit-btn) {
@@ -69,65 +74,46 @@ button:not(.edit-btn) {
     border: none;
     width: 100%;
     font: bold 1rem arial, sans-serif;
-    /* margin: 1rem 0; */
     border-radius: 5px;
     display: block;
     cursor: pointer;
-    /* margin-top: 3rem; */
 }
 
 button:hover, #cadastrar-btn:hover {
     background: var(--cor-btn-secundaria);
 }
 
-main  {
-    flex:auto;
-    width: 99vw;
-    height: 95vh;
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
 }
 
 #form-login, #form-cadastro {
     box-sizing: border-box;
     width: 100%;
-    padding: 1rem;
+    padding: 0.4rem 1rem;
 }
 
-section{
+section {
     padding-top: 16vh;
-    /*! margin: auto; */
-}
-
-#login-secao {
-    height: 14rem;
-    width: 20rem;
-    background-color: transparent;
 }
 
 input {
     width: 100%;
     height: 1.7rem;
     box-sizing: border-box;
-    margin-top: 0.5rem;
+    margin-top: 0.1rem;
     font-size: 1rem;
     border: none;
 }
 
 label {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     display: block;
     margin-bottom: 1rem;
     box-sizing: border-box;
-}
-
-#dados-pessoais-secao label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 2rem 0;
-}
-
-#dados-pessoais-secao input {
-    margin: 0 0 0 1rem;
 }
 
 #login a, #login-link {
@@ -143,29 +129,26 @@ section {
 }
 
 #cadastro-secao {
-    margin: 5% auto;
     width: 27rem;
     padding: 0.2rem 1rem;
 }
 
 #dados-pessoais-secao {
-    margin: 5% auto;
     width: 30rem;
     padding: 2rem;
 }
 
 #cargos-secao {
-    margin: 5% auto;
-    height: 25rem;
-    width: 35rem;
-    padding: 0.2rem 1rem;
+    height: auto;
+    width: auto;
+    padding: 0.2rem 1.2rem;
 }
 
 section h2 {
     text-align: center;
     display: block;
     font-size: 2rem;
-    margin: 1rem auto;
+    margin: 0.5rem auto;
     color: black;
 }
 
@@ -203,30 +186,38 @@ section h2 {
 }
 
 #cargos {
-    margin-top: 1rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 0.5fr 0.5fr 1fr;
-    gap: 2rem;
-    grid-auto-flow: row;
-    grid-template-areas:
-        "tecnico-div professor-div coordenador-div"
-        "tecnico-informática-div tecnico-eletronica-div ."
-        "continuar continuar continuar";
+    display: flex; /* Usando flex em vez de grid */
+    flex-direction: column;
+    flex-wrap: wrap; /* Permite que os itens se ajustem */
+    align-content: center;
+    justify-content: center; /* Distribui o espaço entre os itens */
+    gap: 1rem;
+    padding: 15px;
 }
 
-.coordenador-div { grid-area: coordenador-div; }
+#cargos-gerais {
+    display: flex; /* Usando flex em vez de grid */
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+}
 
-.professor-div { grid-area: professor-div; }
+#cargos-gerais div div {
+    padding: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
 
-.tecnico-div { grid-area: tecnico-div; }
+#cargos-especificos {
+    display: flex; /* Usando flex em vez de grid */
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+}
 
-.tecnico-informática-div { grid-area: tecnico-informática-div; }
-
-.tecnico-eletronica-div { grid-area: tecnico-eletronica-div; }
-
-.continuar { grid-area: continuar; }
-
+#cargos-especificos > div {
+    width: 45%;
+}
 
 #editar-nome-usuario {
     position: relative;
@@ -257,15 +248,12 @@ section h2 {
 }
 
 #secao-login {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 6rem 1fr;
-    /*! gap: 0px 0px; */
+    display: flex; /* Usando flex ao invés de grid */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background-color: transparent;
-    grid-template-areas:
-    ". semi-circulo ." ". login .";
-    position: absolute;
-    height: 90vh;
-    width: 100vw;
-    padding-top: 16vh;
+    height: 100%;
+    width: 100%;
+    padding-top: 0px;
 }
