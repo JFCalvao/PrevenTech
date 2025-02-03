@@ -18,6 +18,18 @@ function obterUserNome() {
     });
 }
 
+function enviarId() {
+    const requisicao = document.querySelector('.requisicao')
+    
+    $.ajax ({
+        url: 'chat.jsp?id=' + requisicao.getAttribute('data-id'),
+        type: 'GET',
+        success:() => {
+            window.location.href = "chat.jsp";
+        }
+    });
+}
+
 function exibirMinhasRequisicoes(data) {
     let bodyRequisicoesEl = document.querySelector('.minhas-requisicoes .body');
     
@@ -107,7 +119,7 @@ function exibirMinhasRequisicoes(data) {
             }
             
             bodyRequisicoesEl.innerHTML += `
-                <div class="requisicao">
+                <div class="requisicao" data-id="${content.id}">
                     <div class='view'>
                         <div class="informacoes-basicas">
                             <h4>Requisição ${dataEnvio}</h4>
@@ -154,6 +166,15 @@ function exibirMinhasRequisicoes(data) {
         }
         
         addEvents();
+        
+        const botaoChatElements = document.querySelectorAll('#botao-chat');
+        botaoChatElements.forEach(botao => {
+            botao.addEventListener('click', function() {
+                const requisicao = this.closest('.requisicao');  
+                const id = requisicao.getAttribute('data-id');
+                enviarId(id);
+            });
+        });
     }).catch(error => {
         console.log(error);
     });
