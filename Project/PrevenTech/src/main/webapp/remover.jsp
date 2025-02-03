@@ -21,10 +21,12 @@
                     
                     <form>
                         
-                        <div class="campo-texto">
-                    <label for="n-patrimonio">N patrimônio: </label>
-                    <input type="text" name="n-patrimonio" id="n-patrimonio">
-                    </div>
+                       <div class="campo-texto">
+    <label for="n-patrimonio">N patrimônio: </label>
+    <input type="text" name="n-patrimonio" id="n-patrimonio">
+    <ul id="sugestoes" style="display:none;"></ul> 
+</div>
+
                     
                     <div class="campo-texto">
                     <label for="maquina-cad">Maquina:  </label>
