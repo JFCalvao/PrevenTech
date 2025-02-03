@@ -56,7 +56,7 @@
                         </div>
                            
                         </div>
-                         <button id="voltar" <%= userService.getInitialPage() %>">VOLTAR</button>
+                         <button id="voltar">VOLTAR</button>
                         </div>
                         </div>
                 </main>

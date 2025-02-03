@@ -44,7 +44,7 @@ aluno --%> <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
         <div id="botao-container">
           <button id="cadastro" type="button">CADASTRAR</button>
-          <button type="button" id="cancelar"<%= userService.getInitialPage() %>">CANCELAR</button>
+          <button type="button" id="cancelar"<%= userService.getInitialPage() %>" onclick="window.location.href='coordenador.jsp';">CANCELAR</button>
         </div>
 
         <div id="resposta"></div>
