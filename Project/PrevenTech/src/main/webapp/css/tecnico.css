@@ -1,122 +1,135 @@
 body {
-    font-family: 'Open Sans', sans-serif;
-    background: linear-gradient(180deg, #c4f1ff 11%, rgba(0, 74, 173, 1) 100%);
-    margin: 0;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
 }
 
-.requisicoes {
-    width: 80%;
-    margin: 20px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-#titulo {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-#titulo h3 {
-    font-size: 24px;
-    color: var(--cor-primaria);
-    margin-bottom: 10px;
-}
-
-#linha-titulo {
-    width: 100px;
-    height: 4px;
-    background: var(--cor-secundaria);
-    margin: 0 auto;
+main {
+    height: 100%;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .requisicao {
-    background: #f9f9f9;
-    padding: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
     border-radius: 8px;
-    border-left: 5px solid var(--cor-secundaria);
-    transition: all 0.3s ease;
-}
-
-.requisicao:hover {
-    transform: scale(1.02);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    width: 100%;
+    max-width: 800px;
 }
 
 .view {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     cursor: pointer;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
-.view h4 {
-    font-size: 18px;
-    color: var(--cor-primaria);
-    margin: 0;
-}
-
-.view p {
-    font-size: 14px;
-    color: #555;
-    margin: 5px 0 0;
+.view:hover {
+    background-color: #2980b9;
 }
 
 .setinha-expandir-retrair {
     width: 20px;
     height: 20px;
-    background: url('../imgs/seta.png') no-repeat center;
+    background: url('imgs/arrow-down.png') no-repeat center center;
     background-size: contain;
     transition: transform 0.3s ease;
-    cursor: pointer;
 }
 
-.requisicao.expanded .setinha-expandir-retrair {
+.view .setinha-expandir-retrair.rotacionar {
     transform: rotate(180deg);
 }
 
 .informacoes-expandir {
-    display: none;
-    padding-top: 10px;
+    padding: 15px;
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
 }
 
-#status {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.informacoes-expandir:not(.escondido) {
+    display: block;
+    opacity: 1;
+    max-height: 500px; /* Limita a altura da expansão */
 }
 
-#cor-status {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--cor-btn-secundaria);
+.informacoes-basicas h4 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
 }
 
-#descricao h5 {
-    margin: 10px 0 5px;
-    font-size: 16px;
-    color: var(--cor-primaria);
-}
-
-.equipamento p {
+.informacoes-basicas p {
     font-size: 14px;
-    color: #444;
     margin: 5px 0;
 }
 
+#status {
+    margin-bottom: 10px;
+}
+
+#status #cor-status {
+    width: 15px;
+    height: 15px;
+    background-color: green;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.equipamento {
+    margin-top: 15px;
+}
+
+.equipamento-item {
+    background-color: #ffffff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.equipamento-item p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+select.estado-select {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    width: 100%;
+}
+
 .btn.alterar-estado {
-    background: var(--cor-btn-primaria);
+    background-color: #3498db;
     color: white;
-    padding: 8px 12px;
+    padding: 5px 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
 }
 
 .btn.alterar-estado:hover {
-    background: var(--cor-btn-secundaria);
+    background-color: #2980b9;
+}
+
+.escondido {
+    display: none;
 }
