@@ -29,8 +29,23 @@ window.onload = function () {
                     if (response.status === "OK") {
                         maquinas = response.data;
                         let found = false;
-                        console.log(maquinas)
-                        resposta.innerHTML = " Remoção bem sucedida.";
+
+                        for (let i = 0; i < maquinas.length; i++) {
+                            if (maquinas[i].n_patrimonio === nPatrimonio) {
+                                document.querySelector("#maquina-cad").value = maquinas[i].nome;
+                                document.querySelector("#local").value = maquinas[i].local;
+                                document.querySelector("#estados").value = maquinas[i].estado;
+
+                                found = true;
+                                break;
+                            }
+                        }
+
+                        if (!found) {
+                            resposta.innerHTML = "Máquina não encontrada.";
+                        } else {
+                            resposta.innerHTML = "Máquina encontrada. Preencha os dados para remoção.";
+                        }
                     } else {
                         resposta.innerHTML = "Erro ao processar a resposta: " + response.error;
                     }
@@ -112,8 +127,8 @@ window.onload = function () {
 
     if (remover) {
         remover.addEventListener('click', function() {
-            buscarDados();
-            removerMaquina();
+            buscarDados();  
+            removerMaquina();  
         });
     }
 };
