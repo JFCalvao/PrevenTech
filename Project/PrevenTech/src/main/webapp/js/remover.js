@@ -5,18 +5,10 @@ window.onload = function () {
     let maquinas = [];
 
     function buscarDados() {
-        const nPatrimonio = nPatrimonioInput.value.trim();
-
-        if (!nPatrimonio) {
-            resposta.innerHTML = "Por favor, insira um número de patrimônio.";
-            return;
-        }
-
-        const payload = JSON.stringify({
-            content: {
-                n_patrimonio: nPatrimonio
-            }
-        });
+        let nPatrimonio = document.querySelector('#n-patrimonio').value;
+        let request = new Request();
+        request.setOperation("GET");
+        request.setType("EQ");
 
         const ajax = new XMLHttpRequest();
         ajax.open("POST", 'MainServlet', true);
@@ -24,22 +16,11 @@ window.onload = function () {
         ajax.onload = function () {
             if (ajax.status === 200) {
                 try {
-                    let response = JSON.parse(ajax.responseText);
+                    let response = new Response(ajax.responseText);
 
                     if (response.status === "OK") {
-                        maquinas = response.data;
-                        let found = false;
-                        maquinas.forEach(maquina => {
-                            if (maquina.n_patrimonio === nPatrimonio) {
-                                found = true;
-                                document.getElementById('maquina-cad').value = maquina.nome;
-                                document.getElementById('local').value = maquina.local;
-                                document.getElementById('estados').value = maquina.estado;
-                            }
-                        });
-                        if (!found) {
-                            resposta.innerHTML = "Máquina não encontrada.";
-                        }
+                        maquinas = response.data; 
+                       
                     } else {
                         resposta.innerHTML = "Erro ao processar a resposta: " + response.error;
                     }
@@ -55,7 +36,7 @@ window.onload = function () {
             resposta.innerHTML = "Erro ao conectar ao servidor.";
         };
 
-        ajax.send(payload);
+        ajax.send(request);
     }
 
     function removerMaquina() {
