@@ -109,8 +109,6 @@ body {
     color: #444;
     margin: 5px 0;
 }
-
-/* Botão de alteração de estado */
 .btn.alterar-estado {
     background: var(--cor-btn-primaria);
     color: white;

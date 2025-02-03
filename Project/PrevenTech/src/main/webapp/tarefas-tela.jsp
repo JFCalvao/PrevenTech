@@ -36,6 +36,7 @@
                         type: 'GET',
                         dataType: 'json',
                         success: function(data) {
+                            console.log(data); // Verifique se os dados estão sendo retornados corretamente
                             if (data.status === "OK") {
                                 const requisicoes = data.content;
                                 requisicoes.forEach(function(requisicao) {
