@@ -5,12 +5,13 @@ $(document).ready(function() {
             type: 'GET',
             dataType: 'json',
             success: function(data) {
+                console.log(data);
                 if (data.status === "OK") {
                     const requisicoes = data.content;
                     requisicoes.forEach(function(requisicao) {
                         let requisicaoHTML = `
                             <div class="requisicao" id="requisicao-${requisicao.requisicao_id}">
-                                <div class="view">
+                                <div class="view" data-requisicao-id="${requisicao.requisicao_id}">
                                     <div class="informacoes-basicas">
                                         <h4>Requisição <span>${requisicao.requisicao_id}</span></h4>
                                         <p>Requisitor: ${requisicao.requisitor_nome}</p>
@@ -28,7 +29,7 @@ $(document).ready(function() {
                                     </div>
                                     <div class="equipamento">
                                         <h4>Equipamentos Relacionados</h4>
-                                        ${requisicao.equipamentos.forEach(function(equipamento) {
+                                        ${requisicao.equipamentos.map(function(equipamento) {
                                             return `
                                                 <div class="equipamento-item">
                                                     <p>Nome: ${equipamento.nome}</p>
@@ -42,12 +43,16 @@ $(document).ready(function() {
                                                     </button>
                                                 </div>
                                             `;
-                                        })}
+                                        }).join('')}
                                     </div>
                                 </div>
                             </div>
                         `;
                         $("#requisicoes-dinamicas").append(requisicaoHTML);
+                    });
+                    $('.view').click(function() {
+                        const requisicaoId = $(this).data('requisicao-id');
+                        $(`#requisicao-${requisicaoId} .informacoes-expandir`).toggleClass('escondido');
                     });
                 } else {
                     alert("Erro ao carregar as requisições.");
@@ -58,12 +63,6 @@ $(document).ready(function() {
             }
         });
     }
-
-    $(document).on('click', '.requisicao .view', function() {
-        $(this).closest('.requisicao').toggleClass('expanded');
-        $(this).closest('.requisicao').find('.informacoes-expandir').slideToggle();
-        $(this).find('.setinha-expandir-retrair').toggleClass('rotacionar');
-    });
 
     carregarRequisicoes();
 });
