@@ -29,23 +29,8 @@ window.onload = function () {
                     if (response.status === "OK") {
                         maquinas = response.data;
                         let found = false;
-
-                        for (let i = 0; i < maquinas.length; i++) {
-                            if (maquinas[i].n_patrimonio === nPatrimonio) {
-                                document.querySelector("#maquina-cad").value = maquinas[i].nome;
-                                document.querySelector("#local").value = maquinas[i].local;
-                                document.querySelector("#estados").value = maquinas[i].estado;
-
-                                found = true;
-                                break;
-                            }
-                        }
-
-                        if (!found) {
-                            resposta.innerHTML = "Máquina não encontrada.";
-                        } else {
-                            resposta.innerHTML = "Máquina encontrada. Preencha os dados para remoção.";
-                        }
+                        console.log(maquinas)
+                        resposta.innerHTML = " Remoção bem sucedida.";
                     } else {
                         resposta.innerHTML = "Erro ao processar a resposta: " + response.error;
                     }
@@ -108,13 +93,13 @@ window.onload = function () {
                         document.querySelector("#estados").value = "";
                         resposta.innerHTML = "Máquina removida com sucesso.";
                     } else {
-                        resposta.innerHTML = `Erro ao remover a máquina: ${response.error}`;
+                        resposta.innerHTML = `Erro ao remover a máquina: ${response.error};`
                     }
                 } catch (e) {
-                    resposta.innerHTML = `Erro ao processar a resposta: ${e.message}`;
+                    resposta.innerHTML = `Erro ao processar a resposta: ${e.message};`
                 }
             } else {
-                resposta.innerHTML = `Erro ao enviar dados. Status: ${ajax.status}`;
+                resposta.innerHTML = `Erro ao enviar dados. Status: ${ajax.status};` 
             }
         };
 
@@ -127,8 +112,8 @@ window.onload = function () {
 
     if (remover) {
         remover.addEventListener('click', function() {
-            buscarDados();  
-            removerMaquina();  
+            buscarDados();
+            removerMaquina();
         });
     }
 };
