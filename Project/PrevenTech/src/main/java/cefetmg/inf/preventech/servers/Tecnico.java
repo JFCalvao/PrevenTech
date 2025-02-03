@@ -31,6 +31,10 @@ public class Tecnico extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+         response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
         response.setContentType("application/json;charset=UTF-8");
         HttpSession session = request.getSession(false);
 
