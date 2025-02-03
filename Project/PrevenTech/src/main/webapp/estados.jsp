@@ -56,7 +56,7 @@
                         </div>
                            
                         </div>
-                         <button id="voltar">VOLTAR</button>
+                         <button id="voltar" onclick="window.location.href = '<%= userService.getInitialPage() %>';">VOLTAR</button>
                         </div>
                         </div>
                 </main>
