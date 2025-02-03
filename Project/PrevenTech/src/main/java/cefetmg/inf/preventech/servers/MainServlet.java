@@ -96,16 +96,11 @@ public class MainServlet extends HttpServlet {
                         System.out.println("Pegando id: " + historico.getId());
                         System.out.println("Pegando file: " + historico.getConteudoArquivo());
                         Requisicao requisicao = DatabaseManager.searchRequisicao(historico.getId());
-                        System.out.println("Pego");
-                        
+
                         historico.setRequisitor_cpf(requisicao.getRequisitor_cpf());
                         historico.setResponsavel_cpf(requisicao.getResponsavel_cpf());
-//                        historico.setRequisitor_cpf("12909832498");
-//                        historico.setResponsavel_cpf("75739677302");
-                        System.out.println("Req: " + requisicao.getRequisitor_cpf());
-                        System.out.println("Res: " + requisicao.getResponsavel_cpf());
+
                         if(DatabaseManager.hasHistorico(historico)) {
-                            System.out.println("Ja existe");
                             throw new HistoricoJaExisteException();
                         }
                         

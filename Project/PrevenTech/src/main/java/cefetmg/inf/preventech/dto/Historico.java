@@ -67,7 +67,7 @@ public class Historico {
     public void uploadFile(String path) throws IOException {
         File uploadDir = new File(path);
         
-        byte[] fileBytes = Base64.getDecoder().decode(conteudoArquivo.split(",")[1]);
+        byte[] fileBytes = Base64.getDecoder().decode(conteudoArquivo);
         
         if(!uploadDir.exists()) {
             uploadDir.mkdir();
