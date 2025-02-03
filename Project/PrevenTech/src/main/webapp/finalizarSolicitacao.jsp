@@ -17,7 +17,7 @@
     
     <div id="header"></div>
     <main>
-        <form action="MainServlet" method="post" enctype="multipart/form-data" id="finalizar-form">
+        <form action="HistoricoServlet" method="POST" enctype="multipart/form-data" id="finalizar-form">
             <%
                 String requisicaoId = request.getParameter("requisicao_id");
                 if (requisicaoId == null) {
@@ -76,7 +76,7 @@
 
                 let json = new Request();
                 json.setOperation("INSERT");
-                json.setType("HS");
+                json.setType("INSERT");
                 json.setData({
                     "file": fileContent,
                     "id": "<%= requisicaoId %>" 
