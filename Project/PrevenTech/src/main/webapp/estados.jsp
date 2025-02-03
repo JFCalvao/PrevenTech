@@ -56,7 +56,13 @@
                         </div>
                            
                         </div>
-                         <button id="voltar" onclick="window.location.href = '<%= userService.getInitialPage() %>';">VOLTAR</button>
+                        
+                       <div id="voltar-container">
+                <button id="voltar" onclick="window.location.href = '<%= userService.getInitialPage() %>';">
+                    VOLTAR
+                </button>
+            </div>
+                         
                         </div>
                         </div>
                 </main>
@@ -68,3 +74,4 @@
         </body>
 
         </html>
+        
