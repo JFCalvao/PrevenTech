@@ -12,22 +12,24 @@
         <link rel="stylesheet" href="css/tarefas.css">
         <link rel="stylesheet" href="css/style.css">
     </head>
-    <body>
-        <%@include file="header.jsp" %>
+<body>
+    <%@include file="header.jsp" %>
 
-        <main>
-            <div class="requisicoes">
-                <div id="titulo">
-                    <h3>Minhas tarefas</h3>
-                    <div id="linha-titulo"></div>
-                </div>
-                <div id="requisicoes-dinamicas">
-                    <!-- Requisições serão carregadas aqui dinamicamente -->
-                </div>
+    <button id="btn-voltar">Voltar</button>
+
+    <main>
+        <div class="requisicoes">
+            <div id="titulo">
+                <div id="linha-titulo"></div>
             </div>
-        </main>
+            <div id="requisicoes-dinamicas">
+                <!-- Requisições serão carregadas aqui dinamicamente -->
+            </div>
+        </div>
+    </main>
 
-        <script src="https://code.jquery.com/jquery-3.6.4.js" crossorigin="anonymous"></script>
-        <script src="js/tarefas-tela.js" ></script>
-    </body>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" crossorigin="anonymous"></script>
+    <script src="js/tarefas-tela.js"></script>
+</body>
+
 </html>

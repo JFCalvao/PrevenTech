@@ -102,7 +102,14 @@ $(document).ready(function() {
                     // Evento de clique para expandir/retrair
                     $('.view').click(function() {
                         const requisicaoId = $(this).data('requisicao-id');
-                        $(`#requisicao-${requisicaoId} .informacoes-expandir`).toggleClass('escondido');
+                        const informacoesExpandir = $(`#requisicao-${requisicaoId} .informacoes-expandir`);
+                        const setinha = $(`#requisicao-${requisicaoId} .setinha-expandir-retrair`);
+                        
+                        // Alternar a visibilidade das informações
+                        informacoesExpandir.toggleClass('escondido');
+                        
+                        // Alternar a rotação da setinha
+                        setinha.toggleClass('rotacionar');
                     });
                 } else {
                     alert("Erro ao carregar as requisições.");
@@ -115,4 +122,8 @@ $(document).ready(function() {
     }
 
     carregarRequisicoes();
+
+    $("#btn-voltar").click(function() {
+        window.location.href = "tecnico.jsp";
+    });
 });
