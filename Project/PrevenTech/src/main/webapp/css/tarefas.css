@@ -13,6 +13,7 @@ body {
 }
 
 main {
+    height: auto;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -26,7 +27,7 @@ main {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     padding: 15px;
     width: 100%;
-    max-width: 900px;
+    max-width: 800px;
     transition: transform 0.2s ease-in-out;
 }
 
@@ -74,14 +75,9 @@ main {
     padding: 15px;
     background-color: #ecf0f1;
     border-radius: 8px;
-    margin-top: 15px;
-    transition: max-height 0.3s ease;
-    max-height: 0;
-    overflow: hidden;
 }
 
 .informacoes-expandir.ativa {
-    max-height: 500px;
     display: block;
 }
 
@@ -235,19 +231,5 @@ select.estado-select {
     .botoes-acao {
         flex-direction: column;
         gap: 10px;
-    }
-
-    .view {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px;
-    }
-
-    .equipamento {
-        padding-right: 5px;
-    }
-
-    .equipamento-item {
-        padding: 8px;
     }
 }
