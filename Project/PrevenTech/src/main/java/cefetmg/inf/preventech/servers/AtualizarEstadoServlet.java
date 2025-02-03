@@ -22,7 +22,7 @@ public class AtualizarEstadoServlet extends HttpServlet {
         try {
             dao.updateEstado(n_patrimonio, novoEstado);
             response.sendRedirect("tarefas-tela.jsp?mensagem=Estado atualizado com sucesso!");
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("tarefas-tela.jsp?mensagem=Erro ao atualizar estado.");
         }

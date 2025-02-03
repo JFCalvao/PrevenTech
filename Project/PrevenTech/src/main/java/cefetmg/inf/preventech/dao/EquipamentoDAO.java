@@ -1,10 +1,12 @@
 package cefetmg.inf.preventech.dao;
 
+import cefetmg.inf.preventech.Exceptions.EncryptationException;
 import cefetmg.inf.preventech.dao.interfaces.CRUD;
 import cefetmg.inf.preventech.dao.interfaces.EntityExistenceChecker;
 import cefetmg.inf.preventech.dao.interfaces.GenericDAO;
 import cefetmg.inf.preventech.dto.Equipamento;
 import cefetmg.inf.preventech.util.DatabaseManager;
+import cefetmg.inf.preventech.util.Encryption;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -107,13 +109,13 @@ public class EquipamentoDAO implements CRUD<Equipamento, String>, GenericDAO<Equ
         return exists;
     }
 
-    public void updateEstado(String n_patrimonio, String novoEstado) throws SQLException {
+    public void updateEstado(String n_patrimonio, String novoEstado) throws SQLException, EncryptationException {
         try (Connection connection = DatabaseManager.getConnection()) {
             String sql = "UPDATE equipamentos SET estado = ? WHERE n_patrimonio = ?";
             
             PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, novoEstado);
-            pstmt.setString(2, n_patrimonio);
+            pstmt.setString(1, Encryption.encrypt(novoEstado));
+            pstmt.setString(2, Encryption.encrypt(n_patrimonio));
             
             pstmt.executeUpdate();
         }
