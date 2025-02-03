@@ -92,24 +92,7 @@ public class MainServlet extends HttpServlet {
                     }
                     break;
                     case "HS": {
-                        Historico historico = getHistorico(content);
-                        System.out.println("Pegando id: " + historico.getId());
-                        System.out.println("Pegando file: " + historico.getConteudoArquivo());
-                        Requisicao requisicao = DatabaseManager.searchRequisicao(historico.getId());
-
-                        historico.setRequisitor_cpf(requisicao.getRequisitor_cpf());
-                        historico.setResponsavel_cpf(requisicao.getResponsavel_cpf());
-
-                        if(DatabaseManager.hasHistorico(historico)) {
-                            throw new HistoricoJaExisteException();
-                        }
                         
-                        System.out.println("Arquivo uploading...");
-                        String savePath = getServletContext().getRealPath("uploads");
-                        historico.uploadFile(savePath);
-                        System.out.println("Arquivo uploaded");
-                        DatabaseManager.insertHistorico(historico);
-                        System.out.println("Inseted");
                     }
                     break;
                     case "US": {

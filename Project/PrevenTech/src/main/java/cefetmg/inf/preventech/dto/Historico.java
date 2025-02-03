@@ -30,20 +30,21 @@ public class Historico {
     
     public Historico(String id, String conteudoArquivo) {
         this.id = id;
-        
-        ZoneId fusoHorarioBrasil = ZoneId.of("America/Sao_Paulo"); 
-        ZonedDateTime dataHoraBrasil = ZonedDateTime.now(fusoHorarioBrasil); 
-        int dia = dataHoraBrasil.getDayOfMonth(); 
-        int mes = dataHoraBrasil.getMonthValue(); 
-        int ano = dataHoraBrasil.getYear(); 
-        int horas = dataHoraBrasil.getHour(); 
-        int minutos = dataHoraBrasil.getMinute(); 
-        
-        this.data = dia + "-" + mes + "-" + ano + "_" + horas + "-" + minutos;
-        
-        this.conteudoArquivo = conteudoArquivo.split(",")[1];
-        
-        this.nomeArquivo = "RelatorioFinal(" + id + ")_" + this.data;
+        if(conteudoArquivo != "") {
+            ZoneId fusoHorarioBrasil = ZoneId.of("America/Sao_Paulo"); 
+            ZonedDateTime dataHoraBrasil = ZonedDateTime.now(fusoHorarioBrasil); 
+            int dia = dataHoraBrasil.getDayOfMonth(); 
+            int mes = dataHoraBrasil.getMonthValue(); 
+            int ano = dataHoraBrasil.getYear(); 
+            int horas = dataHoraBrasil.getHour(); 
+            int minutos = dataHoraBrasil.getMinute(); 
+
+            this.data = dia + "-" + mes + "-" + ano + "_" + horas + "-" + minutos;
+
+            this.conteudoArquivo = conteudoArquivo.split(",")[1];
+
+            this.nomeArquivo = "RelatorioFinal(" + id + ")_" + this.data;
+        }
     }
     
     public Historico() {}

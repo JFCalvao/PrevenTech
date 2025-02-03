@@ -1,9 +1,7 @@
 body {
     display: flex;
     flex-direction: column;
-    font-family: Arial, sans-serif;
 }
-
 main {
     height: 100%;
     width: 100%;
@@ -12,124 +10,71 @@ main {
     justify-content: center;
     align-items: center;
 }
-
-.requisicao {
-    margin-bottom: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+#container {
+    height: auto;
+    width: clamp(290px, 80%, 1000px);
+    background-color: white;
     padding: 10px;
-    width: 100%;
-    max-width: 800px;
-}
-
-.view {
     display: flex;
-    justify-content: space-between;
-    cursor: pointer;
-    padding: 10px;
-    background-color: #3498db;
-    color: white;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
-
-.view:hover {
-    background-color: #2980b9;
-}
-
-.setinha-expandir-retrair {
-    width: 20px;
-    height: 20px;
-    background: url('imgs/arrow-down.png') no-repeat center center;
-    background-size: contain;
-    transition: transform 0.3s ease;
-}
-
-.view .setinha-expandir-retrair.rotacionar {
-    transform: rotate(180deg);
-}
-
-.informacoes-expandir {
-    padding: 15px;
-    background-color: #ecf0f1;
-    border-radius: 8px;
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: opacity 0.3s ease, max-height 0.3s ease;
-}
-
-.informacoes-expandir:not(.escondido) {
-    display: block;
-    opacity: 1;
-    max-height: 500px; /* Limita a altura da expansão */
-}
-
-.informacoes-basicas h4 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.informacoes-basicas p {
-    font-size: 14px;
-    margin: 5px 0;
-}
-
-#status {
-    margin-bottom: 10px;
-}
-
-#status #cor-status {
-    width: 15px;
-    height: 15px;
-    background-color: green;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 5px;
-}
-
-.equipamento {
-    margin-top: 15px;
-}
-
-.equipamento-item {
-    background-color: #ffffff;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.equipamento-item p {
-    margin: 5px 0;
-    font-size: 14px;
-}
-
-select.estado-select {
-    padding: 5px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    margin-top: 10px;
+#form-header {
+    height: auto;
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 10px;
 }
-
-.btn.alterar-estado {
-    background-color: #3498db;
+#form-title {
+    margin: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: #004aad;
+}
+#form-header line {
+    height: 5px;
+    flex-grow: 1;
+    background-color: #004aad;
+    border-radius: 15px;
+    display: block;
+}
+#opcoes-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#opcoes {
+    list-style: none;
+    align-items: center;
+}
+#opcoes .opcao {
+    margin-top: 15px;
+    background-color: #3498db; 
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2), 
+                0px 7px 13px rgba(0, 0, 0, 0.2); 
+}
+#opcoes .opcao:last-child {
+    margin-bottom: 15px;
+}
+#opcoes .opcao:hover {
+    background-color: #004aad;
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3), 
+              0px 10px 20px rgba(0, 0, 0, 0.3); 
+}
+a {
+    text-decoration: none;
     color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
-}
-
-.btn.alterar-estado:hover {
-    background-color: #2980b9;
-}
-
-.escondido {
-    display: none;
+    font-weight: bold;
 }

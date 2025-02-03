@@ -4,8 +4,8 @@
     Author     : jfcalvao
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="cefetmg.inf.preventech.services.UserService, cefetmg.inf.preventech.services.DefaultService, cefetmg.inf.preventech.services.ProfessorService, java.util.List, jakarta.servlet.http.HttpSession" %>
+
+<%@ page import="cefetmg.inf.preventech.services.UserService, cefetmg.inf.preventech.services.DefaultService, java.util.List, jakarta.servlet.http.HttpSession" %>
 
 <%
         String url = request.getRequestURL().toString(); 
@@ -20,5 +20,5 @@
             response.sendRedirect("erro.jsp?erro=Acesso negado para " + actualPage + "&url=" + userService.getInitialPage());
         }
         
-        //response.sendRedirect("erro.jsp?erro=Acesso InvÃ¡lido&url=index.jsp");
+        //response.sendRedirect("erro.jsp?erro=Acesso Inválido&url=index.jsp");
 %>
