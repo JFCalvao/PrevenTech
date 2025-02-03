@@ -15,18 +15,17 @@ body {
 
 /* Layout principal */
 main {
-    height: 100%;
+    height: auto;
     width: 100%;
-    flex-grow: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 /* Estilo das requisições */
 .requisicao {
     margin-bottom: 20px;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     padding: 15px;
@@ -83,7 +82,14 @@ main {
 .informacoes-expandir:not(.escondido) {
     display: block;
     opacity: 1;
-    max-height: 500px; 
+    max-height: 600px;
+}
+
+/* Adicionando um efeito mais bonito quando fechado */
+.informacoes-expandir.escondido {
+    opacity: 0;
+    max-height: 0;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
 }
 
 /* Informações da requisição */
@@ -115,6 +121,23 @@ main {
 /* Estilização dos equipamentos */
 .equipamento {
     margin-top: 15px;
+    max-height: 300px; /* Limita a altura da lista */
+    overflow-y: auto; /* Adiciona o scroll interno */
+    padding-right: 10px;
+}
+
+/* Barra de rolagem personalizada */
+.equipamento::-webkit-scrollbar {
+    width: 6px;
+}
+
+.equipamento::-webkit-scrollbar-thumb {
+    background-color: #3498db;
+    border-radius: 10px;
+}
+
+.equipamento::-webkit-scrollbar-track {
+    background: #dfe6e9;
 }
 
 .equipamento-item {
@@ -123,6 +146,11 @@ main {
     margin-bottom: 10px;
     border-radius: 8px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Deixando a rolagem mais agradável */
+.equipamento-item:last-child {
+    margin-bottom: 0;
 }
 
 .equipamento-item p {
@@ -172,6 +200,7 @@ select.estado-select {
     transition: background-color 0.3s ease;
 }
 
+/* Botão de finalizar */
 .btn.finalizar-requisicao {
     background-color: #2ecc71;
     color: white;
@@ -191,7 +220,14 @@ select.estado-select {
     background-color: #c0392b;
 }
 
+/* Responsividade */
+@media (max-width: 768px) {
+    .requisicao {
+        width: 90%;
+    }
 
-.escondido {
-    display: none;
+    .botoes-acao {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
