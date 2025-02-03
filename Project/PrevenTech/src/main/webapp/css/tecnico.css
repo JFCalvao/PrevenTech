@@ -1,19 +1,9 @@
-/* Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     display: flex;
     flex-direction: column;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    padding: 20px;
 }
 
-/* Layout principal */
 main {
     height: 100%;
     width: 100%;
@@ -23,27 +13,19 @@ main {
     align-items: center;
 }
 
-/* Estilo das requisições */
 .requisicao {
     margin-bottom: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 15px;
+    padding: 10px;
     width: 100%;
     max-width: 800px;
-    transition: transform 0.2s ease-in-out;
 }
 
-.requisicao:hover {
-    transform: scale(1.02);
-}
-
-/* Cabeçalho da requisição */
 .view {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     cursor: pointer;
     padding: 10px;
     background-color: #3498db;
@@ -56,7 +38,6 @@ main {
     background-color: #2980b9;
 }
 
-/* Ícone de expansão */
 .setinha-expandir-retrair {
     width: 20px;
     height: 20px;
@@ -69,7 +50,6 @@ main {
     transform: rotate(180deg);
 }
 
-/* Área expandível */
 .informacoes-expandir {
     padding: 15px;
     background-color: #ecf0f1;
@@ -83,10 +63,9 @@ main {
 .informacoes-expandir:not(.escondido) {
     display: block;
     opacity: 1;
-    max-height: 500px; /* Ajustável conforme necessário */
+    max-height: 500px; /* Limita a altura da expansão */
 }
 
-/* Informações da requisição */
 .informacoes-basicas h4 {
     margin: 0;
     font-size: 18px;
@@ -98,7 +77,6 @@ main {
     margin: 5px 0;
 }
 
-/* Status */
 #status {
     margin-bottom: 10px;
 }
@@ -112,7 +90,6 @@ main {
     margin-right: 5px;
 }
 
-/* Estilização dos equipamentos */
 .equipamento {
     margin-top: 15px;
 }
@@ -137,10 +114,11 @@ select.estado-select {
     margin-top: 10px;
     width: 100%;
 }
+
 .btn.alterar-estado {
     background-color: #3498db;
     color: white;
-    padding: 8px 12px;
+    padding: 5px 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -150,41 +128,6 @@ select.estado-select {
 
 .btn.alterar-estado:hover {
     background-color: #2980b9;
-}
-
-/* Botões de ação */
-.botoes-acao {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
-}
-
-.btn {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.btn.finalizar-requisicao {
-    background-color: #2ecc71;
-    color: white;
-}
-
-.btn.finalizar-requisicao:hover {
-    background-color: #27ae60;
-}
-
-.btn.cancelar-requisicao {
-    background-color: #e74c3c;
-    color: white;
-}
-
-.btn.cancelar-requisicao:hover {
-    background-color: #c0392b;
 }
 
 .escondido {
