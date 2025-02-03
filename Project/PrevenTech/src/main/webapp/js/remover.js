@@ -8,9 +8,6 @@ window.onload = function () {
         const nPatrimonio = nPatrimonioInput.value.trim();
 
         if (!nPatrimonio) {
-            document.querySelector("#maquina-cad").value = "";
-            document.querySelector("#local").value = "";
-            document.querySelector("#estados").value = "";
             resposta.innerHTML = "Por favor, insira um número de patrimônio.";
             return;
         }
@@ -32,21 +29,8 @@ window.onload = function () {
                     if (response.status === "OK") {
                         maquinas = response.data;
                         let found = false;
-
-                        for (let i = 0; i < maquinas.length; i++) {
-                            if (maquinas[i].n_patrimonio === nPatrimonio) {
-                                document.querySelector("#maquina-cad").value = maquinas[i].maquina;
-                                document.querySelector("#local").value = maquinas[i].local;
-                                document.querySelector("#estados").value = maquinas[i].estado;
-                                resposta.innerHTML = "Máquina encontrada. Pronta para remoção.";
-                                found = true;
-                                break;
-                            }
-                        }
-
-                        if (!found) {
-                            resposta.innerHTML = "Máquina não encontrada.";
-                        }
+                        console.log(maquinas)
+                        resposta.innerHTML = " Remoção bem sucedida.";
                     } else {
                         resposta.innerHTML = "Erro ao processar a resposta: " + response.error;
                     }
@@ -64,6 +48,22 @@ window.onload = function () {
 
         ajax.send(payload);
     }
+    function procurar () {
+        const val = document.querySelector("#n-patrimonio").value;
+        maquinas.forEach(maquina => {
+            if(maquina.n_patrimonio === val) {
+                let nome = document.getElementById('maquina-cad');
+                let local = document.getElementById('local');
+                let estado = document.getElementById('estados');
+                
+                nome.value = maquina.nome;
+                local.value = maquina.local;
+                estado.value = maquina.estado;
+            }
+        })
+    }
+ 
+   nPatrimonioInput.addEventListner('input', procurar);
 
     function removerMaquina() {
         const nPatrimonio = nPatrimonioInput.value.trim();
@@ -109,7 +109,7 @@ window.onload = function () {
                         document.querySelector("#estados").value = "";
                         resposta.innerHTML = "Máquina removida com sucesso.";
                     } else {
-                        resposta.innerHTML = `Erro ao remover a máquina: ${response.error}`;
+                        resposta.innerHTML = ` Erro ao remover a máquina: ${response.error}`;
                     }
                 } catch (e) {
                     resposta.innerHTML = `Erro ao processar a resposta: ${e.message}`;
@@ -126,10 +126,9 @@ window.onload = function () {
         ajax.send(payload);
     }
 
-    nPatrimonioInput.addEventListener('input', buscarDados);
-
     if (remover) {
         remover.addEventListener('click', function() {
+            buscarDados();
             removerMaquina();
         });
     }
