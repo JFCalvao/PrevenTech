@@ -1,196 +1,126 @@
-/* Responsividade geral */
-@media (max-width: 1200px) {
-    #titulo {
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-
-    .requisicoes {
-        width: 95%;
-        height: auto;
-        margin-top: 20px;
-        padding: 10px;
-    }
-
-    .requisicao {
-        margin: 10px;
-    }
-
-    .requisicao .view {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-
-    .informacoes-basicas {
-        margin-left: 0;
-    }
-
-    .botoes-requisicao {
-        flex-direction: column;
-        gap: 10px;
-    }
+/* Estilização geral */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(180deg, #c4f1ff 11%, rgba(0, 74, 173, 1) 100%);
+    margin: 0;
+    padding: 0;
 }
 
-@media (max-width: 992px) {
-    main {
-        flex-direction: column;
-        margin-top: 2%;
-        height: auto;
-    }
-
-    .requisicoes {
-        width: 100%;
-        margin: 0;
-    }
-
-    #linha-titulo {
-        width: 100%;
-    }
-
-    #botoes-menores {
-        margin-left: 0;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-
-    #botao-maior {
-        margin-left: 0;
-        width: 100%;
-    }
-}
-
-@media (max-width: 768px) {
-    body {
-        overflow-y: auto;
-    }
-
-    .requisicoes h3 {
-        font-size: 24px;
-        text-align: center;
-    }
-
-    .requisicao .view {
-        padding: 10px;
-    }
-
-    .setinha-expandir-retrair {
-        margin-right: 0;
-    }
-
-    .requisicao {
-        padding: 10px;
-        border-radius: 10px;
-    }
-
-    #descricao {
-        font-size: 12px;
-        padding: 10px;
-    }
-
-    .botoes-requisicao {
-        gap: 5px;
-    }
-}
-
-@media (max-width: 576px) {
-    #header {
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
-    }
-
-    #project-title {
-        font-size: 24px;
-        text-align: center;
-    }
-
-    #imgcefet {
-        width: 80px;
-        height: 80px;
-    }
-
-    #titulo {
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
-    }
-
-    #linha-titulo {
-        height: 2px;
-    }
-
-    .requisicoes {
-        width: 100%;
-        margin: 0;
-        padding: 5px;
-    }
-
-    .requisicao {
-        margin: 5px;
-        padding: 5px;
-    }
-
-    .informacoes-basicas h4 {
-        font-size: 14px;
-    }
-
-    .informacoes-basicas p {
-        font-size: 12px;
-    }
-
-    .botoes-requisicao button {
-        font-size: 12px;
-        padding: 5px;
-    }
-
-    .modal-conteudo {
-        width: 90%;
-        padding: 10px;
-    }
-
-    .modal {
-        padding: 10px;
-    }
-}
-
-/* Adições gerais para responsividade */
+/* Container das requisições */
 .requisicoes {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+#titulo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#titulo h3 {
+    font-size: 24px;
+    color: var(--cor-primaria);
+    margin-bottom: 10px;
+}
+
+#linha-titulo {
+    width: 100px;
+    height: 4px;
+    background: var(--cor-secundaria);
+    margin: 0 auto;
+}
+
+/* Estilização de cada requisição */
 .requisicao {
+    background: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border-left: 5px solid var(--cor-secundaria);
+    transition: all 0.3s ease;
+}
+
+.requisicao:hover {
+    transform: scale(1.02);
+}
+
+.view {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.view h4 {
+    font-size: 18px;
+    color: var(--cor-primaria);
+    margin: 0;
+}
+
+.view p {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0 0;
+}
+
+.setinha-expandir-retrair {
+    width: 20px;
+    height: 20px;
+    background: url('../imgs/seta.png') no-repeat center;
+    background-size: contain;
+    transition: transform 0.3s;
+}
+
+.requisicao.expanded .setinha-expandir-retrair {
+    transform: rotate(180deg);
+}
+
+/* Detalhes da requisição expandida */
+.informacoes-expandir {
+    display: none;
+    padding-top: 10px;
+}
+
+#status {
+    display: flex;
+    align-items: center;
     gap: 10px;
 }
 
-.botoes-requisicao {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+#cor-status {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--cor-btn-secundaria);
 }
 
-.modal-conteudo {
-    max-width: 500px;
-    margin: auto;
-}
-
-button {
-    padding: 10px;
-    border-radius: 5px;
+#descricao h5 {
+    margin: 10px 0 5px;
     font-size: 16px;
+    color: var(--cor-primaria);
 }
 
-#novo-estado {
-    width: 100%;
-    padding: 5px;
+.equipamento p {
     font-size: 14px;
+    color: #444;
+    margin: 5px 0;
+}
+
+/* Botão de alteração de estado */
+.btn.alterar-estado {
+    background: var(--cor-btn-primaria);
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn.alterar-estado:hover {
+    background: var(--cor-btn-secundaria);
 }
