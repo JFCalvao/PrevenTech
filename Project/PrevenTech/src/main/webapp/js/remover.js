@@ -93,13 +93,13 @@ window.onload = function () {
                         document.querySelector("#estados").value = "";
                         resposta.innerHTML = "Máquina removida com sucesso.";
                     } else {
-                        resposta.innerHTML = `Erro ao remover a máquina: ${response.error};`
+                        resposta.innerHTML = `Erro ao remover a máquina: ${response.error}`;
                     }
                 } catch (e) {
-                    resposta.innerHTML = `Erro ao processar a resposta: ${e.message};`
+                    resposta.innerHTML = `Erro ao processar a resposta: ${e.message}`;
                 }
             } else {
-                resposta.innerHTML = `Erro ao enviar dados. Status: ${ajax.status};` 
+                resposta.innerHTML = `Erro ao enviar dados. Status: ${ajax.status}`;
             }
         };
 
