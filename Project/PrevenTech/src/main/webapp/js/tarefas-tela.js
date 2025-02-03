@@ -5,7 +5,6 @@ $(document).ready(function() {
             type: 'GET',
             dataType: 'json',
             success: function(data) {
-                console.log(data);
                 if (data.status === "OK") {
                     const requisicoes = data.content;
                     requisicoes.forEach(function(requisicao) {
@@ -50,8 +49,6 @@ $(document).ready(function() {
                                             `;
                                         }).join('')}
                                     </div>
-                                    
-                                    <!-- Botões para Finalizar e Cancelar -->
                                     <div class="botoes-acao">
                                         <button class="btn finalizar-requisicao" data-id="${requisicao.requisicao_id}">
                                             Finalizar e Enviar Relatório
@@ -66,7 +63,6 @@ $(document).ready(function() {
                         $("#requisicoes-dinamicas").append(requisicaoHTML);
                     });
 
-                    // Evento de clique no botão "Alterar Estado"
                     $('.btn.alterar-estado').click(function() {
                         const patrimonio = $(this).data('patrimonio');
                         const select = $(`.estado-select[data-patrimonio="${patrimonio}"]`);
@@ -81,6 +77,7 @@ $(document).ready(function() {
                             },
                             success: function(response) {
                                 alert("Estado atualizado com sucesso!");
+                                location.reload();
                             },
                             error: function() {
                                 alert("Erro ao atualizar o estado.");
@@ -88,27 +85,20 @@ $(document).ready(function() {
                         });
                     });
 
-                    // Evento de clique no botão "Finalizar e Enviar Relatório"
                     $('.btn.finalizar-requisicao').click(function() {
                         const requisicaoId = $(this).data('id');
                         window.location.href = `finalizarSolicitacao.jsp?requisicao_id=${requisicaoId}`;
                     });
 
-                    // Evento de clique no botão "Cancelar"
                     $('.btn.cancelar-requisicao').click(function() {
                         window.location.href = 'tarefas-tela.jsp';
                     });
 
-                    // Evento de clique para expandir/retrair
                     $('.view').click(function() {
                         const requisicaoId = $(this).data('requisicao-id');
                         const informacoesExpandir = $(`#requisicao-${requisicaoId} .informacoes-expandir`);
                         const setinha = $(`#requisicao-${requisicaoId} .setinha-expandir-retrair`);
-                        
-                        // Alternar a visibilidade das informações
                         informacoesExpandir.toggleClass('escondido');
-                        
-                        // Alternar a rotação da setinha
                         setinha.toggleClass('rotacionar');
                     });
                 } else {

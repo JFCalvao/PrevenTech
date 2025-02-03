@@ -62,16 +62,22 @@
                     if (ajax.status === 200) {
                         var res = ajax.responseText;
                         res = new Response(ajax.responseText);
-                        if(res.getStatus() !== "OK") {
-                            window.location.href = "erro.jsp?erro=" + res.getError() + "&url=" + window.location.href; 
+                        if (res.getStatus() !== "OK") {
+                            window.location.href = "erro.jsp?erro=" + res.getError() + "&url=" + window.location.href;
                         } else {
                             let successMessage = document.querySelector("#success-message");
                             successMessage.style.display = "block";
+                            successMessage.classList.add("show");
+
+                            // Escondendo o formulário e outros elementos
+                            let form = document.querySelector("#finalizar-form");
+                            form.style.display = "none";
+                            
                             setTimeout(function() {
                                 window.location.href = "tarefas-tela.jsp"; 
                             }, 2000); 
                         }
-                    } 
+                    }
                 };
 
                 let json = new Request();
