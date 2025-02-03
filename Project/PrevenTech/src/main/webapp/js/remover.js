@@ -4,40 +4,35 @@ window.onload = function () {
     let remover = document.getElementById('remove');
     let maquinas = [];
 
-    function buscarDados() {
+    function pegarMAQ() {
         let nPatrimonio = document.querySelector('#n-patrimonio').value;
         let request = new Request();
         request.setOperation("GET");
         request.setType("EQ");
+        request.setData({ "n_patrimonio": nPatrimonio });
 
         const ajax = new XMLHttpRequest();
         ajax.open("POST", 'MainServlet', true);
-        ajax.setRequestHeader("Content-Type", "application/json");
-        ajax.onload = function () {
-            if (ajax.status === 200) {
-                try {
-                    let response = new Response(ajax.responseText);
+        ajax.onload = function() {
+            if (ajax.status == 200) {
+                let response = new Response(ajax.responseText);
 
-                    if (response.status === "OK") {
-                        maquinas = response.data; 
-                       
-                    } else {
-                        resposta.innerHTML = "Erro ao processar a resposta: " + response.error;
-                    }
-                } catch (e) {
-                    resposta.innerHTML = "Erro ao interpretar a resposta do servidor: " + e.message;
+                if (response.getStatus() == "OK") {
+                    maquinas = response.getData();
+                    console.table(maquinas);
+                } else {
+                    document.querySelector(".requisicao").innerHTML = "Erro ao processar a resposta.";
+                    console.log(response.response);
                 }
             } else {
-                resposta.innerHTML = "Erro ao enviar dados. Status: " + ajax.status;
+                document.querySelector(".requisicao").innerHTML = "Erro na requisição.";
             }
         };
 
-        ajax.onerror = function () {
-            resposta.innerHTML = "Erro ao conectar ao servidor.";
-        };
-
-        ajax.send(request);
+        ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        ajax.send(request.getRequest());
     }
+    pegarMAQ();
 
     function removerMaquina() {
         const nPatrimonio = nPatrimonioInput.value.trim();
@@ -103,7 +98,29 @@ window.onload = function () {
         ajax.send(payload);
     }
 
-    nPatrimonioInput.addEventListener('keyup', buscarDados);
+    function procurar () {
+        const val = document.querySelector("#n-patrimonio").value;
+        
+        let nome = document.getElementById('maquina-cad');
+        let local = document.getElementById('local');
+        let estado = document.getElementById('estados');
+        
+        nome.value = "";
+        local.value = "";
+        estado.value = "";
+        
+        maquinas.forEach(maquina => {
+            if(maquina.n_patrimonio === val) {
+                
+                
+                nome.value = maquina.nome;
+                local.value = maquina.local;
+                estado.value = maquina.estado;
+            }
+        })
+    }
+
+    nPatrimonioInput.addEventListener('keyup', procurar);
 
     if (remover) {
         remover.addEventListener('click', function() {
