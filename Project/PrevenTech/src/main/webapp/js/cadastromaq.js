@@ -10,6 +10,20 @@ function cadastrar() {
     const local = document.querySelector("#local").value;
     const estado = document.querySelector("#estados").value;
 
+    
+    if (!nome || !nPatrimonio || !local || !estado) {
+        resposta.innerHTML = "Por favor, preencha todos os campos.";
+        resposta.style.color = 'red';
+        return;
+    }
+
+    
+    if (isNaN(nPatrimonio) || nPatrimonio.trim() === "") {
+        resposta.innerHTML = "O número de patrimônio deve ser um valor numérico válido.";
+        resposta.style.color = 'red';
+        return;
+    }
+
     verificarPatrimonioExistente(nPatrimonio, function(existe) {
         if (existe) {
             resposta.innerHTML = "Número de patrimônio já cadastrado. Não é possível cadastrar novamente.";

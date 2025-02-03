@@ -22,39 +22,43 @@
                 <h2>Cadastro</h2>
                 <img id="usuario-img" src="imgs/login.png">
                 <div id="cargos">
-                    <div class="tecnico-div">
-                        <div class="cargo">Técnico</div>
+                    <div id="cargos-gerais">
+                        <div class="tecnico-div">
+                            <div class="cargo">Técnico</div>
+                        </div>
+                        <div class="professor-div">
+                            <div class="cargo" data-profisso="Professor">Professor</div>
+                        </div>
+                        <div class="coordenador-div">
+                            <div class="cargo" data-profisso="Coordenador">Coordenador</div>
+                        </div>
                     </div>
-                    <div class="professor-div">
-                        <div class="cargo" data-profisso="Professor">Professor</div>
+                    <div id="cargos-especificos">
+                        <div class="tecnico-informática-div">
+                            <div class="subcargo escondido" data-profisso="Tecnico em Informatica">Informática</div>
+                        </div>
+                        <div class="tecnico-eletronica-div">
+                            <div class="subcargo escondido" data-profisso="Tecnico em Eletronica">Eletrônica</div>
+                        </div>
                     </div>
-                    <div class="coordenador-div">
-                        <div class="cargo" data-profisso="Coordenador">Coordenador</div>
-                    </div>
-                    <div class="tecnico-informática-div">
-                        <div class="subcargo escondido" data-profisso="Tecnico em Informatica">Informática</div>
-                    </div>
-                    <div class="tecnico-eletronica-div">
-                        <div class="subcargo escondido" data-profisso="Tecnico em Eletronica">Eletrônica</div>
-                    </div>
-                    <div class="continuar">
-                        <button id="continuar-btn">Continuar</button>
+                </div>
+                <div class="continuar">
+                    <button id="continuar-btn">Continuar</button>
 
-                        <a id="login-link" href="index.jsp">Fazer login</a>
-                    </div>
-                  </div>
+                    <a id="login-link" href="index.jsp">Fazer login</a>
+                </div>
             </section>
             <section class="escondido" id="cadastro-secao">
                 <h2>Cadastro</h2>
                 <form id="form-cadastro" method="POST">
                     <label for="nome">Nome:
-                        <input type="text" name="nome" id="nome">
+                        <input autocomplete="off" type="text" name="nome" id="nome">
                     </label>
                     <label for="usuario">Usuário (cpf):
-                        <input type="text" name="usuario" id="usuario">
+                        <input autocomplete="off" type="text" name="usuario" id="usuario">
                     </label>
                     <label for="email">Email:
-                        <input type="text" name="email" id="email">
+                        <input autocomplete="off" type="text" name="email" id="email">
                     </label>
                     <label for="senha">Senha:
                         <input type="password" name="senha" id="senha">

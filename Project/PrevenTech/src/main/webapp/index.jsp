@@ -26,7 +26,7 @@
             <div id="login">
                 <form id="form-login" action="POST">
                     <label>Usuário:
-                        <br><input type="text" id="user" name="user">
+                        <br><input autocomplete="off" type="text" id="user" name="user">
                     </label>
                     <label>Senha:
                         <br><input type="password" id="senha" name="senha">

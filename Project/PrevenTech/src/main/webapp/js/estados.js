@@ -106,3 +106,5 @@ function buscarDados() {
         resposta.innerHTML = "<p>Nenhuma máquina encontrada para este número de patrimônio.</p>";
     }
 }
+let cancelar = document.getElementById('cancelar')
+cancelar.addEventListener('click', 'cancelar');

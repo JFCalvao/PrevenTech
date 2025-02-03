@@ -9,6 +9,7 @@
     <link rel="shortcut icon" href="imgs/cefet.png" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login.css">
+    <%@include file="Security/security.jsp" %>
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
@@ -18,14 +19,7 @@
         <img id="usuario-img" src="imgs/login.png">
         <div id="editar-nome-usuario">
             <h3 id="nome-usuario">
-                <c:choose>
-                    <c:when test="${not empty sessionScope.usuario}">
-                        ${sessionScope.usuario.nome}
-                    </c:when>
-                    <c:otherwise>
-                        Usuário não encontrado
-                    </c:otherwise>
-                </c:choose>
+                <%= userService.getNome() %>
             </h3>
             <input type="hidden" value="${sessionScope.usuario.nome}" name="nome" id="nome">
             <button class="edit-btn escondido"><img class="edit-img" src="imgs/pencil.png"></button>
@@ -36,7 +30,10 @@
         >
         <input  type="hidden" value="" name="senha" id="senha">
         </label>
-        <button id="salvar">Salvar</button>
+        <div id="buttons" >
+            <button id="cancelar" onclick="window.location.href = '<%= userService.getInitialPage() %>';" >Voltar</button>
+            <button id="salvar">Salvar</button>
+        </div>
     </section>
 </main>
 
