@@ -4,6 +4,7 @@
     Author     : jfcalvao
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,7 +17,11 @@
             const initialPage = "<%= userService.getInitialPage() %>";
             const username = "<%= userService.getNome() %>"; 
             const userCPF = "<%= userService.getCPF() %>";
-            const id = "1";
+            <% if(request.getParameter("id") != null) { %>
+                const id = <%= request.getParameter("id") %>;
+            <% } else { %>
+                const id = -1;
+            <% } %>
         </script>
         <script src="js/chat.js" defer ></script>
         <title>JSP Page</title>
