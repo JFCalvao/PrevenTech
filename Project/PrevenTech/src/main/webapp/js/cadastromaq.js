@@ -4,20 +4,17 @@ let clicar = document.getElementById('cadastro');
 clicar.addEventListener('click', cadastrar);
 
 function cadastrar() {
-    
     const nome = document.querySelector("#maquina-cad").value;
     const nPatrimonio = document.querySelector("#n-patrimonio").value;
     const local = document.querySelector("#local").value;
     const estado = document.querySelector("#estados").value;
 
-    
-    if (!nome || !nPatrimonio || !local || !estado) {
+    if (nome.trim() === "" || nPatrimonio.trim() === "" || local.trim() === "" || estado === "") {
         resposta.innerHTML = "Por favor, preencha todos os campos.";
         resposta.style.color = 'red';
         return;
     }
 
-    
     if (isNaN(nPatrimonio) || nPatrimonio.trim() === "") {
         resposta.innerHTML = "O número de patrimônio deve ser um valor numérico válido.";
         resposta.style.color = 'red';

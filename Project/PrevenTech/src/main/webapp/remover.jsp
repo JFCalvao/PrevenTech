@@ -43,7 +43,7 @@
                         
                         <div id="botao-container">
                     <button id="remove" type="button">REMOVER</button> 
-                    <button type="button" id="cancelar"<%= userService.getInitialPage() %>" onclick="window.location.href='coordenador.jsp'>CANCELAR</button>
+                            <button type="button" id="cancelar"<%= userService.getInitialPage() %>" onclick="window.location.href='coordenador.jsp';">CANCELAR</button>
                     </div>
                     <div id="resposta"></div>
                         
