@@ -36,9 +36,13 @@ $(document).ready(function() {
                                                     <p>Patrimônio: ${equipamento.n_patrimonio}</p>
                                                     <p>Local: ${equipamento.local}</p>
                                                     <p>Estado: ${equipamento.estado}</p>
+                                                    <select class="estado-select" data-patrimonio="${equipamento.n_patrimonio}">
+                                                        <option value="funcionamento" ${equipamento.estado === 'funcionamento' ? 'selected' : ''}>FUNCIONANDO</option>
+                                                        <option value="defeito" ${equipamento.estado === 'defeito' ? 'selected' : ''}>COM DEFEITO</option>
+                                                        <option value="manutencao" ${equipamento.estado === 'manutencao' ? 'selected' : ''}>EM MANUTENÇÃO</option>
+                                                    </select>
                                                     <button class="btn alterar-estado" 
-                                                            data-patrimonio="${equipamento.n_patrimonio}" 
-                                                            data-estado="${equipamento.estado}">
+                                                            data-patrimonio="${equipamento.n_patrimonio}">
                                                         Alterar Estado
                                                     </button>
                                                 </div>
@@ -50,9 +54,35 @@ $(document).ready(function() {
                         `;
                         $("#requisicoes-dinamicas").append(requisicaoHTML);
                     });
+
+            
                     $('.view').click(function() {
                         const requisicaoId = $(this).data('requisicao-id');
                         $(`#requisicao-${requisicaoId} .informacoes-expandir`).toggleClass('escondido');
+                    });
+
+        
+                    $('.btn.alterar-estado').click(function(e) {
+                        e.preventDefault();
+
+                        const patrimonio = $(this).data('patrimonio');
+                        const novoEstado = $(`select[data-patrimonio="${patrimonio}"]`).val();
+
+                        $.ajax({
+                            url: 'AtualizarEstadoServlet',
+                            type: 'POST',
+                            data: {
+                                n_patrimonio: patrimonio,
+                                estado: novoEstado
+                            },
+                            success: function(response) {
+                                alert("Estado atualizado com sucesso!");
+                                location.reload(); // Recarregar a página para refletir a mudança
+                            },
+                            error: function() {
+                                alert("Erro ao atualizar o estado.");
+                            }
+                        });
                     });
                 } else {
                     alert("Erro ao carregar as requisições.");
