@@ -35,6 +35,10 @@
                 <button type="button" id="cancelar-btn" onclick="window.location.href='tarefas-tela.jsp';">Cancelar</button>
             </div>
         </form>
+
+        <div id="success-message" style="display: none; color: green; font-weight: bold; text-align: center; margin-top: 20px;">
+            Relatório enviado com sucesso!
+        </div>
     </main>
 
     <script src="js/json.js"></script>
@@ -61,6 +65,7 @@
                         if(res.getStatus() !== "OK") {
                             window.location.href = "erro.jsp?erro=" + res.getError() + "&url=" + window.location.href; 
                         } else {
+                            let successMessage = document.querySelector("#success-message");
                             successMessage.style.display = "block";
                             setTimeout(function() {
                                 window.location.href = "tarefas-tela.jsp"; 
