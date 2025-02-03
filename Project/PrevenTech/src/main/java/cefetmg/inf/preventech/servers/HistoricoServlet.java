@@ -5,6 +5,8 @@
 package cefetmg.inf.preventech.servers;
 
 import cefetmg.inf.preventech.Exceptions.HistoricoJaExisteException;
+import cefetmg.inf.preventech.dao.HistoricoDAO;
+import cefetmg.inf.preventech.dao.RequisicaoDAO;
 import cefetmg.inf.preventech.dto.Historico;
 import cefetmg.inf.preventech.dto.Requisicao;
 import cefetmg.inf.preventech.dto.User;
@@ -46,16 +48,17 @@ public class HistoricoServlet extends HttpServlet {
         JSONObject content = json.getJSONObject("content");
         
         JSONObject jsonResponse = new JSONObject();
-        System.out.println("Opa: " + operation);
+        
         try {
             switch(operation) {
-                case "GET":
+                case "GET": {
                     JSONArray result = new JSONArray();
+                    HistoricoDAO dao = new HistoricoDAO();
                     
                     for(Historico h : DatabaseManager.getAllHistoricos()) {
                         JSONObject obj = new JSONObject();
                         obj.put("id", h.getId());
-                        User requisitor = DatabaseManager.searchUsuario("33333333333");
+                        User requisitor = DatabaseManager.searchUsuario(h.getRequisitor_cpf());
                         User responsavel = DatabaseManager.searchUsuario(h.getResponsavel_cpf());
                         obj.put("requisitor", requisitor.getNome());
                         if(responsavel != null)
@@ -68,37 +71,34 @@ public class HistoricoServlet extends HttpServlet {
                     }
                     
                     jsonResponse.put("content", result);
-                break;
+                } break;
                 case "INSERT": {
-                    System.out.println("Pegando id: ");
                     Historico historico = getHistorico(content);
-                    System.out.println("Pegando id: " + historico.getId());
-                    System.out.println("Pegando file: " + historico.getConteudoArquivo());
+                    
+                    if(DatabaseManager.hasHistorico(historico)) {
+                        throw new HistoricoJaExisteException();
+                    }
+                    
                     Requisicao requisicao = DatabaseManager.searchRequisicao(historico.getId());
 
                     historico.setRequisitor_cpf(requisicao.getRequisitor_cpf());
                     historico.setResponsavel_cpf(requisicao.getResponsavel_cpf());
 
-                    if(DatabaseManager.hasHistorico(historico)) {
-                        throw new HistoricoJaExisteException();
-                    }
-
-                    System.out.println("Arquivo uploading...");
                     String savePath = getServletContext().getRealPath("uploads");
                     historico.uploadFile(savePath);
-                    System.out.println("Arquivo uploaded");
                     DatabaseManager.insertHistorico(historico);
-                    System.out.println("Inseted");
-                }
                     
-                break;
-                case "GETFILE":
+                    RequisicaoDAO<String> dao = new RequisicaoDAO<>();
+                    dao.delete(requisicao.getId());
+                } break;
+                case "GETFILE": {
                     String savePath = getServletContext().getRealPath("uploads");
+                    
+                    HistoricoDAO dao = new HistoricoDAO();
                     Historico historico = getHistorico(content);
                     
-                    historico = DatabaseManager.searchHistorico(historico.getId());
-                    System.out.println("Buscado hehe");
-                    System.out.println(historico.getNomeArquivo());
+                    historico = dao.search(historico.getId());
+
                     File file = historico.getFile(savePath);
                     String fileName = historico.getNomeArquivo();
 
@@ -113,7 +113,7 @@ public class HistoricoServlet extends HttpServlet {
 
                         jsonResponse.put("content", fileInfo);
                     }
-                break;
+                } break;
                 default: break;
             }
 
