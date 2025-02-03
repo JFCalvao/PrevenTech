@@ -32,11 +32,11 @@
             $(document).ready(function() {
                 function carregarRequisicoes() {
                     $.ajax({
-                        url: 'Tecnico',
+                        url: '/Tecnico',
                         type: 'GET',
                         dataType: 'json',
                         success: function(data) {
-                            console.log(data); // Verifique se os dados estão sendo retornados corretamente
+                            console.log(data);
                             if (data.status === "OK") {
                                 const requisicoes = data.content;
                                 requisicoes.forEach(function(requisicao) {
