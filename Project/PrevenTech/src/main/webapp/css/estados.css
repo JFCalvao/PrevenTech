@@ -248,6 +248,14 @@ div .expandir {
     margin-top: 20px;
 }
 
+#voltar-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;      
+    width: 100%;
+    margin-top: 20px;
+}
+
 #voltar {
     background-color: #004aad;
     color: white;
@@ -264,4 +272,3 @@ div .expandir {
 #voltar:hover {
     background-color: #00368d;
 }
-
