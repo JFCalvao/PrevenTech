@@ -35,19 +35,30 @@ $(document).ready(function() {
                                                     <p>Nome: ${equipamento.nome}</p>
                                                     <p>Patrimônio: ${equipamento.n_patrimonio}</p>
                                                     <p>Local: ${equipamento.local}</p>
-                                                    <p>Estado: ${equipamento.estado}</p>
+                                                    <p>Estado Atual: <span class="estado-texto">${equipamento.estado}</span></p>
+
                                                     <select class="estado-select" data-patrimonio="${equipamento.n_patrimonio}">
-                                                        <option value="funcionamento" ${equipamento.estado === 'funcionamento' ? 'selected' : ''}>FUNCIONANDO</option>
-                                                        <option value="defeito" ${equipamento.estado === 'defeito' ? 'selected' : ''}>COM DEFEITO</option>
-                                                        <option value="manutencao" ${equipamento.estado === 'manutencao' ? 'selected' : ''}>EM MANUTENÇÃO</option>
+                                                        <option value="funcionamento" ${equipamento.estado === "funcionamento" ? "selected" : ""}>FUNCIONANDO</option>
+                                                        <option value="defeito" ${equipamento.estado === "defeito" ? "selected" : ""}>COM DEFEITO</option>
+                                                        <option value="manutencao" ${equipamento.estado === "manutencao" ? "selected" : ""}>EM MANUTENÇÃO</option>
                                                     </select>
-                                                    <button class="btn alterar-estado" 
-                                                            data-patrimonio="${equipamento.n_patrimonio}">
+
+                                                    <button class="btn alterar-estado" data-patrimonio="${equipamento.n_patrimonio}">
                                                         Alterar Estado
                                                     </button>
                                                 </div>
                                             `;
                                         }).join('')}
+                                    </div>
+                                    
+                                    <!-- Botões para Finalizar e Cancelar -->
+                                    <div class="botoes-acao">
+                                        <button class="btn finalizar-requisicao" data-id="${requisicao.requisicao_id}">
+                                            Finalizar e Enviar Relatório
+                                        </button>
+                                        <button class="btn cancelar-requisicao" data-id="${requisicao.requisicao_id}">
+                                            Cancelar
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -55,18 +66,11 @@ $(document).ready(function() {
                         $("#requisicoes-dinamicas").append(requisicaoHTML);
                     });
 
-            
-                    $('.view').click(function() {
-                        const requisicaoId = $(this).data('requisicao-id');
-                        $(`#requisicao-${requisicaoId} .informacoes-expandir`).toggleClass('escondido');
-                    });
-
-        
-                    $('.btn.alterar-estado').click(function(e) {
-                        e.preventDefault();
-
+                    // Evento de clique no botão "Alterar Estado"
+                    $('.btn.alterar-estado').click(function() {
                         const patrimonio = $(this).data('patrimonio');
-                        const novoEstado = $(`select[data-patrimonio="${patrimonio}"]`).val();
+                        const select = $(`.estado-select[data-patrimonio="${patrimonio}"]`);
+                        const novoEstado = select.val();
 
                         $.ajax({
                             url: 'AtualizarEstadoServlet',
@@ -77,12 +81,28 @@ $(document).ready(function() {
                             },
                             success: function(response) {
                                 alert("Estado atualizado com sucesso!");
-                                location.reload(); // Recarregar a página para refletir a mudança
                             },
                             error: function() {
                                 alert("Erro ao atualizar o estado.");
                             }
                         });
+                    });
+
+                    // Evento de clique no botão "Finalizar e Enviar Relatório"
+                    $('.btn.finalizar-requisicao').click(function() {
+                        const requisicaoId = $(this).data('id');
+                        window.location.href = `finalizarSolicitacao.jsp?requisicao_id=${requisicaoId}`;
+                    });
+
+                    // Evento de clique no botão "Cancelar"
+                    $('.btn.cancelar-requisicao').click(function() {
+                        window.location.href = 'tarefas-tela.jsp';
+                    });
+
+                    // Evento de clique para expandir/retrair
+                    $('.view').click(function() {
+                        const requisicaoId = $(this).data('requisicao-id');
+                        $(`#requisicao-${requisicaoId} .informacoes-expandir`).toggleClass('escondido');
                     });
                 } else {
                     alert("Erro ao carregar as requisições.");
