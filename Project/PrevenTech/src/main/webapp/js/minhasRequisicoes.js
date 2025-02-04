@@ -18,18 +18,6 @@ function obterUserNome() {
     });
 }
 
-function enviarId() {
-    const requisicao = document.querySelector('.requisicao')
-    
-    $.ajax ({
-        url: 'chat.jsp?id=' + requisicao.getAttribute('data-id'),
-        type: 'GET',
-        success:() => {
-            window.location.href = "chat.jsp";
-        }
-    });
-}
-
 function exibirMinhasRequisicoes(data) {
     let bodyRequisicoesEl = document.querySelector('.minhas-requisicoes .body');
     
@@ -71,8 +59,8 @@ function exibirMinhasRequisicoes(data) {
             let colorStatusMaquina, borderStatusMaquina;
             
             let maquinas = content.arrEquipamentos;
-            
             let dataSplit = content.data.split('_');
+            
             dataSplit[0] = dataSplit[0].replace(/-/g, '/');
             let dataEnvio = dataSplit[0];
             dataSplit[1] = dataSplit[1].replace(/-/g, ':');
@@ -165,16 +153,17 @@ function exibirMinhasRequisicoes(data) {
                 </div>`;
         }
         
-        addEvents();
-        
         const botaoChatElements = document.querySelectorAll('#botao-chat');
         botaoChatElements.forEach(botao => {
             botao.addEventListener('click', function() {
                 const requisicao = this.closest('.requisicao');  
                 const id = requisicao.getAttribute('data-id');
-                enviarId(id);
+                window.location.href = "chat.jsp?id=" + id;
             });
         });
+        
+        addEvents();
+        
     }).catch(error => {
         console.log(error);
     });
