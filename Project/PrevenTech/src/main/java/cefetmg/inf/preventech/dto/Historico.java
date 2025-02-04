@@ -41,7 +41,10 @@ public class Historico {
 
             this.data = dia + "-" + mes + "-" + ano + "_" + horas + "-" + minutos;
 
-            this.conteudoArquivo = conteudoArquivo.split(",")[1];
+            if(conteudoArquivo != "") {
+                String[] data = conteudoArquivo.split(",");
+                this.conteudoArquivo = data[data.length-1];
+            }
 
             this.nomeArquivo = "RelatorioFinal(" + id + ")_" + this.data;
         }

@@ -46,7 +46,6 @@ public class Chat {
             
             String type = json.getString("type");
             
-            
             switch(type) {
                 case "INIT": {
                     response.put("type", "INIT");
@@ -93,7 +92,7 @@ public class Chat {
                 break;
 
                 case "MSG": {
-                    String id = content.getString("id");
+                    String id = String.valueOf(content.getInt("id"));
                     String text = content.getString("msg");
                     
                     RequisicaoDAO<String> Rdao = new RequisicaoDAO<>();

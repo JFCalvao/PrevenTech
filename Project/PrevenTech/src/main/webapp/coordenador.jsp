@@ -36,7 +36,7 @@
                         <a href="minhasRequisicoes.jsp"><li class="opcao">Ver minhas requisições</li></a>
                         <a href="cadastrar-maq.jsp"><li class="opcao" >Cadastrar nova máquina</li></a>
                         <a href="remover.jsp"><li class="opcao" >Remover máquina</li></a>
-                        <a href="Logout"><li class="opcao">Logout</li></a>
+                        <a href="Logout"><li class="opcao logout">Logout</li></a>
                     </lista>
                 </section>
             </div>

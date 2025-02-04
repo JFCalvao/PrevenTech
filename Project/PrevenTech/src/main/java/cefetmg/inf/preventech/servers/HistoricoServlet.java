@@ -55,18 +55,15 @@ public class HistoricoServlet extends HttpServlet {
                     JSONArray result = new JSONArray();
                     HistoricoDAO dao = new HistoricoDAO();
                     
-                    for(Historico h : DatabaseManager.getAllHistoricos()) {
+                    for(Historico h : dao.getAll()) {
                         JSONObject obj = new JSONObject();
                         obj.put("id", h.getId());
                         User requisitor = DatabaseManager.searchUsuario(h.getRequisitor_cpf());
                         User responsavel = DatabaseManager.searchUsuario(h.getResponsavel_cpf());
+                        
                         obj.put("requisitor", requisitor.getNome());
-                        if(responsavel != null)
-                            obj.put("responsavel", responsavel.getNome());
-                        else
-                            obj.put("responsavel", "Ninguem");
+                        obj.put("responsavel", responsavel.getNome());
                         obj.put("data", h.getData());
-
                         result.put(obj);
                     }
                     
@@ -79,17 +76,19 @@ public class HistoricoServlet extends HttpServlet {
                         throw new HistoricoJaExisteException();
                     }
                     
-                    Requisicao requisicao = DatabaseManager.searchRequisicao(historico.getId());
+                    RequisicaoDAO<String> rDao = new RequisicaoDAO<>();
+                    HistoricoDAO hDao = new HistoricoDAO();
+                    
+                    Requisicao requisicao = rDao.search(historico.getId());
 
                     historico.setRequisitor_cpf(requisicao.getRequisitor_cpf());
                     historico.setResponsavel_cpf(requisicao.getResponsavel_cpf());
 
                     String savePath = getServletContext().getRealPath("uploads");
                     historico.uploadFile(savePath);
-                    DatabaseManager.insertHistorico(historico);
+                    hDao.create(historico);
                     
-                    RequisicaoDAO<String> dao = new RequisicaoDAO<>();
-                    dao.delete(requisicao.getId());
+                    rDao.delete(requisicao.getId());
                 } break;
                 case "GETFILE": {
                     String savePath = getServletContext().getRealPath("uploads");

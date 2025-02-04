@@ -7,6 +7,7 @@ $(document).ready(function() {
             success: function(data) {
                 if (data.status === "OK") {
                     const requisicoes = data.content;
+                    
                     requisicoes.forEach(function(requisicao) {
                         let requisicaoHTML = `
                             <div class="requisicao" id="requisicao-${requisicao.requisicao_id}">
@@ -18,6 +19,9 @@ $(document).ready(function() {
                                     <div class="setinha-expandir-retrair"></div>
                                 </div>
                                 <div class="informacoes-expandir escondido">
+                                    <div class="chat">
+                                        <button class="botao-chat" onclick="goChat(${requisicao.requisicao_id})"><img class="img-chat" src="imgs/chat.jpg"></button>
+                                    </div>
                                     <div id="status">
                                         <span id="cor-status"></span>
                                         <span id="txt-status">${requisicao.categoriaString}</span>
@@ -62,7 +66,7 @@ $(document).ready(function() {
                         `;
                         $("#requisicoes-dinamicas").append(requisicaoHTML);
                     });
-
+                    
                     $('.btn.alterar-estado').click(function() {
                         const patrimonio = $(this).data('patrimonio');
                         const select = $(`.estado-select[data-patrimonio="${patrimonio}"]`);
@@ -117,3 +121,7 @@ $(document).ready(function() {
         window.location.href = "tecnico.jsp";
     });
 });
+
+function goChat(id) {
+    window.location.href = "chat.jsp?id=" + id;
+}

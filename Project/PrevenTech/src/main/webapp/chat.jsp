@@ -18,7 +18,7 @@
             const username = "<%= userService.getNome() %>"; 
             const userCPF = "<%= userService.getCPF() %>";
             <% if(request.getParameter("id") != null) { %>
-                const id = <%= request.getParameter("id") %>;
+                const id = <%= Integer.valueOf(request.getParameter("id")) %>;
             <% } else { %>
                 const id = -1;
             <% } %>

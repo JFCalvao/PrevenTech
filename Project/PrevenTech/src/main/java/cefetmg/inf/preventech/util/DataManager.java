@@ -170,7 +170,7 @@ public class DataManager {
         historico.setRequisitor_cpf(requisitor_cpf);
         
         String responsavel_cpf = Encryption.decrypt(historico.getResponsavel_cpf());
-        historico.setResponsavel_cpf(requisitor_cpf);
+        historico.setResponsavel_cpf(responsavel_cpf);
         
         String data = Encryption.decrypt(historico.getData());
         historico.setData(data);

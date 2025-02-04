@@ -79,3 +79,7 @@ body {
     margin-left: 15%;
     margin-top: 10.3%;
 }
+
+.logout {
+    background-color: #e74c3c !important;
+}
