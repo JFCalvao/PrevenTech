@@ -90,6 +90,18 @@ public class Requisicao {
         this.responsavel_cpf = cpf; 
     }
     
+    public void createDataInicio() {
+        ZoneId fusoHorarioBrasil = ZoneId.of("America/Sao_Paulo"); 
+        ZonedDateTime dataHoraBrasil = ZonedDateTime.now(fusoHorarioBrasil); 
+        int dia = dataHoraBrasil.getDayOfMonth(); 
+        int mes = dataHoraBrasil.getMonthValue(); 
+        int ano = dataHoraBrasil.getYear(); 
+        int horas = dataHoraBrasil.getHour(); 
+        int minutos = dataHoraBrasil.getMinute(); 
+        
+        this.data_inicio = dia + "-" + mes + "-" + ano + "_" + horas + "-" + minutos;
+    }
+    
     public void setData(String data) { 
         this.data_inicio = data; 
     }

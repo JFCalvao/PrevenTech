@@ -11,6 +11,7 @@
 package cefetmg.inf.preventech.servers;
 
 import cefetmg.inf.preventech.Exceptions.*;
+import cefetmg.inf.preventech.dao.EquipamentoDAO;
 import cefetmg.inf.preventech.util.Categorias;
 import cefetmg.inf.preventech.dto.Coordenador;
 import cefetmg.inf.preventech.dto.Equipamento;
@@ -85,14 +86,15 @@ public class MainServlet extends HttpServlet {
                     break;
                     case "RQ": {   
                         Requisicao requisicao = getRequisicao(content);
-//                        if(DatabaseManager.hasRequisicao(requisicao)) {;
-//                            throw new RequisicaoJaExisteException();
-//                        }
-                        DatabaseManager.insertRequisicao(requisicao);
-                    }
-                    break;
-                    case "HS": {
+                        requisicao.createDataInicio();
                         
+                        EquipamentoDAO dao = new EquipamentoDAO();
+                        
+                        for(String n_patrimonio : requisicao.getEquipamentos().split("_")) {
+                            System.out.println(n_patrimonio);
+                        }
+                        
+                        DatabaseManager.insertRequisicao(requisicao);
                     }
                     break;
                     case "US": {
@@ -117,10 +119,6 @@ public class MainServlet extends HttpServlet {
                         
                         
                     }      
-                    break;
-                    case "CH": {
-                        
-                    }
                     break;
                     default: break;
                 }
@@ -161,12 +159,6 @@ public class MainServlet extends HttpServlet {
                             break;
                         }
                     break;
-                    case "US":
-                        break;
-                    case "CH":
-                        break;
-                    default:
-                        break;
                 }
             } else if(operation.equals("UPDATE")) {
                 switch (type) {
@@ -182,7 +174,7 @@ public class MainServlet extends HttpServlet {
                         UsersList.add(usuario);
 
                         jsonResponse.put("redirect", "meus-dados.jsp");
-                        break;
+                    break;
                 }
             } else if(operation.equals("REMOVE")) {
                 
@@ -204,8 +196,6 @@ public class MainServlet extends HttpServlet {
 
                     getRedirectJSP(jsonResponse, usuario);
                 }
-            } else {
-
             }
             
             jsonResponse.put("status", "OK");
@@ -287,8 +277,6 @@ public class MainServlet extends HttpServlet {
         String categoria = content.getString("categoria");
         String equipamentos = content.getString("equipamentos");
         String descricao = content.getString("descricao");
-        
-        System.out.println("R: " + requisitor_cpf + "\nC: " + categoria + "\nE: " + equipamentos + "\nD: " + descricao);
         
         return new Requisicao(requisicao_id, requisitor_cpf, responsavel_cpf, 
                               data_inicio, Categorias.getCategoriaCode(categoria), 
