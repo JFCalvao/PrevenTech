@@ -1,6 +1,7 @@
 # PrevenTech
-> Status: Desenvolvendo ⚠️
+> Status: Concluido ✅
 ### Sistema de Prevenção e Manutenção
+##### Desenvolvido para o Centro Federal de Educação Tecnológica de Minas Gerais (CEFET-MG)
 
 #### Intuito do projeto
 + Agilizar o envio de solicitações de manutenção
